@@ -4,7 +4,11 @@
 
 ## Team
 Emery
+
 Daniel
+
 David
+
 Emily
+
 Hannah
