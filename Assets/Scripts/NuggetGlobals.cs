@@ -13,6 +13,11 @@ public class NuggletGlobal : MonoBehaviour {
 
     public enum AttractionTypes { Generic, SpiderDrop, SkeletonPopUp, Ghost, PossessedBear, DarkTunnel, OOB }
 
+    // TODO: Add constants:
+    // HP defaults of attractions
+    // HP damage from attractions
+    // Fear Multiplier per Fear or per # of fears?
+
     List<Fears>[] fearsForAttraction = new List<Fears>[(int)AttractionTypes.OOB];
 
     private void AssignFearsToAttraction(List<Fears> fearList, params Fears[] fears)
