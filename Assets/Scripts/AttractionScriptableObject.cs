@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [CreateAssetMenu(fileName = "Attraction", menuName = "Attractions")]
 public class AttractionScriptableObject : ScriptableObject {
-    //enum Category { };
+    
+    public NuggletGlobal.AttractionTypes attractionType;
 
 	public new string name;
 	public string description;
