@@ -1,14 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 //namespace NuggetGlobals {} // initial idea to place Enums; better in a class which uses the enums
 
 // NuggetFearsAndAttractionsUtilityClass?
 
-public class NuggletGlobal {
+public class NuggletGlobal : MonoBehaviour {
 
     public enum Fears { Anything, Dark, EnclosedSpaces, Isolation,
                          Pursued, Supernatural, CreepyCrawlies, Clowns, JumpScares, OOB }
@@ -67,10 +65,14 @@ public class NuggletGlobal {
         AssignFearsToAttraction(fearsForAttraction[(int)AttractionTypes.PossessedBear], Fears.Supernatural, Fears.Pursued);
         AssignFearsToAttraction(fearsForAttraction[(int)AttractionTypes.DarkTunnel], Fears.Dark, Fears.EnclosedSpaces);
     }
-
+/*
     void Start()
     {
-        Debug.Log(GetFearsForAttraction(AttractionTypes.DarkTunnel));
+        //if (Debug)
+        List<Fears> fears = GetFearsForAttraction(AttractionTypes.DarkTunnel);
+        foreach(Fears fear in fears)
+            Debug.Log(fear.ToString());
     }
+*/
 
 }
