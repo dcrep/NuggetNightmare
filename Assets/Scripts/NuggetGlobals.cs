@@ -30,7 +30,7 @@ public class NuggletGlobal : MonoBehaviour {
     
 
     // One instance of this for all objects (NEEDS SINGLETON check! (in Awake)):
-    static List<Fears>[] fearsForAttraction; // = new List<Fears>[(int)AttractionTypes.OOB];
+    static List<Fears>[] fearsForAttraction;    // = new List<Fears>[(int)AttractionTypes.OOB]; // initialized in Awake()
 
     public static uint GetHPDefaultForAttraction(AttractionTypes attractionType)
     {
