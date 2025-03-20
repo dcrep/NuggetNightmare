@@ -6,7 +6,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Attraction", menuName = "Attractions")]
 public class AttractionScriptableObject : ScriptableObject {
     
-    public NuggletGlobal.AttractionTypes attractionType;
+    public Nightmares.AttractionTypes attractionType;
 
 	public new string name;
 	public string description;
