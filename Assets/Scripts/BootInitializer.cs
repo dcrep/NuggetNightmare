@@ -13,5 +13,7 @@ public class BootInitializer : MonoBehaviour {
         //Debug.Log("BootInitializer->Load()");
 	    GameObject bootInit = GameObject.Instantiate(Resources.Load("BootInitializer")) as GameObject;
 	    GameObject.DontDestroyOnLoad(bootInit);
+        GameObject nuggetGlobals = GameObject.Instantiate(Resources.Load("NuggetGlobals")) as GameObject;
+        GameObject.DontDestroyOnLoad(nuggetGlobals);
     } 
 }
