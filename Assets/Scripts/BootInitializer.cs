@@ -13,7 +13,14 @@ public class BootInitializer : MonoBehaviour {
         //Debug.Log("BootInitializer->Load()");
 	    GameObject bootInit = GameObject.Instantiate(Resources.Load("BootInitializer")) as GameObject;
 	    GameObject.DontDestroyOnLoad(bootInit);
-        GameObject nuggetGlobals = GameObject.Instantiate(Resources.Load("NuggetGlobals")) as GameObject;
-        GameObject.DontDestroyOnLoad(nuggetGlobals);
+
+        // Initialize Nightmares
+        Nightmares.Initialize();
+        List<Nightmares.Fears> fears = Nightmares.GetFearsForAttraction(Nightmares.AttractionTypes.DarkTunnel);
+        foreach(Nightmares.Fears fear in fears)
+            Debug.Log(fear.ToString());
+
+        //GameObject nuggetGlobals = GameObject.Instantiate(Resources.Load("NuggetGlobals")) as GameObject;
+        //GameObject.DontDestroyOnLoad(nuggetGlobals);
     } 
 }

@@ -1,12 +1,10 @@
 using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
 
 //namespace NuggetGlobals {} // initial idea to place Enums; better in a class which uses the enums
 
 // NuggetFearsAndAttractionsUtilityClass?
 
-public class NuggletGlobal : MonoBehaviour {
+public static class Nightmares {
 
     public enum Fears { Anything, Dark, EnclosedSpaces, Isolation,
                          Pursued, Supernatural, CreepyCrawlies, Clowns, JumpScares, OOB }
@@ -17,13 +15,13 @@ public class NuggletGlobal : MonoBehaviour {
     public static uint FEAR_MULTIPLIER = 2; // 2x damage for each fear?
 
     // HP defaults of attractions
-    static uint HP_ATTRACTION_DEFAULT = 100;
+    public static uint HP_ATTRACTION_DEFAULT = 100;
     static uint[] HP_Defaults = new uint[(int)AttractionTypes.OOB] { 
         HP_ATTRACTION_DEFAULT, HP_ATTRACTION_DEFAULT, HP_ATTRACTION_DEFAULT,
         HP_ATTRACTION_DEFAULT, HP_ATTRACTION_DEFAULT, HP_ATTRACTION_DEFAULT };
     
     // HP damage from attractions
-    static uint HP_ATTRACTION_DAMAGE_DEFAULT = 1;
+    public static uint HP_ATTRACTION_DAMAGE_DEFAULT = 1;
     static uint[] HP_DamageDefaults = new uint[(int)AttractionTypes.OOB] { 
         HP_ATTRACTION_DAMAGE_DEFAULT, HP_ATTRACTION_DAMAGE_DEFAULT, HP_ATTRACTION_DAMAGE_DEFAULT,
         HP_ATTRACTION_DAMAGE_DEFAULT, HP_ATTRACTION_DAMAGE_DEFAULT, HP_ATTRACTION_DAMAGE_DEFAULT };
@@ -68,7 +66,7 @@ public class NuggletGlobal : MonoBehaviour {
 
     public static uint GetMatchingFearsForAttractionCount(AttractionTypes attractionType, params Fears[] fears)
     {
-        return (uint)GetMatchingFearsForAttraction(attractionType, fears).Count();
+        return (uint)GetMatchingFearsForAttraction(attractionType, fears).Count;
     }
 
     public static bool AttractionHasFear(AttractionTypes attractionType, Fears fear)
@@ -76,8 +74,7 @@ public class NuggletGlobal : MonoBehaviour {
         return fearsForAttraction[(int)attractionType].Contains(fear);
     }
 
-    // Awake() called before Start() so initialization occurs here
-    void Awake()
+    public static void Initialize()
     {
         // One instance of the static elements
         if (fearsForAttraction == null) {
@@ -97,14 +94,5 @@ public class NuggletGlobal : MonoBehaviour {
             // Initialize HP_Defaults and HP_DamageDefaults (or leave as an initialized list)
         }
     }
-// /*
-    void Start()
-    {
-        //if (Debug)
-        List<Fears> fears = GetFearsForAttraction(AttractionTypes.DarkTunnel);
-        foreach(Fears fear in fears)
-            Debug.Log(fear.ToString());
-    }
-// */
 
 }
