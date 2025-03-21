@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 
-//namespace NuggetGlobals {} // initial idea to place Enums; better in a class which uses the enums
+//namespace NightmareGlobals {} // initial idea to place Enums; better in a class which uses the enums
 
-// NuggetFearsAndAttractionsUtilityClass?
+// UtilityClass
 
 public static class Nightmares {
 
@@ -27,7 +27,7 @@ public static class Nightmares {
         HP_ATTRACTION_DAMAGE_DEFAULT, HP_ATTRACTION_DAMAGE_DEFAULT, HP_ATTRACTION_DAMAGE_DEFAULT };
     
 
-    // One instance of this for all objects (NEEDS SINGLETON check! (in Awake)):
+    // One instance of this for all objects (NEEDS Initialize()!):
     static List<Fears>[] fearsForAttraction;    // = new List<Fears>[(int)AttractionTypes.OOB]; // initialized in Awake()
 
     public static uint GetHPDefaultForAttraction(AttractionTypes attractionType)

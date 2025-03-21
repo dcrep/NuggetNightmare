@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 // "Unity Tip: Don’t use your first scene for global Script initialization - Low Scope Blog"
@@ -20,7 +21,14 @@ public class BootInitializer : MonoBehaviour {
         foreach(Nightmares.Fears fear in fears)
             Debug.Log(fear.ToString());
 
-        //GameObject nuggetGlobals = GameObject.Instantiate(Resources.Load("NuggetGlobals")) as GameObject;
-        //GameObject.DontDestroyOnLoad(nuggetGlobals);
+    /*
+        // Load all AttractionScriptableObjects
+        string[] scriptableObjects = AssetDatabase.FindAssets("t:AttractionScriptableObject");
+        // Loop through, display names of attractions
+        foreach(string so in scriptableObjects) {
+            AttractionScriptableObject attraction = AssetDatabase.LoadAssetAtPath<AttractionScriptableObject>(AssetDatabase.GUIDToAssetPath(so));
+            Debug.Log(attraction.name);
+        }
+    */
     } 
 }
