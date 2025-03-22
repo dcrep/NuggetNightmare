@@ -3,16 +3,20 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Targets
+  - Nonplaceabe
+  - dragManager
+  - Nugget
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Draggable
   - Water
   - UI
-  - 
-  - 
+  - NonPlaceable
+  - Nuggets
   - 
   - 
   - 
