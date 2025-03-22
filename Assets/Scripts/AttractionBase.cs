@@ -5,7 +5,7 @@ using UnityEngine;
 public class AttractionBase : MonoBehaviour
 {
     public AttractionScriptableObject attractionInput;
-    private AttractionScriptableObject attractionObject;
+    public AttractionScriptableObject attractionObject { get; private set; }
 
     Animator animator;
 
