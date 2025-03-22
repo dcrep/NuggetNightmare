@@ -8,9 +8,10 @@ public class AttractionManager : MonoBehaviour
     //public List<AttractionScriptableObject> attractions;
     //public AttractionScriptableObject[] attractionsInput;
     //private AttractionScriptableObject[] attractionObjects;
-    protected List<GameObject> attractionPrefabs;
+    //private List<GameObject> attractionPrefabs;
+    private List<GameObject> attractionPrefabInstances;
 
-    private List<GameObject> attractionGameObjects;
+    public List<GameObject> attractionGameObjects { get; private set; }
 
     // Awake is called when the script instance is being loaded
     void Awake()
@@ -28,20 +29,37 @@ public class AttractionManager : MonoBehaviour
         }
         */
         // Important: Make sure these are in the Resource\Attractions folder
-        attractionPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Attractions"));
+        List<GameObject> attractionPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Attractions"));
+        attractionPrefabInstances = new List<GameObject>();
         attractionGameObjects = new List<GameObject>();
+        // Have to instantiate the prefabs to be able to look at components
+        // I immediately SetActive(false) to avoid rendering and execution
+        foreach (var prefab in attractionPrefabs)
+        {
+            GameObject go = Instantiate<GameObject>(prefab, new Vector2(10000, 10000), Quaternion.identity);
+            go.SetActive(false);
+            attractionPrefabInstances.Add(go);
+            Debug.Log(prefab.name);
+        }
+        
     }
 
     public GameObject FindAttractionByType(Nightmares.AttractionTypes type)
     {
-        foreach (var go in attractionGameObjects)
+        foreach (var go in attractionPrefabInstances) //attractionPrefabs)
         {
+            // SetActive(true) to be able to look at components
+            go.SetActive(true);
             // Assuming each GameObject has a component that holds the type information
             var attractionComponent = go.GetComponent<AttractionBase>();
             if (attractionComponent != null && attractionComponent.attractionObject.attractionType == type)
             {
+                // SetActive(false) to avoid rendering and execution
+                go.SetActive(false);
                 return go;
             }
+            // SetActive(false) to avoid rendering and execution
+            go.SetActive(false);
         }
         // not found
         Debug.LogError("Attraction type not found: " + type);
@@ -49,16 +67,22 @@ public class AttractionManager : MonoBehaviour
     }
     public GameObject FindAttractionByName(string name)
     {
-        foreach (var go in attractionGameObjects)
+        foreach (var go in attractionPrefabInstances) //attractionPrefabs)
         {
+            // SetActive(true) to be able to look at components
+            go.SetActive(true);
             // Assuming each GameObject has a component that holds the type information
             var attractionComponent = go.GetComponent<AttractionBase>();
             if (attractionComponent != null &&
                 string.Compare(attractionComponent.attractionObject.name, name,
                 System.StringComparison.OrdinalIgnoreCase) == 0)
             {
+                // SetActive(false) to avoid rendering and execution
+                go.SetActive(false);
                 return go;
             }
+            // SetActive(false) to avoid rendering and execution
+            go.SetActive(false);
         }
         // not found
         Debug.LogError("Attraction named '" + name + "' not found");
@@ -68,6 +92,7 @@ public class AttractionManager : MonoBehaviour
     {
         GameObject go = Instantiate<GameObject>(prefab, position, Quaternion.identity);
         attractionGameObjects.Add(go);
+        go.SetActive(true);
         return go;
     }
     public GameObject SpawnAttractionByType(Nightmares.AttractionTypes type, Vector2 position)
@@ -106,6 +131,7 @@ public class AttractionManager : MonoBehaviour
             Debug.Log(attraction.name);
         }
         */
+/*
         foreach (var prefab in attractionPrefabs)
         {
             // Perform operations on each attraction
@@ -119,6 +145,7 @@ public class AttractionManager : MonoBehaviour
             //attractionGameObjects.Add(go);
         }
         SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(2, 1));
+*/
     }
 
     // Update is called once per frame
