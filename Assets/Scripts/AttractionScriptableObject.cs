@@ -21,6 +21,7 @@ public class AttractionScriptableObject : ScriptableObject {
     [Tooltip("Area of Effect: # people")]
     public uint aoeMaxAffectedPeople = 1;
 
+    public float activationTime = 1.0f; // activation animation time
     public float recoveryTime = 1.0f; // activate, recover, activate again
 
     // [SerializeField]: Expose private variables to Unity Editor

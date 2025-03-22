@@ -17,6 +17,7 @@ MonoBehaviour:
   description: SpiderDrop description
   aoeRadius: 1
   aoeMaxAffectedPeople: 1
-  recoveryTime: 1
+  activationTime: 2
+  recoveryTime: 3
   startHealth: 100
   attackDamage: 1
