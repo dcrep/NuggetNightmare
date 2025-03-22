@@ -370,11 +370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947f43f869853714a942274efbe2e21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionsInput:
-  - {fileID: 11400000, guid: 8ef9d89cd3c99d544b163129dd0b6647, type: 2}
-  - {fileID: 11400000, guid: 16946d6b08da2b543a5742f783790e70, type: 2}
-  - {fileID: 11400000, guid: 8ef9d89cd3c99d544b163129dd0b6647, type: 2}
-  - {fileID: 11400000, guid: 16946d6b08da2b543a5742f783790e70, type: 2}
+  attractionPrefabs: []
 --- !u!4 &1720828596
 Transform:
   m_ObjectHideFlags: 0
