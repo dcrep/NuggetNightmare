@@ -45,7 +45,7 @@ public class AttractionBase : MonoBehaviour
                 animator.Play("FreezeState");
             }
             else {
-                animator.Play("Skeleton Popup");
+                animator.Play("Activation");
                 Debug.Log("Playing animation");
             }
             animPlaying = !animPlaying;

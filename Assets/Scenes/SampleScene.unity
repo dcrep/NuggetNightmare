@@ -370,7 +370,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 947f43f869853714a942274efbe2e21d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionPrefabs: []
 --- !u!4 &1720828596
 Transform:
   m_ObjectHideFlags: 0
