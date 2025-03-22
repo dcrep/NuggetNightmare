@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class AttractionManager : MonoBehaviour
@@ -35,6 +32,69 @@ public class AttractionManager : MonoBehaviour
         attractionGameObjects = new List<GameObject>();
     }
 
+    public GameObject FindAttractionByType(Nightmares.AttractionTypes type)
+    {
+        foreach (var go in attractionGameObjects)
+        {
+            // Assuming each GameObject has a component that holds the type information
+            var attractionComponent = go.GetComponent<AttractionBase>();
+            if (attractionComponent != null && attractionComponent.attractionObject.attractionType == type)
+            {
+                return go;
+            }
+        }
+        // not found
+        Debug.LogError("Attraction type not found: " + type);
+        return null;
+    }
+    public GameObject FindAttractionByName(string name)
+    {
+        foreach (var go in attractionGameObjects)
+        {
+            // Assuming each GameObject has a component that holds the type information
+            var attractionComponent = go.GetComponent<AttractionBase>();
+            if (attractionComponent != null &&
+                string.Compare(attractionComponent.attractionObject.name, name,
+                System.StringComparison.OrdinalIgnoreCase) == 0)
+            {
+                return go;
+            }
+        }
+        // not found
+        Debug.LogError("Attraction named '" + name + "' not found");
+        return null;
+    }
+    public GameObject SpawnAttraction(GameObject prefab, Vector2 position)
+    {
+        GameObject go = Instantiate<GameObject>(prefab, position, Quaternion.identity);
+        attractionGameObjects.Add(go);
+        return go;
+    }
+    public GameObject SpawnAttractionByType(Nightmares.AttractionTypes type, Vector2 position)
+    {
+        GameObject go = FindAttractionByType(type);
+        if (go != null)
+        {
+            return SpawnAttraction(go, position);
+        }
+        else {
+            
+            return null;
+        }
+    }
+    public GameObject SpawnAttractionByName(string name, Vector2 position)
+    {
+        GameObject go = FindAttractionByName(name);
+        if (go != null)
+        {
+            return SpawnAttraction(go, position);
+        }
+        else {
+            
+            return null;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,9 +114,11 @@ public class AttractionManager : MonoBehaviour
             int y = Random.Range(-3, 3);
             // Important: Animations: Use Animator and Sprite Renderer components, NO Animation component!
             // Problem with "FreezeState": Just use a 1-frame animation or an "Idle" animation and set the time to 0
-            GameObject go = Instantiate<GameObject>(prefab, new Vector2(x, y), Quaternion.identity);
-            attractionGameObjects.Add(go);
+            SpawnAttraction(prefab, new Vector2(x, y));
+            //GameObject go = Instantiate<GameObject>(prefab, new Vector2(x, y), Quaternion.identity);
+            //attractionGameObjects.Add(go);
         }
+        SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(2, 1));
     }
 
     // Update is called once per frame
