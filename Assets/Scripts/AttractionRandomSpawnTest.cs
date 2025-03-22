@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class AttractionRandomSpawnTest : MonoBehaviour
 {
+    private AttractionManager attractionManager;
     // Spawn attractions at random positions
     void SpawnRandomAttractions()
     {
@@ -11,7 +12,7 @@ public class AttractionRandomSpawnTest : MonoBehaviour
         
         // Get the AttractionManager component from the GameObject named "AttractionManager"
         GameObject attractionManagerObject = GameObject.Find("AttractionManager");
-        AttractionManager attractionManager = attractionManagerObject.GetComponent<AttractionManager>();
+        attractionManager = attractionManagerObject.GetComponent<AttractionManager>();
 
         // Loop through ALL prefabs and instantiate one of each:
         /*foreach (var prefab in attractionManager.attractionPrefabs)
@@ -28,8 +29,8 @@ public class AttractionRandomSpawnTest : MonoBehaviour
         // Spawn a specific attraction by type
         attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(2, 1));
         attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(2, 2));
-        // Spawn a specific attraction by name
-        attractionManager.SpawnAttractionByName("SpiderDrop", new Vector2(1, 2));
+        // Spawn a specific attraction by prefab name
+        attractionManager.SpawnAttractionByPrefabName("SpiderDrop", new Vector2(1, 2));
     }
     // Start is called before the first frame update
     void Start()
@@ -40,6 +41,14 @@ public class AttractionRandomSpawnTest : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        foreach (var attraction in attractionManager.attractionGameObjects)
+        {
+            // Perform operations on each attraction
+           AttractionBase attractionBase = attraction.GetComponent<AttractionBase>();
+           if (attractionBase.IsAnimationRecovered())
+           {
+                attractionBase.PlayAnimation();
+           }
+        }
     }
 }
