@@ -7,8 +7,11 @@ using UnityEngine;
 
 public class AttractionScript : MonoBehaviour
 {
+    //incriment for finding placeable location
     float indexIncriment = 0.25f;
+    //index for finding placeable location
     float index = 0f;
+    //is attraction in an unplaceable location
     [SerializeField]
     bool badSpot;
     [SerializeField]
@@ -28,19 +31,21 @@ public class AttractionScript : MonoBehaviour
     public float scareCooldown;
     [SerializeField]
     public float timer;
-
     private float cooldown = 0.5f;
-    private Dictionary<Collider2D, float> _table = new Dictionary<Collider2D, float>();
+
     private void Start()
     {
+        //gets drag attaction script from drag manager
         DragAttractionScript = GameObject.FindGameObjectWithTag("dragManager").GetComponent<DragAttractionScript>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //if on a nonplacable spot set bad spot to true else false
         badSpot = collision.tag.Equals("Nonplaceabe");
     }
     private void OnTriggerExit2D(Collider2D collision)
-    { 
+    {
+        //if leaving nonplaceable spot return false, else true
         Debug.Log("Exited: " + collision.tag);
         badSpot = !collision.tag.Equals("Nonplaceabe");
     }
