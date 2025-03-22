@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class AttractionManager : MonoBehaviour
@@ -8,12 +9,16 @@ public class AttractionManager : MonoBehaviour
     // List vs array: List is more flexible, array is faster
     // List is a class, array is a struct
     //public List<AttractionScriptableObject> attractions;
-    public AttractionScriptableObject[] attractionsInput;
-    private AttractionScriptableObject[] attractionObjects;
+    //public AttractionScriptableObject[] attractionsInput;
+    //private AttractionScriptableObject[] attractionObjects;
+    protected List<GameObject> attractionPrefabs;
+
+    private List<GameObject> attractionGameObjects;
 
     // Awake is called when the script instance is being loaded
     void Awake()
     {
+        /*
         attractionObjects = new AttractionScriptableObject[attractionsInput.Length];
         for (int i = 0; i < attractionsInput.Length; i++)
         {
@@ -22,8 +27,12 @@ public class AttractionManager : MonoBehaviour
         for (int i = 0; i < attractionObjects.Length; i++)
         {
             AttractionScriptableObject attraction = attractionObjects[i];
-            Debug.Log("Attraction " + attraction.name + " health: " + attraction.health);
+            Debug.Log("Attraction " + attraction.name + " health: " + attraction.startHealth);
         }
+        */
+        // Important: Make sure these are in the Resource\Attractions folder
+        attractionPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Attractions"));
+        attractionGameObjects = new List<GameObject>();
     }
 
     // Start is called before the first frame update
@@ -37,11 +46,21 @@ public class AttractionManager : MonoBehaviour
             Debug.Log(attraction.name);
         }
         */
+        foreach (var prefab in attractionPrefabs)
+        {
+            // Perform operations on each attraction
+            Debug.Log(prefab.name);
+            // Important: Animations: Use Animator and Sprite Renderer components, NO Animation component!
+            // Problem with "FreezeState": Just use a 1-frame animation or an "Idle" animation and set the time to 0
+            GameObject go = Instantiate<GameObject>(prefab, new Vector2(0, 0), Quaternion.identity);
+            attractionGameObjects.Add(go);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         for(int i = attractionObjects.Length -1; i >= 0; i--)
         {
             AttractionScriptableObject attraction = attractionObjects[i];
@@ -49,8 +68,8 @@ public class AttractionManager : MonoBehaviour
             {
                 continue;
             }
-            attraction.health -= 1;
-            if (attraction.health <= 0)
+            attraction.startHealth -= 1;
+            if (attraction.startHealth <= 0)
             {
                 Debug.Log("Attraction destroyed: " + attraction.name);
                 // Destroy attraction
@@ -60,9 +79,10 @@ public class AttractionManager : MonoBehaviour
                 // Can't destroy assets, need game objects
                 //Destroy(attraction);
             }
-            Debug.Log("Attraction " + attraction.name + " health: "+ attraction.health);
+            //Debug.Log("Attraction " + attraction.name + " health: "+ attraction.startHealth);
         }
         // Can't destroy List objects in a foreach loop without possible bugs
         //foreach (var attraction in attractions) {}
+        */
     }
 }
