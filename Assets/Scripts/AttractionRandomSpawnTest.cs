@@ -14,15 +14,13 @@ public class AttractionRandomSpawnTest : MonoBehaviour
         GameObject attractionManagerObject = GameObject.Find("AttractionManager");
         attractionManager = attractionManagerObject.GetComponent<AttractionManager>();
 
+        /*
         // Loop through ALL prefabs and instantiate one of each:
-        /*foreach (var prefab in attractionManager.attractionPrefabs)
+        foreach (uint i = (uint)Nightmares.AttractionTypes.Generic; i < (uint)Nightmares.AttractionTypes.OOB; i++)
         {
-            Debug.Log(prefab.name);
             int x = Random.Range(-3, 3);
             int y = Random.Range(-3, 3);
-            // Important: Animations: Use Animator and Sprite Renderer components, NO Animation component!
-            // Problem with "FreezeState": Just use a 1-frame animation or an "Idle" animation and set the time to 0
-            attractionManager.SpawnAttraction(prefab, new Vector2(x, y));
+            attractionManager.SpawnAttractionByType((Nightmares.AttractionTypes)i, new Vector2(x, y));
         }
         */
         
