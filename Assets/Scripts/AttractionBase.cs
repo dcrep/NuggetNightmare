@@ -79,7 +79,6 @@ public class AttractionBase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 3 seconds since last time?
         if (animPlaying)
         {
             if (!IsAnimationPlaying())

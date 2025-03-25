@@ -18,12 +18,12 @@ public class AttractionManager : MonoBehaviour
     };
 
     AttractionPrefabMap[] attractionPrefabMap = new AttractionPrefabMap[(int)Nightmares.AttractionTypes.OOB] {
-        new AttractionPrefabMap { type = Nightmares.AttractionTypes.Generic, name = "Generic" },
-        new AttractionPrefabMap { type = Nightmares.AttractionTypes.SpiderDrop, name = "SpiderDrop" },
-        new AttractionPrefabMap { type = Nightmares.AttractionTypes.SkeletonPopUp, name = "SkeletonPopUp" },
-        new AttractionPrefabMap { type = Nightmares.AttractionTypes.Ghost, name = "Ghost" },
-        new AttractionPrefabMap { type = Nightmares.AttractionTypes.PossessedBear, name = "PossessedBear" },
-        new AttractionPrefabMap { type = Nightmares.AttractionTypes.DarkTunnel, name = "DarkTunnel" }
+        new() { type = Nightmares.AttractionTypes.Generic, name = "Generic" },
+        new() { type = Nightmares.AttractionTypes.SpiderDrop, name = "SpiderDrop" },
+        new() { type = Nightmares.AttractionTypes.SkeletonPopUp, name = "SkeletonPopUp" },
+        new() { type = Nightmares.AttractionTypes.Ghost, name = "Ghost" },
+        new() { type = Nightmares.AttractionTypes.PossessedBear, name = "PossessedBear" },
+        new() { type = Nightmares.AttractionTypes.DarkTunnel, name = "DarkTunnel" }
     };
 
     public List<GameObject> attractionGameObjects { get; private set; }
