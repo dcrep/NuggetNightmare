@@ -1,7 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor;
 using UnityEngine;
 
 public class AttractionManager : MonoBehaviour
@@ -11,80 +8,103 @@ public class AttractionManager : MonoBehaviour
     //public List<AttractionScriptableObject> attractions;
     //public AttractionScriptableObject[] attractionsInput;
     //private AttractionScriptableObject[] attractionObjects;
-    protected List<GameObject> attractionPrefabs;
+    //private List<GameObject> attractionPrefabs;
+    public struct AttractionPrefabMap
+    {
+        public Nightmares.AttractionTypes type;
+        public string name;
 
-    private List<GameObject> attractionGameObjects;
+        public GameObject prefab;
+    };
+
+    AttractionPrefabMap[] attractionPrefabMap = new AttractionPrefabMap[(int)Nightmares.AttractionTypes.OOB] {
+        new() { type = Nightmares.AttractionTypes.Generic, name = "Generic" },
+        new() { type = Nightmares.AttractionTypes.SpiderDrop, name = "SpiderDrop" },
+        new() { type = Nightmares.AttractionTypes.SkeletonPopUp, name = "SkeletonPopUp" },
+        new() { type = Nightmares.AttractionTypes.Ghost, name = "Ghost" },
+        new() { type = Nightmares.AttractionTypes.PossessedBear, name = "PossessedBear" },
+        new() { type = Nightmares.AttractionTypes.DarkTunnel, name = "DarkTunnel" }
+    };
+
+    public List<GameObject> attractionGameObjects { get; private set; }
 
     // Awake is called when the script instance is being loaded
     void Awake()
     {
-        /*
-        attractionObjects = new AttractionScriptableObject[attractionsInput.Length];
-        for (int i = 0; i < attractionsInput.Length; i++)
-        {
-            attractionObjects[i] = Object.Instantiate(attractionsInput[i]);            
-        }
-        for (int i = 0; i < attractionObjects.Length; i++)
-        {
-            AttractionScriptableObject attraction = attractionObjects[i];
-            Debug.Log("Attraction " + attraction.name + " health: " + attraction.startHealth);
-        }
-        */
         // Important: Make sure these are in the Resource\Attractions folder
-        attractionPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Attractions"));
+        //List<GameObject> attractionPrefabs = new List<GameObject>(Resources.LoadAll<GameObject>("Attractions"));
+     
         attractionGameObjects = new List<GameObject>();
+
+        // Load all attraction prefabs from Resources/Attractions folder one-by-one
+        for (int i = 0; i < attractionPrefabMap.Length; i++)
+        {
+            //Debug.Log("Attempting to load attraction prefab: " + attractionPrefabMap[i].name);
+            GameObject prefab = Resources.Load<GameObject>("Attractions/" + attractionPrefabMap[i].name);
+            if (prefab != null)
+            {
+                attractionPrefabMap[i].prefab = prefab;
+                //Debug.Log("Prefab found: " + prefab.name);
+            }
+            else
+            {
+                Debug.Log("Prefab " + attractionPrefabMap[i].name + " not found!");
+            }
+            
+        }
+    }
+    public Nightmares.AttractionTypes GetPrefabTypeByName(string name)
+    {
+        foreach (var item in attractionPrefabMap)
+        {
+            if (item.name == name)
+            {
+                return item.type;
+            }
+        }
+        return Nightmares.AttractionTypes.OOB;
+    }
+    public string GetPrefabNameByType(Nightmares.AttractionTypes type)
+    {
+        return attractionPrefabMap[(int)type].name;
+    }
+
+    public GameObject SpawnAttractionByPrefabName(string name, Vector2 position)
+    {
+        //GameObject prefab = Resources.Load<GameObject>("Attractions/" + name);
+        Nightmares.AttractionTypes type = GetPrefabTypeByName(name);
+        if (type == Nightmares.AttractionTypes.OOB)
+        {
+            Debug.Log("Attraction type not found for name: " + name);
+            return null;
+        }
+        GameObject prefab = attractionPrefabMap[(int)type].prefab;
+        if (prefab == null)
+        {
+            Debug.Log("Attraction prefab not found for type: " + type.ToString());
+            return null;
+        }
+ 
+        GameObject go = Instantiate(prefab, position, Quaternion.identity);
+        attractionGameObjects.Add(go);
+        go.SetActive(true);
+        return go;
+    }
+    public GameObject SpawnAttractionByType(Nightmares.AttractionTypes type, Vector2 position)
+    {
+        string name = GetPrefabNameByType(type);
+        return SpawnAttractionByPrefabName(name, position);
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        /*
-        Debug.Log("AttractionManager->Start()");
-        foreach (var attraction in attractions)
-        {
-            // Perform operations on each attraction
-            Debug.Log(attraction.name);
-        }
-        */
-        foreach (var prefab in attractionPrefabs)
-        {
-            // Perform operations on each attraction
-            Debug.Log(prefab.name);
-            int x = Random.Range(-3, 3);
-            int y = Random.Range(-3, 3);
-            // Important: Animations: Use Animator and Sprite Renderer components, NO Animation component!
-            // Problem with "FreezeState": Just use a 1-frame animation or an "Idle" animation and set the time to 0
-            GameObject go = Instantiate<GameObject>(prefab, new Vector2(x, y), Quaternion.identity);
-            attractionGameObjects.Add(go);
-        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        for(int i = attractionObjects.Length -1; i >= 0; i--)
-        {
-            AttractionScriptableObject attraction = attractionObjects[i];
-            if (attraction == null)
-            {
-                continue;
-            }
-            attraction.startHealth -= 1;
-            if (attraction.startHealth <= 0)
-            {
-                Debug.Log("Attraction destroyed: " + attraction.name);
-                // Destroy attraction
-                // Animate destruction
-                attractionObjects[i] = null;
-                //attractions.RemoveAt(i);
-                // Can't destroy assets, need game objects
-                //Destroy(attraction);
-            }
-            //Debug.Log("Attraction " + attraction.name + " health: "+ attraction.startHealth);
-        }
-        // Can't destroy List objects in a foreach loop without possible bugs
-        //foreach (var attraction in attractions) {}
-        */
+
     }
 }

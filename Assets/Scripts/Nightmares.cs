@@ -45,7 +45,18 @@ public static class Nightmares {
     };
     
     // One instance of this for all objects (NEEDS Initialize()!):
-    static List<Fears>[] fearsForAttraction;    // = new List<Fears>[(int)AttractionTypes.OOB]; // initialized in Awake()
+    static List<Fears>[] fearsForAttraction;    // = new List<Fears>[(int)AttractionTypes.OOB]; // initialized in boot with Initialize()
+    /*
+    // Alternatively initialize here, but list order is important!
+    static List<Fears>[] fearsForAttraction = new List<Fears>[(int)AttractionTypes.OOB] {
+        new List<Fears>(Fears.Anything), // Generic
+        new List<Fears>(Fears.CreepyCrawlies), // SpiderDrop
+        new List<Fears>(Fears.Supernatural, Fears.JumpScares), // SkeletonPopUp
+        new List<Fears>(Fears.Supernatural), // Ghost
+        new List<Fears>(Fears.Supernatural, Fears.Pursued), // PossessedBear
+        new List<Fears>(Fears.Dark, Fears.EnclosedSpaces), // DarkTunnel
+    };
+    */
 
     static public AttractionHPDefault GetAttractionHPDefault(AttractionTypes attractionType)
     {

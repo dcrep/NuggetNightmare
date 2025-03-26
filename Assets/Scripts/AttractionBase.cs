@@ -5,13 +5,16 @@ using UnityEngine;
 public class AttractionBase : MonoBehaviour
 {
     public AttractionScriptableObject attractionInput;
-    private AttractionScriptableObject attractionObject;
 
     Animator animator;
 
-    float lastTime;
+    float lastAnimationStartTime = 0.0f;
+
+    uint activations = 0;
 
     bool animPlaying = false;
+
+    int health;
 
     // Awake is called when the script instance is being loaded
     void Awake()
@@ -21,8 +24,49 @@ public class AttractionBase : MonoBehaviour
             Debug.LogError("Attraction input is null");
             return;
         }
-        attractionObject = Object.Instantiate(attractionInput);
-        Debug.Log("AttractionBase " + attractionObject.name + " health: " + attractionObject.startHealth);
+        //attractionObject = Object.Instantiate(attractionInput);
+        //Debug.Log("AttractionBase " + attractionObject.name + " health: " + attractionObject.startHealth);
+        health = attractionInput.startHealth;
+    }
+
+    public void PlayAnimation(string name = "Activation", bool onlyIfRecovered = false)
+    {
+        if (onlyIfRecovered && !IsAnimationRecovered())
+        {
+            Debug.Log("PlayAnimation called, but previous animation not recovered yet");
+            return;
+        }
+
+        animator.Play(name);
+        Debug.Log("Playing animation");
+        animPlaying = true;
+        activations++;
+        lastAnimationStartTime = Time.time;
+    }
+    public bool IsAnimationPlaying()
+    {
+        if (!animPlaying)
+            return false;
+        else
+            return (Time.time < lastAnimationStartTime + attractionInput.activationTime);
+    }
+    public bool IsAnimationRecovered()
+    {
+        if (activations == 0)
+            return true;
+        
+        if (Time.time >= lastAnimationStartTime + attractionInput.activationTime + attractionInput.recoveryTime)
+        {
+            Debug.Log("Time: " + Time.time + " Last animation start time: " + lastAnimationStartTime + " Activation time: " + attractionInput.activationTime + " Recovery time: " + attractionInput.recoveryTime);
+            animPlaying = false;
+            return true;
+        }
+        return false;
+    }
+    public void StopAnimation()
+    {
+        animator.Play("FreezeState");
+        animPlaying = false;
     }
 
     // Start is called before the first frame update
@@ -30,26 +74,19 @@ public class AttractionBase : MonoBehaviour
     {
         // animator should be in a 'FreezeState' state at the start
         animator = GetComponent<Animator>();
-        lastTime = Time.time;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 3 seconds since last time?
-        if (Time.time - lastTime > 3.0f)
+        if (animPlaying)
         {
-            //animator.speed += 0.25f;
-            if (animPlaying)
+            if (!IsAnimationPlaying())
             {
-                animator.Play("FreezeState");
+                StopAnimation();
+                Debug.Log("Animation finished");
             }
-            else {
-                animator.Play("Activation");
-                Debug.Log("Playing animation");
-            }
-            animPlaying = !animPlaying;
-            lastTime = Time.time;            
+                      
         }
 
     }

@@ -17,6 +17,11 @@ MonoBehaviour:
   description: SkeletonPopUp description
   aoeRadius: 3
   aoeMaxAffectedPeople: 1
+<<<<<<< HEAD
   recoveryTime: 2
+=======
+  activationTime: 2
+  recoveryTime: 1
+>>>>>>> 5afac6c3e5fe57d1ca6fac56ea38e030c868d661
   startHealth: 100
   attackDamage: 3
