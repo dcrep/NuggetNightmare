@@ -15,13 +15,9 @@ MonoBehaviour:
   attractionType: 2
   name: SkeletonPopUp
   description: SkeletonPopUp description
-  aoeRadius: 3
+  aoeRadius: 2.72
   aoeMaxAffectedPeople: 1
-<<<<<<< HEAD
-  recoveryTime: 2
-=======
-  activationTime: 2
+  activationTime: 1
   recoveryTime: 1
->>>>>>> 5afac6c3e5fe57d1ca6fac56ea38e030c868d661
   startHealth: 100
-  attackDamage: 3
+  attackDamage: 1
