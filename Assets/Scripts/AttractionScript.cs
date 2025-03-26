@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class AttractionScript : MonoBehaviour
@@ -34,10 +35,10 @@ public class AttractionScript : MonoBehaviour
     [SerializeField]
     public float timer;
     [SerializeField]
-    Animator animator;
+    AnimatorController controller;
     private float cooldown = 0.5f;
     [SerializeField]
-    Animation scareAnim;
+    public Animator scareAnim;
     [SerializeField]
     int health;
     Vector3 home;
@@ -45,6 +46,8 @@ public class AttractionScript : MonoBehaviour
     private void Start()
     {
         //gets drag attaction script from drag manager
+        controller = attractionScriptable.animator;
+        //controller.anima
         fearIncriment = attractionScriptable.attackDamage;
         radius = attractionScriptable.aoeRadius;
         scareCooldown = attractionScriptable.recoveryTime;
@@ -77,7 +80,7 @@ public class AttractionScript : MonoBehaviour
                     i.transform.GetComponent<NuggetScript>().scare(fearIncriment);
                 }
             }
-            animator.Play("Activation");
+            scareAnim.Play("Activation");
             timer = scareCooldown;
         }
 
