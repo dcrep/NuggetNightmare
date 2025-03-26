@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c757ad0d156c8441b3e83d6192c6a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionInput: {fileID: 11400000, guid: fe1fb07883a4f9c45b86708f658776f3, type: 2}
+  attractionInput: {fileID: 11400000, guid: 6740cc4d0760d4549985194d324d0e4b, type: 2}
 --- !u!95 &-6997727057308801210
 Animator:
   serializedVersion: 5
@@ -57,7 +57,7 @@ Animator:
   m_GameObject: {fileID: 8369123694781287093}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 75cee0a97348d2743848c6894287896d, type: 2}
+  m_Controller: {fileID: 9100000, guid: 39bd656105e81d84483b62fb0d1231a8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

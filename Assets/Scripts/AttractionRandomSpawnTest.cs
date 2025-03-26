@@ -25,10 +25,10 @@ public class AttractionRandomSpawnTest : MonoBehaviour
         */
         
         // Spawn a specific attraction by type
-        attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(2, 1));
+        attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(0, 2));
         attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(2, 2));
         // Spawn a specific attraction by prefab name
-        attractionManager.SpawnAttractionByPrefabName("SpiderDrop", new Vector2(1, 2));
+        //attractionManager.SpawnAttractionByPrefabName("SpiderDrop", new Vector2(1, 2));
     }
     // Start is called before the first frame update
     void Start()

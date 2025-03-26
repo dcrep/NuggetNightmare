@@ -77,7 +77,7 @@ public class AttractionScript : MonoBehaviour
                     i.transform.GetComponent<NuggetScript>().scare(fearIncriment);
                 }
             }
-            animator.Play("Skeleton Popup");
+            animator.Play("Activation");
             timer = scareCooldown;
         }
 

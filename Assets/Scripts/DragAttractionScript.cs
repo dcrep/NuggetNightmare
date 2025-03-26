@@ -30,10 +30,15 @@ public class DragAttractionScript : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-            dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y,snapValue));
-            lastDraggedObject = dragging.transform;
-            dragging = null;
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.PositiveInfinity, movableLayers);
+            if (hit)
+            {
+                dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
+                dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y,snapValue));
+                lastDraggedObject = dragging.transform;
+                dragging = null;
+            }
+            
         }
         if (dragging != null)
         {
