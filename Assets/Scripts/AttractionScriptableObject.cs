@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Animations;
 using UnityEngine;
 
 
@@ -29,6 +30,8 @@ public class AttractionScriptableObject : ScriptableObject {
 
     public int startHealth = 100;
     public uint attackDamage = 1;
+
+    public AnimatorController animator;
 
     // Useful for using Editor changes to attraction Type and calls to Reset()
     // to set default values for the given attraciton type
