@@ -8,5 +8,6 @@ public class NuggetScript : MonoBehaviour
     public void scare(float fear)
     { 
         fearLevel = fearLevel + fear;
+        Debug.Log("Fear: " + fearLevel);
     }
 }
