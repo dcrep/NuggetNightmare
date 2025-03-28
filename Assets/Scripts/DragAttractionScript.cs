@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.EventSystems;
 
 public class DragAttractionScript : MonoBehaviour
 {
@@ -11,40 +11,40 @@ public class DragAttractionScript : MonoBehaviour
     public GameObject noErrorpls;
     [SerializeField] private LayerMask movableLayers;
     [SerializeField] public float snapValue;
+
+    public PlayerControls playerControls;
+    private InputAction mouseUpDown;
+
+
+    void Awake()
+    {
+        playerControls = new PlayerControls();        
+    }
+
+    void OnEnable()
+    {
+        mouseUpDown = playerControls.Player.ClickAndRelease;
+        mouseUpDown.Enable();
+        mouseUpDown.performed += MouseButtonPressed;
+        mouseUpDown.canceled += MouseButtonReleased;
+    }
+    void OnDisable()
+    {
+        mouseUpDown.performed -= MouseButtonPressed;
+        mouseUpDown.canceled -= MouseButtonReleased;
+        mouseUpDown.Disable();
+    }
+    private void Start()
+    {
+        lastHitObject = noErrorpls;        
+    }
+
     private void Update()
     {
-        if (lastHitObject == null)
-        {
-            lastHitObject = noErrorpls;
-        }
-        if (Input.GetMouseButtonDown(0))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.PositiveInfinity, movableLayers);
-
-            if (hit)
-            {
-                dragging = hit.transform;
-                offset = dragging.position - Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                lastHitObject = hit.transform.gameObject;
-            }
-        }
-        else if (Input.GetMouseButtonUp(0))
-        {
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero, float.PositiveInfinity, movableLayers);
-            if (hit)
-            {
-                dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-                dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y,snapValue));
-                lastDraggedObject = dragging.transform;
-                dragging = null;
-            }
-            
-        }
         if (dragging != null)
         {
-            dragging.position = Camera.main.ScreenToWorldPoint(Input.mousePosition) + offset;
-
-            dragging.position = new Vector2(Snapping.Snap(dragging.position.x,snapValue),Snapping.Snap(dragging.position.y,snapValue));
+            dragging.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) + offset;
+            dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y, snapValue));
             if (lastHitObject.GetComponent<Rigidbody2D>() != null)
             {
                 lastHitObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
@@ -52,8 +52,38 @@ public class DragAttractionScript : MonoBehaviour
         }
     }
 
-    public Transform getLastDraggedObject()
+    private void MouseButtonPressed(InputAction.CallbackContext context)
     {
-        return lastDraggedObject;
+        //Debug.Log("Click triggered!");
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
+                                                        float.PositiveInfinity, movableLayers);
+
+        if (hit)
+        {
+            dragging = hit.transform;
+            offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
+            lastHitObject = hit.transform.gameObject;
+            // Drag updates?  Just leave in Update() for now.
+            //StartCoroutine(DragUpdate(hit.transform.gameObject));
+        }
+
     }
+
+    private void MouseButtonReleased(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Click released!");
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
+                                                float.PositiveInfinity, movableLayers);
+        if (hit)
+        {
+            dragging.position = Camera.main.ScreenToWorldPoint(mousePosition) + offset;
+            dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y,snapValue));
+            lastDraggedObject = dragging.transform;            
+        }
+        dragging = null;
+    }
+
 }

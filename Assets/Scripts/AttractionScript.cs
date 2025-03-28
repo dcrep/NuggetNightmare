@@ -11,35 +11,56 @@ public class AttractionScript : MonoBehaviour
     //incriment for finding placeable location
     [SerializeField]
     AttractionScriptableObject attractionScriptable;
+
+    // Unused..
     float indexIncriment = 0.25f;
-    //index for finding placeable location
+    
+    // Unused
+    // index for finding placeable location
     float index = 0f;
+
     //is attraction in an unplaceable location
     [SerializeField]
     bool badSpot;
+
     [SerializeField]
     DragAttractionScript DragAttractionScript;
+
+    // Usage?  spotCheck not used in this script, and what it references is an empty gameobject with transform x-2
     [SerializeField]
     GameObject spotCheck;
+
     [SerializeField]
     LayerMask nonPlacableLayers;
+
     [SerializeField]
     LayerMask nuggets;
+
     Collider2D currentColider;
+
     [SerializeField]
     public float fearIncriment;
+
     [SerializeField]
     public float radius;
+
     [SerializeField]
     public float scareCooldown;
+
     [SerializeField]
     public float timer;
+
     [SerializeField]
     AnimatorController controller;
+
+    // Unused
     private float cooldown = 0.5f;
+
     [SerializeField]
     public Animator scareAnim;
+
     [SerializeField]
+
     int health;
     Vector3 home;
 
