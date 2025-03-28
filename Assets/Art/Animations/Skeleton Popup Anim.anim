@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Spider Drop
+  m_Name: Skeleton Popup Anim
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -21,9 +21,9 @@ AnimationClip:
   - serializedVersion: 2
     curve:
     - time: 0
-      value: {fileID: 21300000, guid: 158ba619ab6eccb42befa9885bedff62, type: 3}
+      value: {fileID: 21300000, guid: 0dda271567199b34bbacb5d0edca1964, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: 0a3dacca39be60f4384ada45ec54b82e, type: 3}
+      value: {fileID: 21300000, guid: 56c13e8785a6e8e45bd9678ebaa7dc8e, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,8 +46,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 158ba619ab6eccb42befa9885bedff62, type: 3}
-    - {fileID: 21300000, guid: 0a3dacca39be60f4384ada45ec54b82e, type: 3}
+    - {fileID: 21300000, guid: 0dda271567199b34bbacb5d0edca1964, type: 3}
+    - {fileID: 21300000, guid: 56c13e8785a6e8e45bd9678ebaa7dc8e, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}

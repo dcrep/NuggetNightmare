@@ -14,11 +14,11 @@ public class AttractionScriptableObject : ScriptableObject {
 	public new string name;
 	public string description;
 
-    [Range(1, 4)]
+    [Range(1, 8)]
     [Tooltip("Area of Effect: 1 ~ 1 tiles")]
     public float aoeRadius = 1.0f;
     
-    [Range(1, 4)]
+    [Range(1, 8)]
     [Tooltip("Area of Effect: # people")]
     public uint aoeMaxAffectedPeople = 1;
 

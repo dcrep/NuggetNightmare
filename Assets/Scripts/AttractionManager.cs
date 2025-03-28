@@ -92,8 +92,23 @@ public class AttractionManager : MonoBehaviour
     }
     public GameObject SpawnAttractionByType(Nightmares.AttractionTypes type, Vector2 position)
     {
-        string name = GetPrefabNameByType(type);
-        return SpawnAttractionByPrefabName(name, position);
+        //string name = GetPrefabNameByType(type);
+        if ((int)type >= (int)Nightmares.AttractionTypes.OOB)
+        {
+            Debug.Log("Attraction type out of bounds: " + type.ToString());
+            return null;
+        }
+        GameObject prefab = attractionPrefabMap[(int)type].prefab;
+        if (prefab == null)
+        {
+            Debug.Log("Attraction prefab not found for type: " + type.ToString());
+            return null;
+        }
+ 
+        GameObject go = Instantiate(prefab, position, Quaternion.identity);
+        attractionGameObjects.Add(go);
+        go.SetActive(true);
+        return go;
     }
 
     // Start is called before the first frame update
