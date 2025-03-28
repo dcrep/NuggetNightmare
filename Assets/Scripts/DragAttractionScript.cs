@@ -73,6 +73,12 @@ public class DragAttractionScript : MonoBehaviour
 
     private void MouseButtonReleased(InputAction.CallbackContext context)
     {
+        // Only care if we are dragging something
+        if (dragging == null)
+        {
+            return;
+        }
+        
         //Debug.Log("Click released!");
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
