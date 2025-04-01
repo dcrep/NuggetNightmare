@@ -8,29 +8,71 @@ public class NuggetPathfindingAI : MonoBehaviour
     AIPath pathFinder;
     AIDestinationSetter destinationSetter;
     [SerializeField]
+    float speed = 1;
+    [SerializeField]
     TargetHolder targets;
     [SerializeField]
     int index = 0;
+    [SerializeField]
+    bool Scared = false;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.transform == destinationSetter.target.transform) && collision.tag.Equals("Targets"))
+        pathFinder.maxSpeed = speed;
+        if (!Scared)
         {
-            if ((index + 1) < targets.numberOfTargets())
+            if ((collision.transform == destinationSetter.target.transform) && collision.tag.Equals("Targets"))
             {
-                index++;
-                destinationSetter.target = targets.target(index).transform;
+                if ((index + 1) < targets.numberOfTargets())
+                {
+                    index++;
+                    destinationSetter.target = targets.target(index).transform;
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
-            else
+        }
+        else
+        {
+            if ((collision.transform == destinationSetter.target.transform))
             {
-                gameObject.SetActive(false);
+                if ((index - 1) >= 0)
+                {
+                    index--;
+                    destinationSetter.target = targets.target(index).transform;
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }
     // Start is called before the first frame update
     void Start()
     {
+        targets = GameObject.FindGameObjectWithTag("TargetManager").GetComponent<TargetHolder>();
         pathFinder = gameObject.GetComponent<AIPath>();
         destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
         destinationSetter.target = targets.target(index).transform;
+        
+    }
+
+    public void freakOut(float speed)
+    {
+        this.speed = speed;
+        Scared = true;
+        pathFinder.maxSpeed = speed;
+        if ((index - 1) >= 0)
+        {
+            index--;
+            destinationSetter.target = targets.target(index).transform;
+        }
+        else
+        {
+            gameObject.SetActive(false);
+        }
     }
 }
