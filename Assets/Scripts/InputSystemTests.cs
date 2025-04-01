@@ -22,15 +22,15 @@ public class InputSystemTests : MonoBehaviour
     {
         // Enable ALL Player Controls on the new InputSystem (optional if we only use specific subsets)
         playerControls.Enable();
-        // Enable only the NumKeys action, and assign a callback
+        // Enable only the NumKeys action, and subscribe to the event
         numKeyAction = playerControls.Player.NumKeys;
         numKeyAction.Enable();
-        // Add callback binding
+        // Subscribe to event (calls NumKeyPressed)
         numKeyAction.performed += NumKeyPressed;
     }
     void OnDisable()
     {
-        // Remove callback binding
+        // Unsubscribe to event
         numKeyAction.performed -= NumKeyPressed;
         numKeyAction.Disable();
         // Disable ALL player Controls on the new InputSystem
@@ -46,6 +46,7 @@ public class InputSystemTests : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // This is set in our NumKeyPressed event callback
         if (isNumKeyPressed)
         {
             Debug.Log("NumKey pressed: " + numKeyValue + ", Numpad key?: " + numpadKeyPressed);

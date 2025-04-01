@@ -8,6 +8,7 @@ TagManager:
   - Nonplaceabe
   - dragManager
   - Nugget
+  - Attraction
   layers:
   - Default
   - TransparentFX
