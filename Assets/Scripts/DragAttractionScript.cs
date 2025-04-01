@@ -25,11 +25,13 @@ public class DragAttractionScript : MonoBehaviour
     {
         mouseUpDown = playerControls.Player.ClickAndRelease;
         mouseUpDown.Enable();
+        // Subscribe to Mouse down/up events
         mouseUpDown.performed += MouseButtonPressed;
         mouseUpDown.canceled += MouseButtonReleased;
     }
     void OnDisable()
     {
+        // Unsubscribe to Mouse down/up events
         mouseUpDown.performed -= MouseButtonPressed;
         mouseUpDown.canceled -= MouseButtonReleased;
         mouseUpDown.Disable();
