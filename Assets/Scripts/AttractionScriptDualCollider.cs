@@ -123,9 +123,9 @@ public class AttractionScriptDualCollider : MonoBehaviour
         {
             if (collide.CompareTag("Nugget"))
             {
-                if (collide.transform.GetComponent<NuggetScript>() != null)
+                if (collide.transform.GetComponent<NuggetOldScare>() != null)
                 {
-                    collide.transform.GetComponent<NuggetScript>().scare(fearIncriment);
+                    collide.transform.GetComponent<NuggetOldScare>().scare(fearIncriment);
                 }
                 scareAnim.Play("Activation");
 
