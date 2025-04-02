@@ -4386,6 +4386,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Nugget (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4786105653385723112, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
+      propertyPath: m_TagString
+      value: Nugget
+      objectReference: {fileID: 0}
     - target: {fileID: 8282970364608398974, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.27
@@ -4429,10 +4433,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7134148592539716649, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
 --- !u!1 &1486113382
 GameObject:
@@ -93456,10 +93457,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7134148592539716649, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
