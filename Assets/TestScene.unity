@@ -1319,7 +1319,7 @@ GameObject:
   - component: {fileID: 462851962}
   m_Layer: 3
   m_Name: Attraction
-  m_TagString: Untagged
+  m_TagString: Attraction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1490,8 +1490,8 @@ MonoBehaviour:
   radius: 3
   scareCooldown: 3
   timer: 3
-  animator: {fileID: 462851962}
-  scareAnim: {fileID: 0}
+  controller: {fileID: 9100000, guid: 39bd656105e81d84483b62fb0d1231a8, type: 2}
+  scareAnim: {fileID: 462851962}
   health: 0
 --- !u!95 &462851962
 Animator:
