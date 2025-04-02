@@ -881,8 +881,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f519ff2779684a44bdd399314fadeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
   targets: {fileID: 1361242878}
   index: 0
+  Scared: 0
 --- !u!114 &155719254
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1038,7 +1040,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 155719250}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eda3d93e91f9a549b839d49b2e3b7a5, type: 3}
+  m_Script: {fileID: 11500000, guid: ba2af47132d4c8843943c8f91873132b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fearLevel: 0
@@ -3231,7 +3233,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 4
 --- !u!50 &835147121
 Rigidbody2D:
   serializedVersion: 4
@@ -3544,7 +3546,7 @@ GameObject:
   - component: {fileID: 1023812227}
   - component: {fileID: 1023812226}
   - component: {fileID: 1023812225}
-  - component: {fileID: 1023812224}
+  - component: {fileID: 1023812233}
   m_Layer: 7
   m_Name: Nugget (1)
   m_TagString: Nugget
@@ -3552,19 +3554,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1023812224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1023812223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8eda3d93e91f9a549b839d49b2e3b7a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fearLevel: 0
 --- !u!58 &1023812225
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -3639,8 +3628,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f519ff2779684a44bdd399314fadeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 1
   targets: {fileID: 1361242878}
   index: 0
+  Scared: 0
 --- !u!114 &1023812228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3793,6 +3784,19 @@ Transform:
   - {fileID: 1361138442}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023812233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023812223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba2af47132d4c8843943c8f91873132b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fearLevel: 0
 --- !u!1 &1103175564
 GameObject:
   m_ObjectHideFlags: 0
@@ -4295,7 +4299,7 @@ GameObject:
   - component: {fileID: 1361242878}
   m_Layer: 0
   m_Name: TargetMarkers
-  m_TagString: Untagged
+  m_TagString: TargetManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
