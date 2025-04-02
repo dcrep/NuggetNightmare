@@ -53,10 +53,10 @@ public class DragIt : MonoBehaviour
         {
             dragging.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // + offset;
             //dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y, snapValue));
-            if (lastHitObject.GetComponent<Rigidbody2D>() != null)
+            /*if (lastHitObject.GetComponent<Rigidbody2D>() != null)
             {
                 lastHitObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-            }
+            }*/
             
             // Snapping to grid
             Vector3Int cellPosition = gridLayout.WorldToCell(dragging.position);
