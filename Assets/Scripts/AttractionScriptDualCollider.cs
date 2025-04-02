@@ -15,7 +15,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
     float index = 0f;
 
     //is attraction in an unplaceable location
-    [SerializeField] bool badSpot;
+    [SerializeField] public bool badSpot;
 
     [SerializeField] DragAttractionScript DragAttractionScript;
 
@@ -60,23 +60,35 @@ public class AttractionScriptDualCollider : MonoBehaviour
         home = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         DragAttractionScript = GameObject.FindGameObjectWithTag("dragManager").GetComponent<DragAttractionScript>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    /*private void OnTriggerStay2D(Collider2D collision)
     {
         //if on a nonplacable spot set bad spot to true else false
         //Debug.Log("is on a bad spot " + badSpot);
         badSpot = !(collision.gameObject.layer == nonPlacableLayers);
-    }   
+    }*/  
     private void OnTriggerExit2D(Collider2D collision)
     {
+        //Debug.Log(collide.name + " exited " + gameObject.name + " with tag " + collide.tag);
+        if (collision.CompareTag("Attraction"))
+        {
+            badSpot = false;
+            Debug.Log(gameObject.name + " - collided with other attraction exit");
+        }
         //if leaving nonplaceable spot return false, else true
         //Debug.Log("Exited: " + collision.tag);
-        badSpot = (collision.gameObject.layer == nonPlacableLayers);
+        //badSpot = (collision.gameObject.layer == nonPlacableLayers);
     }
 
     // For each nugget on the layer circle collider is on..
     // Scratch that - its on child object, this will only be called for box collider
     void OnTriggerEnter2D(Collider2D collide)
     {
+        if (collide.CompareTag("Attraction"))
+        {
+            Debug.Log(gameObject.name + " - collided with other attraction enter");
+            badSpot = true;
+            //Debug.Log("Attraction box-collision enter");
+        }
         /*Debug.Log(collide.name + " collided with " + gameObject.name + " with tag " + collide.tag);
         if (collide.CompareTag("Nugget"))
         {
@@ -102,7 +114,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
     // Called from child collider (with circle collider) when it collides with nugget
     public void ChildCollider(Collider2D collide)
     {
-        Debug.Log(gameObject.name + "'s ChildCollider called");
+        //Debug.Log(gameObject.name + "'s ChildCollider called");
 
         // Check for attraction cooldown first
         // Ideally the check for animation+cooldown as I coded it elsewhere would cover this type of thing,

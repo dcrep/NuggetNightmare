@@ -4702,12 +4702,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1510092370746021114, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510092370746021114, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1510092370746021114, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.55
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 1510092370746021114, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.47
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 1510092370746021114, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4740,6 +4748,14 @@ PrefabInstance:
     - target: {fileID: 1510092370746021114, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835506960073371595, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
+      propertyPath: m_Size.x
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1835506960073371595, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
+      propertyPath: m_Size.y
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 1835506960073371595, guid: f2c4718c6a5b03542997c8fa70a5f8fd, type: 3}
       propertyPath: m_Enabled
@@ -92838,7 +92854,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1610764240}
-  - component: {fileID: 1610764239}
+  - component: {fileID: 1610764241}
   m_Layer: 0
   m_Name: Drag Manager
   m_TagString: dragManager
@@ -92846,23 +92862,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1610764239
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1610764238}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3414b6309a35ef4aa8d05709d5cce4e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  noErrorpls: {fileID: 1610764238}
-  movableLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  snapValue: 0.5
 --- !u!4 &1610764240
 Transform:
   m_ObjectHideFlags: 0
@@ -92878,6 +92877,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610764241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610764238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af28e18964bc8c044b38d58712d7a27b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tilemap: {fileID: 812232071}
+  nonPlaceableTilemap: {fileID: 1486113386}
+  gridLayout: {fileID: 548431375}
+  home: {x: 0, y: 0, z: 0}
+  noErrorpls: {fileID: 0}
+  movableLayers:
+    serializedVersion: 2
+    m_Bits: 8
+  snapValue: 0
 --- !u!1 &1664625663
 GameObject:
   m_ObjectHideFlags: 0
@@ -93601,7 +93621,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attractionScriptable: {fileID: 11400000, guid: 6740cc4d0760d4549985194d324d0e4b, type: 2}
   badSpot: 0
-  DragAttractionScript: {fileID: 1610764239}
+  DragAttractionScript: {fileID: 0}
   spotCheck: {fileID: 1135320154}
   nonPlacableLayers:
     serializedVersion: 2
@@ -93856,10 +93876,6 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e1781176bc76f694c98a07728bbf3854, type: 2}
-    - target: {fileID: 18960402713556725, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2552957056397734568, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.3
@@ -93870,11 +93886,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2552957056397734568, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.46
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2552957056397734568, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.66
+      value: -2.5
       objectReference: {fileID: 0}
     - target: {fileID: 2552957056397734568, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
       propertyPath: m_LocalPosition.z
@@ -93947,7 +93963,7 @@ PrefabInstance:
     - target: {fileID: 8846132540384217672, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
       propertyPath: DragAttractionScript
       value: 
-      objectReference: {fileID: 1610764239}
+      objectReference: {fileID: 0}
     - target: {fileID: 8846132540384217672, guid: 1f209ba9ae1936c4abb772fff6690b25, type: 3}
       propertyPath: attractionScriptable
       value: 
@@ -93993,7 +94009,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attractionScriptable: {fileID: 11400000, guid: b2da5fa8620a43143b26a7f709447886, type: 2}
   badSpot: 0
-  DragAttractionScript: {fileID: 1610764239}
+  DragAttractionScript: {fileID: 0}
   spotCheck: {fileID: 85789186}
   nonPlacableLayers:
     serializedVersion: 2
