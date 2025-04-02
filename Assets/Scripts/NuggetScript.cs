@@ -26,6 +26,12 @@ public class NuggetScript : MonoBehaviour
     bool alreadyCalled = false;
     [SerializeField]
     Transform fearBar;
+    [SerializeField]
+    GameObject happy;
+    [SerializeField]
+    GameObject nervous;
+    [SerializeField]
+    GameObject scared;
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position, freakyRadius);
@@ -50,6 +56,26 @@ public class NuggetScript : MonoBehaviour
             }
         }
         fearBar.localPosition = new Vector3((Mathf.Clamp(fearLevel,0,100)/100)-1, 0, 0);
+
+        if (Mathf.Clamp(fearLevel, 0, 100) <= 50)
+        {
+            happy.SetActive(true);
+            nervous.SetActive(false);
+            scared.SetActive(false);
+        }
+        else if (Mathf.Clamp(fearLevel, 0, 100) < 100)
+        {
+            happy.SetActive(false);
+            nervous.SetActive(true);
+            scared.SetActive(false);
+        }
+        else
+        {
+            happy.SetActive(false);
+            nervous.SetActive(false);
+            scared.SetActive(true);
+        }
+        
     }
     public void scare()
     {
