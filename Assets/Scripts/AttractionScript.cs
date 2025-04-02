@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 
 public class AttractionScript : MonoBehaviour
@@ -10,41 +11,64 @@ public class AttractionScript : MonoBehaviour
     //incriment for finding placeable location
     [SerializeField]
     AttractionScriptableObject attractionScriptable;
+
+    // Unused..
     float indexIncriment = 0.25f;
-    //index for finding placeable location
+    
+    // Unused
+    // index for finding placeable location
     float index = 0f;
+
     //is attraction in an unplaceable location
     [SerializeField]
     bool badSpot;
+
     [SerializeField]
     DragAttractionScript DragAttractionScript;
+
+    // Usage?  spotCheck not used in this script, and what it references is an empty gameobject with transform x-2
     [SerializeField]
     GameObject spotCheck;
+
     [SerializeField]
     LayerMask nonPlacableLayers;
+
     [SerializeField]
     LayerMask nuggets;
+
     Collider2D currentColider;
+
     [SerializeField]
     public float fearIncriment;
+
     [SerializeField]
     public float radius;
+
     [SerializeField]
     public float scareCooldown;
+
     [SerializeField]
     public float timer;
+
     [SerializeField]
-    Animator animator;
+    AnimatorController controller;
+
+    // Unused
     private float cooldown = 0.5f;
+
     [SerializeField]
-    Animation scareAnim;
+    public Animator scareAnim;
+
     [SerializeField]
+
     int health;
     Vector3 home;
 
     private void Start()
     {
         //gets drag attaction script from drag manager
+        controller = attractionScriptable.animator;
+        //controller.anima
         fearIncriment = attractionScriptable.attackDamage;
         radius = attractionScriptable.aoeRadius;
         scareCooldown = attractionScriptable.recoveryTime;
@@ -77,7 +101,7 @@ public class AttractionScript : MonoBehaviour
                     i.transform.GetComponent<NuggetScript>().scare(fearIncriment);
                 }
             }
-            animator.Play("Activation");
+            scareAnim.Play("Activation");
             timer = scareCooldown;
         }
 
