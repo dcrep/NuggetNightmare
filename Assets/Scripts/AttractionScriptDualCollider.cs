@@ -127,6 +127,10 @@ public class AttractionScriptDualCollider : MonoBehaviour
                 {
                     collide.transform.GetComponent<NuggetOldScare>().scare(fearIncriment);
                 }
+                else if (collide.transform.GetComponent<NuggetScript>() != null)
+                {
+                    collide.transform.GetComponent<NuggetScript>().scare(10f);
+                }
                 scareAnim.Play("Activation");
 
                 // Unity: Call function after x seconds
