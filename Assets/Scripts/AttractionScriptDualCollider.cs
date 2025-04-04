@@ -111,6 +111,10 @@ public class AttractionScriptDualCollider : MonoBehaviour
         */
     }
 
+    void OnMouseDown() {
+        Debug.Log("OnMouseDown: Clicked on: " + gameObject.name);
+    }
+
     // Called from child collider (with circle collider) when it collides with nugget
     public void ChildCollider(Collider2D collide)
     {

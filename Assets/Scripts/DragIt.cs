@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using System.Security.Cryptography;
 
 public class DragIt : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class DragIt : MonoBehaviour
     [SerializeField] private Tilemap nonPlaceableTilemap;
     public GridLayout gridLayout;
     private Transform dragging = null;
+    private Collider2D draggingCollider = null;
     private Vector3 offset;
 
     public Vector3 home;
@@ -44,7 +46,10 @@ public class DragIt : MonoBehaviour
     }
     private void Start()
     {
-        lastHitObject = noErrorpls;        
+        lastHitObject = noErrorpls;
+        Vector3 cellSize = gridLayout.CellToWorld(new Vector3Int(1, 1, 0)) - gridLayout.CellToWorld(new Vector3Int(0, 0, 0));
+        Debug.Log("Grid cellsize: " + cellSize + " " + Mouse.current.position.ReadValue());
+        //Debug.Log("Grid cellsize: " + gridLayout.cellSize.x + ", " + gridLayout.cellSize.y + ", " + gridLayout.cellSize.z);
     }
 
     private void Update()
@@ -84,6 +89,7 @@ public class DragIt : MonoBehaviour
 
         if (hit)
         {
+            draggingCollider = hit.collider;
             dragging = hit.transform;
             home = dragging.position;
             // Offset not necessary, we'll just track mouse moving over tile borders
@@ -124,6 +130,18 @@ public class DragIt : MonoBehaviour
                 Debug.Log("Hit: " + hit.transform.name);
             }*/
 
+        // NOTE: Also finds extra colliders inside the dragging collider;
+        // Can be used to just check for anything but would need to filter specifically for Attraction objects
+        // or on the Dragggable layer? (will there ever be a need to drag other things like perhaps the nuggets)
+        // Alternative: Collider2D.IsTouching() if last Attraction touched was cached..
+        // (but then, what if multiple attractions are touching; AOE colliders will have this problem..)
+        Collider2D[] colliderResults = new Collider2D[10];
+        int totalContacts = draggingCollider.OverlapCollider(new ContactFilter2D().NoFilter(), colliderResults);
+        for (int i = 0; i < totalContacts; i++)
+        {
+            Debug.Log("Contact Point hits # " + i + ": " + colliderResults[i].GetComponent<Collider2D>().name);
+        }
+
         // TODO: Alternative with Physics2D.OverlapCircle/Collider/Box?
         if (dragging.GetComponent<AttractionScriptDualCollider>() != null)
         {                
@@ -150,7 +168,9 @@ public class DragIt : MonoBehaviour
             }
             lastDraggedObject = dragging.transform; 
             dragging = null;
+            draggingCollider = null;
         }
+
  
             /*
             // Get the tile at the raycast hit position
