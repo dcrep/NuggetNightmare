@@ -16,5 +16,9 @@ public class CircleCollider : MonoBehaviour
         {
             gameObject.transform.parent.GetComponent<AttractionScriptDualCollider>().ChildCollider(collide);
         }
-    }    
+    }
+    // Doesn't work here, but does in the parent.. (maybe configuration of the colliders?)
+    /*void OnMouseDown() {
+        Debug.Log("OnMouseDown: Clicked on: " + gameObject.name);
+    }*/
 }
