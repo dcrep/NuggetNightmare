@@ -6,6 +6,10 @@ public class InputManager : MonoBehaviour
 {
     public PlayerControls playerControls;
     private InputAction numKeyAction;
+    private InputAction mouseUpDown;
+
+    DragIt dragScript;
+    bool dragging = false;
 
     public GridLayout tileGrid;
 
@@ -24,11 +28,20 @@ public class InputManager : MonoBehaviour
         // Enable only the NumKeys action, and subscribe to the event
         numKeyAction = playerControls.Player.NumKeys;
         numKeyAction.Enable();
+        mouseUpDown = playerControls.Player.ClickAndRelease;
+        mouseUpDown.Enable();
+        // Subscribe to Mouse down/up events
+        mouseUpDown.performed += MouseButtonPressed;
+        mouseUpDown.canceled += MouseButtonReleased;
         // Subscribe to event (calls NumKeyPressed)
         numKeyAction.performed += NumKeyPressed;
     }
     void OnDisable()
     {
+        // Unsubscribe to event)
+        mouseUpDown.performed -= MouseButtonPressed;
+        mouseUpDown.canceled -= MouseButtonReleased;
+        mouseUpDown.Disable();
         // Unsubscribe to event
         numKeyAction.performed -= NumKeyPressed;
         numKeyAction.Disable();
@@ -39,7 +52,7 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dragScript = FindFirstObjectByType<DragIt>();
     }
 
     // Update is called once per frame
@@ -84,11 +97,70 @@ public class InputManager : MonoBehaviour
 
         if (keyValue == 1)
         {
-            Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, 0, 0), Quaternion.identity);
+            Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, -5, 0), Quaternion.identity);
+        }
+        else if (keyValue == 2)
+        {
+            Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1, -5, 0), Quaternion.identity);
+        }
+        else if (keyValue == 0)
+        {
+            Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -3, 0), Quaternion.identity);
         }
 
         // Now normalized to 0-9
         numKeyValue = keyValue;
         isNumKeyPressed = true;        
     }
+
+    private void MouseButtonPressed(InputAction.CallbackContext context)
+    {
+        //Debug.Log("InpMan: Click triggered!");
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
+                                                        float.PositiveInfinity, LayerMask.GetMask("Draggable","Nugget"));
+
+        if (hit.collider != null)
+        {
+            GameObject hitObject = hit.transform.gameObject;
+            Debug.Log("Hit: " + hit.transform.name);
+
+            if (hitObject.CompareTag("Attraction"))
+            {
+                if (dragging)
+                {
+                    Debug.Log("Already dragging something!");
+                    return;
+                }
+                else
+                {
+                    dragScript.ClickDragStart(hit, mousePosition);
+                    dragging = true;
+                }                
+            }
+            else if (hitObject.CompareTag("Nugget"))
+            {
+                Debug.Log("Hit: " + hit.transform.name + " is a nugget!");
+            }
+            //draggingCollider = hit.collider;
+            //dragging = hit.transform;
+            //home = dragging.position;
+            // Offset not necessary, we'll just track mouse moving over tile borders
+            //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
+            //lastHitObject = hit.transform.gameObject;
+        }
+
+    }
+
+    private void MouseButtonReleased(InputAction.CallbackContext context)
+    {
+        if (dragging)
+        {
+            dragScript.ClickDragEnd();
+            dragging = false;
+            Debug.Log("InpMan: Click released!");
+        }
+    }
+
 }

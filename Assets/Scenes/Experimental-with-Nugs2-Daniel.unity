@@ -6031,7 +6031,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4786105653385723112, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
       propertyPath: m_Name
-      value: Nugget (2)
+      value: NuggetNew
       objectReference: {fileID: 0}
     - target: {fileID: 4786105653385723112, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
       propertyPath: m_IsActive
@@ -6057,9 +6057,25 @@ PrefabInstance:
       propertyPath: m_SortingLayerID
       value: -756816535
       objectReference: {fileID: 0}
+    - target: {fileID: 6616878034610732804, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7008716201553884053, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7053839803168253731, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7134148592539716649, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8008545132536538089, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8282970364608398974, guid: 5f08b413df64f844fb93278782318ee2, type: 3}
       propertyPath: m_LocalScale.x
@@ -7808,11 +7824,9 @@ MonoBehaviour:
   nonPlaceableTilemap: {fileID: 1571830819}
   gridLayout: {fileID: 548431375}
   home: {x: 0, y: 0, z: 0}
-  noErrorpls: {fileID: 0}
   movableLayers:
     serializedVersion: 2
     m_Bits: 8
-  snapValue: 0
 --- !u!1 &1664625663
 GameObject:
   m_ObjectHideFlags: 0

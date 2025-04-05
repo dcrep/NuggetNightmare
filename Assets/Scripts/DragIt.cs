@@ -8,19 +8,17 @@ public class DragIt : MonoBehaviour
 {
     [SerializeField] private Tilemap tilemap;
     [SerializeField] private Tilemap nonPlaceableTilemap;
-    public GridLayout gridLayout;
+    [SerializeField] private GridLayout gridLayout;
     private Transform dragging = null;
     private Collider2D draggingCollider = null;
     private Vector3 offset;
 
-    public Vector3 home;
-    GameObject lastHitObject;
-    Transform lastDraggedObject;
-    public GameObject noErrorpls;
+    [SerializeField] private Vector3 home;
+    private GameObject lastHitObject;
+    private Transform lastDraggedObject;
     [SerializeField] private LayerMask movableLayers;
-    [SerializeField] public float snapValue;
-
-    public PlayerControls playerControls;
+    
+    [SerializeField] private  PlayerControls playerControls;
     private InputAction mouseUpDown;
 
 
@@ -29,63 +27,48 @@ public class DragIt : MonoBehaviour
         playerControls = new PlayerControls();        
     }
 
-    void OnEnable()
-    {
-        mouseUpDown = playerControls.Player.ClickAndRelease;
-        mouseUpDown.Enable();
-        // Subscribe to Mouse down/up events
-        mouseUpDown.performed += MouseButtonPressed;
-        mouseUpDown.canceled += MouseButtonReleased;
-    }
-    void OnDisable()
-    {
-        // Unsubscribe to Mouse down/up events
-        mouseUpDown.performed -= MouseButtonPressed;
-        mouseUpDown.canceled -= MouseButtonReleased;
-        mouseUpDown.Disable();
-    }
     private void Start()
     {
-        lastHitObject = noErrorpls;
+        lastHitObject = null;
         Vector3 cellSize = gridLayout.CellToWorld(new Vector3Int(1, 1, 0)) - gridLayout.CellToWorld(new Vector3Int(0, 0, 0));
-        Debug.Log("Grid cellsize: " + cellSize + " " + Mouse.current.position.ReadValue());
-        //Debug.Log("Grid cellsize: " + gridLayout.cellSize.x + ", " + gridLayout.cellSize.y + ", " + gridLayout.cellSize.z);
+
+        // Cellsize is 1x1, mouse coordinates are floats (e.g. 1.5 is halfway between 1 and 2)
+        //Debug.Log("Grid cellsize: " + cellSize + " " + Mouse.current.position.ReadValue());
     }
 
     private void Update()
     {
         if (dragging != null)
         {
-            dragging.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // + offset;
-            //dragging.position = new Vector2(Snapping.Snap(dragging.position.x, snapValue), Snapping.Snap(dragging.position.y, snapValue));
-            /*if (lastHitObject.GetComponent<Rigidbody2D>() != null)
-            {
-                lastHitObject.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
-            }*/
+            dragging.position = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             
             // Snapping to grid
             Vector3Int cellPosition = gridLayout.WorldToCell(dragging.position);
-            // tilemap should be the 'Default'/placeable one
-            /*if (nonPlaceableTilemap.HasTile(cellPosition))  // && tilemap.gameObject.layer == LayerMask.NameToLayer("NonPlaceable"))
-            {
-                Debug.Log("NonPlaceable Tilemap location! Layer =" + tilemap.gameObject.layer);
-                //cellPosition = tilemap.WorldToCell(dragging.position);
-                //Debug.Log("Cell Position: " + cellPosition);            
-                //dragging.position = tilemap.GetCellCenterWorld(cellPosition) + gridLayout.cellSize / 2;
-            }*/
-            Debug.Log("Cell Position: " + cellPosition);            
+
+            Debug.Log("Dragging: Cell Position: " + cellPosition);            
             dragging.position = gridLayout.CellToWorld(cellPosition) + gridLayout.cellSize / 2;
-            Debug.Log("Snapped Position: " + dragging.position);
+            Debug.Log("Dragging: Snapped Position: " + dragging.position);
         }
     }
 
-    private void MouseButtonPressed(InputAction.CallbackContext context)
+    public void ClickDragStart(RaycastHit2D hit, Vector2 mousePosition)
     {
-        //Debug.Log("Click triggered!");
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        //Debug.Log("Click-Drag triggered!");
 
-        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
-                                                        float.PositiveInfinity, movableLayers);
+        //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
+        //                                        float.PositiveInfinity, movableLayers);
+        //Debug.Log("Hit: " + hit.transform.name);
+
+        if (hit.collider == null)
+        {
+            return;
+        }
+        
+        // Only care if we are NOT dragging something (shouldn't happen..)
+        if (dragging != null)
+        {
+            ClickDragEnd();
+        }
 
         if (hit)
         {
@@ -95,13 +78,16 @@ public class DragIt : MonoBehaviour
             // Offset not necessary, we'll just track mouse moving over tile borders
             offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
             lastHitObject = hit.transform.gameObject;
+
             // Drag updates?  Just leave in Update() for now.
-            //StartCoroutine(DragUpdate(hit.transform.gameObject));
+            // Also, Coroutines run on the main thread at given intervals
+            // StartCoroutine(DragUpdate(hit.transform.gameObject));
         }
 
     }
 
-    private void MouseButtonReleased(InputAction.CallbackContext context)
+    //private void MouseButtonReleased(InputAction.CallbackContext context)
+    public void ClickDragEnd()
     {
         // Only care if we are dragging something
         if (dragging == null)
