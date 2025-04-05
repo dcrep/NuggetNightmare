@@ -32,6 +32,10 @@ public class NuggetScript : MonoBehaviour
     GameObject nervous;
     [SerializeField]
     GameObject scared;
+
+    [SerializeField] AudioClip[] soundEffectFun;
+    [SerializeField] AudioClip[] soundEffectScare;
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawSphere(transform.position, freakyRadius);
@@ -88,8 +92,13 @@ public class NuggetScript : MonoBehaviour
             {
                 gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 alreadyCalled = true;
+                SoundManager.PlaySoundFromArray(soundEffectScare);
             }
             freakyAura.gameObject.SetActive(true);
+        }
+        else
+        {
+            SoundManager.PlaySoundFromArray(soundEffectFun);
         }
     }
     public void scare(float fear)
@@ -102,8 +111,13 @@ public class NuggetScript : MonoBehaviour
             {
                 gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 alreadyCalled = true;
+                SoundManager.PlaySoundFromArray(soundEffectScare);
             }
             freakyAura.gameObject.SetActive(true);
+        }
+        else
+        {
+            SoundManager.PlaySoundFromArray(soundEffectFun);
         }
     }
 }

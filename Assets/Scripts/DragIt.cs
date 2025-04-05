@@ -6,20 +6,18 @@ using System.Security.Cryptography;
 
 public class DragIt : MonoBehaviour
 {
-    [SerializeField] private Tilemap tilemap;
-    [SerializeField] private Tilemap nonPlaceableTilemap;
-    [SerializeField] private GridLayout gridLayout;
-    private Transform dragging = null;
-    private Collider2D draggingCollider = null;
-    private Vector3 offset;
+    private Grid grid;
+    private GridLayout gridLayout;
+    private Tilemap nonPlaceableTilemap;
 
-    [SerializeField] private Vector3 home;
-    private GameObject lastHitObject;
+    private Vector3 home;
+    private Transform dragging = null;
     private Transform lastDraggedObject;
-    [SerializeField] private LayerMask movableLayers;
+    private Collider2D draggingCollider = null;
+
+    private GameObject lastHitObject;
     
-    [SerializeField] private  PlayerControls playerControls;
-    private InputAction mouseUpDown;
+    private  PlayerControls playerControls;
 
 
     void Awake()
@@ -30,10 +28,38 @@ public class DragIt : MonoBehaviour
     private void Start()
     {
         lastHitObject = null;
-        Vector3 cellSize = gridLayout.CellToWorld(new Vector3Int(1, 1, 0)) - gridLayout.CellToWorld(new Vector3Int(0, 0, 0));
+ 
+        gridLayout = FindObjectOfType<GridLayout>();
+        if (gridLayout == null)
+        {
+            Debug.LogError("GridLayout not found in the scene.");
+            return;
+        }
+        
+        grid = gridLayout.GetComponent<Grid>();
+        SetNonPlaceableTiles(grid);
+
+        // Vector3 cellSize = gridLayout.CellToWorld(new Vector3Int(1, 1, 0)) - gridLayout.CellToWorld(new Vector3Int(0, 0, 0));
 
         // Cellsize is 1x1, mouse coordinates are floats (e.g. 1.5 is halfway between 1 and 2)
-        //Debug.Log("Grid cellsize: " + cellSize + " " + Mouse.current.position.ReadValue());
+        // Debug.Log("Grid cellsize: " + cellSize + " " + Mouse.current.position.ReadValue());
+    }
+    private void SetNonPlaceableTiles(Grid grid)
+    {
+        // Get all Tilemap components in the Grid
+        Tilemap[] tilemaps = grid.GetComponentsInChildren<Tilemap>();
+
+        foreach (Tilemap tilemap in tilemaps)
+        {            
+            //Debug.Log("Processing Tilemap: " + tilemap.name);
+            if (tilemap.gameObject.layer == LayerMask.NameToLayer("NonPlaceable"))
+            {
+                nonPlaceableTilemap = tilemap;
+                Debug.Log("Found NonPlaceable Tilemap: " + tilemap.name);
+                return;
+            }
+        }
+        Debug.LogError("No NonPlaceable Tilemap found in the Grid.");
     }
 
     private void Update()
@@ -75,8 +101,9 @@ public class DragIt : MonoBehaviour
             draggingCollider = hit.collider;
             dragging = hit.transform;
             home = dragging.position;
+
             // Offset not necessary, we'll just track mouse moving over tile borders
-            offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
+            //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
             lastHitObject = hit.transform.gameObject;
 
             // Drag updates?  Just leave in Update() for now.
@@ -143,7 +170,7 @@ public class DragIt : MonoBehaviour
                 if (nonPlaceableTilemap.HasTile(cellPosition))
                 {
                     // layer always 0? hmm
-                    Debug.Log("NonPlaceable Tilemap location! Layer =" + tilemap.gameObject.layer);
+                    Debug.Log("NonPlaceable Tilemap location! Layer =" + nonPlaceableTilemap.gameObject.layer);
                     //cellPosition = tilemap.WorldToCell(dragging.position);
                     //Debug.Log("Cell Position: " + cellPosition);            
                     //dragging.position = tilemap.GetCellCenterWorld(cellPosition) + gridLayout.cellSize / 2;

@@ -609,7 +609,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f519ff2779684a44bdd399314fadeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.15
+  speed: 0.4
   targets: {fileID: 0}
   index: 0
   Scared: 0
@@ -700,6 +700,14 @@ MonoBehaviour:
   happy: {fileID: 2487178097179909521}
   nervous: {fileID: 606715794043625325}
   scared: {fileID: 4772694587561426250}
+  soundEffectFun:
+  - {fileID: 8300000, guid: 0969b52ffa99edc49be1bd0499087930, type: 3}
+  - {fileID: 8300000, guid: 1ecfb203326a2164aad4edf1ad589ccc, type: 3}
+  soundEffectScare:
+  - {fileID: 8300000, guid: 520e63871aa3cc94980fd1f2a89952b0, type: 3}
+  - {fileID: 8300000, guid: ccc0791cda6a3f7468a960d1d99d0ac0, type: 3}
+  - {fileID: 8300000, guid: fcdc0578e1d38544289dc8852debf344, type: 3}
+  - {fileID: 8300000, guid: 5c186689a16566e4f9c846ecdb7b1dc4, type: 3}
 --- !u!1 &5963922829396547955
 GameObject:
   m_ObjectHideFlags: 0
@@ -885,7 +893,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8326881800103937983
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1057,7 +1065,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1121003992077939403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1229,7 +1237,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &379915639070631507
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1378,8 +1386,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -756816535
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 20b87c19637dac443afb789198ba7faf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -1,6 +1,7 @@
 using System;
 using UnityEditor.Animations;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class AttractionScriptDualCollider : MonoBehaviour
 {
@@ -48,6 +49,10 @@ public class AttractionScriptDualCollider : MonoBehaviour
     Vector3 home;
 
     bool bInvokeTimerOn = false;
+
+
+    [SerializeField] AudioClip[] soundEffect;
+
 
     private void Start()
     {
@@ -111,6 +116,22 @@ public class AttractionScriptDualCollider : MonoBehaviour
         */
     }
 
+    void ChooseAndPlaySound(float volume = 1f, Vector2 position = default(Vector2))
+    {
+        // Check if the soundEffect array is empty or null
+        if (soundEffect == null || soundEffect.Length == 0)
+        {
+            Debug.LogWarning("SoundEffect array is empty or null. No sound will be played.");
+            return;
+        }
+        // Choose a random sound from the array
+        int randomIndex = UnityEngine.Random.Range(0, soundEffect.Length);
+        AudioClip selectedClip = soundEffect[randomIndex];
+
+        // Play the selected sound
+        SoundManager.PlaySound(selectedClip, volume, position);
+    }
+
     void OnMouseDown() {
         Debug.Log("OnMouseDown: Clicked on: " + gameObject.name);
     }
@@ -136,6 +157,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
                     collide.transform.GetComponent<NuggetScript>().scare(10f);
                 }
                 scareAnim.Play("Activation");
+                ChooseAndPlaySound();
 
                 // Unity: Call function after x seconds
                 Invoke("AnimationDoneProbably", scareCooldown);

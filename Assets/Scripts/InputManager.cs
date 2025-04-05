@@ -1,6 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
 
 public class InputManager : MonoBehaviour
 {
@@ -8,10 +8,10 @@ public class InputManager : MonoBehaviour
     private InputAction numKeyAction;
     private InputAction mouseUpDown;
 
-    DragIt dragScript;
-    bool dragging = false;
+    private DragIt dragScript;
+    private bool dragging = false;
 
-    public GridLayout tileGrid;
+    [SerializeField] private GridLayout tileGrid;
 
     private bool isNumKeyPressed = false;
     private bool numpadKeyPressed = false;
@@ -58,22 +58,7 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerControls.Player.ClickAndRelease.triggered)
-        {
-            Debug.Log("Mouse Clicked!");
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Vector3 tilePos = tileGrid.WorldToCell(worldPos);
-            Debug.Log("Mouse Clicked at: " + worldPos + ", Tile Position: " + tilePos);
-            if (tileGrid.GetBoundsLocal(Vector3Int.FloorToInt(tilePos)).Contains(tilePos))
-            {
-                Debug.Log("Valid Tile Position: " + tilePos);
-            }
-            else
-            {
-                Debug.Log("Invalid Tile Position: " + tilePos);
-            }
-        }
-        // RaycastHit2D hit = Physics2D.Raycast (for DragIt, maybe nugget detection)
+        //if (playerControls.Player.ClickAndRelease.triggered) {}
     }
 
     private void NumKeyPressed(InputAction.CallbackContext context)
@@ -97,15 +82,15 @@ public class InputManager : MonoBehaviour
 
         if (keyValue == 1)
         {
-            Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, -5, 0), Quaternion.identity);
+            UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, -5, 0), Quaternion.identity);
         }
         else if (keyValue == 2)
         {
-            Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1, -5, 0), Quaternion.identity);
+            UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1, -5, 0), Quaternion.identity);
         }
         else if (keyValue == 0)
         {
-            Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -3, 0), Quaternion.identity);
+            UnityEngine.Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -2, 0), Quaternion.identity);
         }
 
         // Now normalized to 0-9
@@ -135,8 +120,16 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    dragScript.ClickDragStart(hit, mousePosition);
-                    dragging = true;
+                    if (dragScript == null)
+                    {
+                        Debug.Log("DragIt script not found!");
+                        return;
+                    }
+                    else
+                    {
+                        dragScript.ClickDragStart(hit, mousePosition);
+                        dragging = true;
+                    }
                 }                
             }
             else if (hitObject.CompareTag("Nugget"))
