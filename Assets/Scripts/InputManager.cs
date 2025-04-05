@@ -1,13 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Tilemaps;
 
 public class InputManager : MonoBehaviour
 {
     public PlayerControls playerControls;
     private InputAction numKeyAction;
+    private InputAction mouseUpDown;
 
-    public GridLayout tileGrid;
+    private DragIt dragScript;
+    private bool dragging = false;
+
+    [SerializeField] private GridLayout tileGrid;
 
     private bool isNumKeyPressed = false;
     private bool numpadKeyPressed = false;
@@ -24,11 +28,20 @@ public class InputManager : MonoBehaviour
         // Enable only the NumKeys action, and subscribe to the event
         numKeyAction = playerControls.Player.NumKeys;
         numKeyAction.Enable();
+        mouseUpDown = playerControls.Player.ClickAndRelease;
+        mouseUpDown.Enable();
+        // Subscribe to Mouse down/up events
+        mouseUpDown.performed += MouseButtonPressed;
+        mouseUpDown.canceled += MouseButtonReleased;
         // Subscribe to event (calls NumKeyPressed)
         numKeyAction.performed += NumKeyPressed;
     }
     void OnDisable()
     {
+        // Unsubscribe to event)
+        mouseUpDown.performed -= MouseButtonPressed;
+        mouseUpDown.canceled -= MouseButtonReleased;
+        mouseUpDown.Disable();
         // Unsubscribe to event
         numKeyAction.performed -= NumKeyPressed;
         numKeyAction.Disable();
@@ -39,28 +52,13 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        dragScript = FindFirstObjectByType<DragIt>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (playerControls.Player.ClickAndRelease.triggered)
-        {
-            Debug.Log("Mouse Clicked!");
-            Vector3 worldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            Vector3 tilePos = tileGrid.WorldToCell(worldPos);
-            Debug.Log("Mouse Clicked at: " + worldPos + ", Tile Position: " + tilePos);
-            if (tileGrid.GetBoundsLocal(Vector3Int.FloorToInt(tilePos)).Contains(tilePos))
-            {
-                Debug.Log("Valid Tile Position: " + tilePos);
-            }
-            else
-            {
-                Debug.Log("Invalid Tile Position: " + tilePos);
-            }
-        }
-        // RaycastHit2D hit = Physics2D.Raycast (for DragIt, maybe nugget detection)
+        //if (playerControls.Player.ClickAndRelease.triggered) {}
     }
 
     private void NumKeyPressed(InputAction.CallbackContext context)
@@ -84,11 +82,78 @@ public class InputManager : MonoBehaviour
 
         if (keyValue == 1)
         {
-            Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, 0, 0), Quaternion.identity);
+            UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, -5, 0), Quaternion.identity);
+        }
+        else if (keyValue == 2)
+        {
+            UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1, -5, 0), Quaternion.identity);
+        }
+        else if (keyValue == 0)
+        {
+            UnityEngine.Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -2, 0), Quaternion.identity);
         }
 
         // Now normalized to 0-9
         numKeyValue = keyValue;
         isNumKeyPressed = true;        
     }
+
+    private void MouseButtonPressed(InputAction.CallbackContext context)
+    {
+        //Debug.Log("InpMan: Click triggered!");
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
+                                                        float.PositiveInfinity, LayerMask.GetMask("Draggable","Nugget"));
+
+        if (hit.collider != null)
+        {
+            GameObject hitObject = hit.transform.gameObject;
+            Debug.Log("Hit: " + hit.transform.name);
+
+            if (hitObject.CompareTag("Attraction"))
+            {
+                if (dragging)
+                {
+                    Debug.Log("Already dragging something!");
+                    return;
+                }
+                else
+                {
+                    if (dragScript == null)
+                    {
+                        Debug.Log("DragIt script not found!");
+                        return;
+                    }
+                    else
+                    {
+                        dragScript.ClickDragStart(hit, mousePosition);
+                        dragging = true;
+                    }
+                }                
+            }
+            else if (hitObject.CompareTag("Nugget"))
+            {
+                Debug.Log("Hit: " + hit.transform.name + " is a nugget!");
+            }
+            //draggingCollider = hit.collider;
+            //dragging = hit.transform;
+            //home = dragging.position;
+            // Offset not necessary, we'll just track mouse moving over tile borders
+            //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
+            //lastHitObject = hit.transform.gameObject;
+        }
+
+    }
+
+    private void MouseButtonReleased(InputAction.CallbackContext context)
+    {
+        if (dragging)
+        {
+            dragScript.ClickDragEnd();
+            dragging = false;
+            Debug.Log("InpMan: Click released!");
+        }
+    }
+
 }
