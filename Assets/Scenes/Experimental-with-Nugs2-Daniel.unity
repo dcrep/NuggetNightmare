@@ -7820,13 +7820,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af28e18964bc8c044b38d58712d7a27b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tilemap: {fileID: 1261365749}
-  nonPlaceableTilemap: {fileID: 1571830819}
-  gridLayout: {fileID: 548431375}
-  home: {x: 0, y: 0, z: 0}
-  movableLayers:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!1 &1664625663
 GameObject:
   m_ObjectHideFlags: 0
@@ -8565,6 +8558,9 @@ MonoBehaviour:
   controller: {fileID: 9100000, guid: 39bd656105e81d84483b62fb0d1231a8, type: 2}
   scareAnim: {fileID: 1253704825}
   health: 0
+  soundEffect:
+  - {fileID: 8300000, guid: bfcb53f18267e114a8d01eba298eb31e, type: 3}
+  - {fileID: 8300000, guid: 34c0fc879d9900248903f8c7b60c8953, type: 3}
 --- !u!1 &2070541434
 GameObject:
   m_ObjectHideFlags: 0
@@ -9078,6 +9074,10 @@ MonoBehaviour:
   controller: {fileID: 9100000, guid: e1781176bc76f694c98a07728bbf3854, type: 2}
   scareAnim: {fileID: 9056069966547673768}
   health: 0
+  soundEffect:
+  - {fileID: 8300000, guid: 661341ee612fb104c9203b8f7ad2e3da, type: 3}
+  - {fileID: 8300000, guid: 25f25640cf196fc42934522a50cc0f0d, type: 3}
+  - {fileID: 8300000, guid: c7acc1d5a7e04ef428f7bc8070d53e7c, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
