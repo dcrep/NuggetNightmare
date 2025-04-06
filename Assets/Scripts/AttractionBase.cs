@@ -36,6 +36,11 @@ public class AttractionBase : MonoBehaviour
             Debug.Log("PlayAnimation called, but previous animation not recovered yet");
             return;
         }
+        if (animator == null)
+        {
+            Debug.LogError("Animator is null, cannot play animation, gameObject: " + gameObject.name);
+            return;
+        }
 
         animator.Play(name);
         Debug.Log("Playing animation");

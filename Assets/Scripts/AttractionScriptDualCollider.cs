@@ -129,7 +129,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
         AudioClip selectedClip = soundEffect[randomIndex];
 
         // Play the selected sound
-        SoundManager.PlaySound(selectedClip, volume, position);
+        SoundManager.PlaySoundAt(selectedClip, volume, position);
     }
 
     void OnMouseDown() {
@@ -157,7 +157,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
                     collide.transform.GetComponent<NuggetScript>().scare(10f);
                 }
                 scareAnim.Play("Activation");
-                ChooseAndPlaySound();
+                ChooseAndPlaySound(0.6f, gameObject.transform.position);
 
                 // Unity: Call function after x seconds
                 Invoke("AnimationDoneProbably", scareCooldown);
