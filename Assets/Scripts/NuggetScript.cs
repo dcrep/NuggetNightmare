@@ -81,6 +81,16 @@ public class NuggetScript : MonoBehaviour
         }
         
     }
+    public void resetFear()
+    {
+        alreadyCalled = false;
+        fearLevel = 0f;
+        freakyAura.gameObject.SetActive(false);
+        happy.SetActive(true);
+        nervous.SetActive(false);
+        scared.SetActive(false);
+        GetComponent<NuggetPathfindingAI>().calmDown();
+    }
     public void scare()
     {
         fearLevel = fearLevel + 10;
@@ -92,13 +102,13 @@ public class NuggetScript : MonoBehaviour
             {
                 gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 alreadyCalled = true;
-                SoundManager.PlaySoundFromArray(soundEffectScare);
+                SoundManager.PlaySoundAtFromArray(soundEffectScare, 1f, gameObject.transform.position);
             }
             freakyAura.gameObject.SetActive(true);
         }
         else
         {
-            SoundManager.PlaySoundFromArray(soundEffectFun);
+            SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
     }
     public void scare(float fear)
@@ -111,13 +121,13 @@ public class NuggetScript : MonoBehaviour
             {
                 gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 alreadyCalled = true;
-                SoundManager.PlaySoundFromArray(soundEffectScare);
+                SoundManager.PlaySoundAtFromArray(soundEffectScare, 1f, gameObject.transform.position);
             }
             freakyAura.gameObject.SetActive(true);
         }
         else
         {
-            SoundManager.PlaySoundFromArray(soundEffectFun);
+            SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
     }
 }

@@ -17,9 +17,12 @@ public class InputManager : MonoBehaviour
     private bool numpadKeyPressed = false;
     private int numKeyValue = -1; // 0-9
 
+    GameObject nuggyPrefab = null;
+
     void Awake()
     {
         playerControls = new PlayerControls();
+        nuggyPrefab = Resources.Load<GameObject>("Prefabs/Nugget");
     }
     void OnEnable()
     {
@@ -90,7 +93,9 @@ public class InputManager : MonoBehaviour
         }
         else if (keyValue == 0)
         {
-            UnityEngine.Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -2, 0), Quaternion.identity);
+            //UnityEngine.Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -2, 0), Quaternion.identity);
+            GameObject nug = Instantiate(nuggyPrefab, new Vector3(-8, -2, 0), Quaternion.identity);
+            //nug.GetComponent<NuggetScript>().resetFear();
         }
 
         // Now normalized to 0-9

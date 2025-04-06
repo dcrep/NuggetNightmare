@@ -59,6 +59,12 @@ public class NuggetPathfindingAI : MonoBehaviour
         destinationSetter.target = targets.target(index).transform;
         
     }
+    public void calmDown()
+    {
+        Scared = false;
+        index = 0;;
+        destinationSetter.target = targets.target(index).transform;
+    }
 
     public void freakOut(float speed)
     {

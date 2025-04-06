@@ -15,11 +15,27 @@ public class BootInitializer : MonoBehaviour {
 	    GameObject bootInit = GameObject.Instantiate(Resources.Load("BootInitializer")) as GameObject;
 	    GameObject.DontDestroyOnLoad(bootInit);
 
-        // Initialize Nightmares
+        // Initialize Nightmares (optionally do it in the script itself)
         Nightmares.Initialize();
         List<Nightmares.Fears> fears = Nightmares.GetFearsForAttraction(Nightmares.AttractionTypes.DarkTunnel);
         foreach(Nightmares.Fears fear in fears)
             Debug.Log(fear.ToString());
+        
+        // !! Order of Initialization is important in case there's a dependency on another script !!
+
+        // SoundManager create object + script component (can also be done in Script
+        // with RuntimeInitializeOnLoadMethod, but this way keeps it centralized)
+        GameObject soundManagerObject = new("SoundManager");
+        soundManagerObject.AddComponent<SoundManager>();
+        DontDestroyOnLoad(soundManagerObject);
+        Debug.Log("[BI]: SoundManager initialized.");
+
+        // GameManager create object + script component (can also be done in Script
+        // with RuntimeInitializeOnLoadMethod, but this way keeps it centralized)
+        GameObject gameManagerObject = new("GameManager");
+        gameManagerObject.AddComponent<GameManager>();
+        DontDestroyOnLoad(gameManagerObject);
+        Debug.Log("[BI]: GameManager initialized..");
 
     /*
         // Load all AttractionScriptableObjects
