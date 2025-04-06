@@ -79,10 +79,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager->LevelChange()");
         SceneManager.LoadScene("AnimsEtc-Daniel", LoadSceneMode.Single);
-        //SceneManager.LoadScene("AnimsEtc-Daniel", LoadSceneMode.Single);
-        //SceneManager.LoadSceneAsync("AnimsEtc-Daniel", LoadSceneMode.Single);
-        //SceneManager.LoadScene("AnimsEtc-Daniel", LoadSceneMode.Additive);
-        //SceneManager.LoadSceneAsync("AnimsEtc-Daniel", LoadSceneMode.Additive);
-        //SceneManager.LoadScene("AnimsEtc-Daniel", LoadSceneMode.Single); 
+        // This is needed currently after level change, might just move it into the class:
+        Nightmares.Initialize();
     }
 }
