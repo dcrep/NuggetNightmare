@@ -17,12 +17,11 @@ public class InputManager : MonoBehaviour
     private bool numpadKeyPressed = false;
     private int numKeyValue = -1; // 0-9
 
-    GameObject nuggyPrefab = null;
+    NuggetFactory nuggetFactory;
 
     void Awake()
     {
         playerControls = new PlayerControls();
-        nuggyPrefab = Resources.Load<GameObject>("Prefabs/Nugget");
     }
     void OnEnable()
     {
@@ -56,6 +55,7 @@ public class InputManager : MonoBehaviour
     void Start()
     {
         dragScript = FindFirstObjectByType<DragIt>();
+        nuggetFactory = FindFirstObjectByType<NuggetFactory>();
     }
 
     // Update is called once per frame
@@ -93,9 +93,9 @@ public class InputManager : MonoBehaviour
         }
         else if (keyValue == 0)
         {
-            //UnityEngine.Object.Instantiate(GameObject.Find("NuggetNew"), new Vector3(-8, -2, 0), Quaternion.identity);
-            GameObject nug = Instantiate(nuggyPrefab, new Vector3(-8, -2, 0), Quaternion.identity);
-            //nug.GetComponent<NuggetScript>().resetFear();
+            nuggetFactory.CreateNuggetWave(new Nightmares.Fears[] {
+                    Nightmares.Fears.CreepyCrawlies, Nightmares.Fears.Supernatural, Nightmares.Fears.EnclosedSpaces, Nightmares.Fears.Anything },
+                    new Vector2(-8, -2), 1.5f);
         }
 
         // Now normalized to 0-9

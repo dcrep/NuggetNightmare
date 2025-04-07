@@ -33,6 +33,8 @@ public class NuggetScript : MonoBehaviour
     [SerializeField]
     GameObject scared;
 
+    Nightmares.Fears fear = Nightmares.Fears.Anything;
+
     [SerializeField] AudioClip[] soundEffectFun;
     [SerializeField] AudioClip[] soundEffectScare;
 
@@ -81,7 +83,13 @@ public class NuggetScript : MonoBehaviour
         }
         
     }
-    public void resetFear()
+    // TODO: Add an input of an array of fears as well (in the future)
+    public void SetFear(Nightmares.Fears fear)
+    {
+        this.fear = fear;
+    }
+
+    public void resetFearLevel()
     {
         alreadyCalled = false;
         fearLevel = 0f;
@@ -111,10 +119,14 @@ public class NuggetScript : MonoBehaviour
             SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
     }
-    public void scare(float fear)
+    public void scare(float fear, Nightmares.Fears[] fears = null)
     { 
+        // TODO: Implement FindMatchingFears, plus 0 or *more* fears for each nugget (or 1 for now..)
+        //var Nightmares.Fears[] = Nightmares.FindMatchingFears(this.fear, fears);
+
         fearLevel = fearLevel + fear;
         Debug.Log("Fear: " + fearLevel);
+        
         if (fearLevel >= 100f || makeFreakOutDebug)
         {
             if (!alreadyCalled)

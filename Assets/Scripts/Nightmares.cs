@@ -107,6 +107,10 @@ public static class Nightmares {
         return fearsForAttraction[(int)attractionType].Contains(fear);
     }
 
+    // TODO: Implement these functions:
+    //public static List<Fears> FindMatchingFears(List<Fears> fearsOfCaller, List<Fears> fearsToCheckAgainst)
+    //public static List<Fears> FindMatchingFears(Fears fearOfCaller, List<Fears> fearsToCheckAgainst)
+
     public static void Initialize()
     {
         // One instance of the static elements
