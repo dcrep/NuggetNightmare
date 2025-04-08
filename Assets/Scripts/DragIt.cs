@@ -106,6 +106,12 @@ public class DragIt : MonoBehaviour
             //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
             lastHitObject = hit.transform.gameObject;
 
+            var attractionScript = hit.transform.GetComponent<AttractionScriptDualCollider>();
+            if (attractionScript != null)
+            {
+                attractionScript.DisableAttraction();                
+            }
+
             // Drag updates?  Just leave in Update() for now.
             // Also, Coroutines run on the main thread at given intervals
             // StartCoroutine(DragUpdate(hit.transform.gameObject));
@@ -157,8 +163,9 @@ public class DragIt : MonoBehaviour
 
         // TODO: Alternative with Physics2D.OverlapCircle/Collider/Box?
         if (dragging.GetComponent<AttractionScriptDualCollider>() != null)
-        {                
-            if (dragging.GetComponent<AttractionScriptDualCollider>().badSpot)
+        {
+            var attractionScript = dragging.GetComponent<AttractionScriptDualCollider>();
+            if (attractionScript.badSpot)
             {
                 dragging.position = home;
                 Debug.Log("Badspot");
@@ -182,6 +189,7 @@ public class DragIt : MonoBehaviour
             lastDraggedObject = dragging.transform; 
             dragging = null;
             draggingCollider = null;
+            attractionScript.EnableAttraction();
         }
 
  

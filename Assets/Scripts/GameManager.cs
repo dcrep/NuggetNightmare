@@ -38,6 +38,15 @@ public class GameManager : MonoBehaviour
         }
         return (float)sum / ratings.Count;
     }
+    public int GetRatingTotal()
+    {
+        int sum = 0;
+        foreach (int rating in ratings)
+        {
+            sum += rating;
+        }
+        return sum;
+    }
 
     public void LevelChange(string levelName)
     {
