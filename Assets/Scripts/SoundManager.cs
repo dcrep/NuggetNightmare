@@ -110,7 +110,7 @@ public class SoundManager : MonoBehaviour
         }
         //Vector3 position3D = new Vector3(position.x, position.y, 0f);
         Vector3 position3D = new Vector3(position.x, position.y, Camera.main.transform.position.z);
-        Debug.Log("Playing sound " + clip.name + " at position " + position3D + " with volume " + volume);
+        //Debug.Log("Playing sound " + clip.name + " at position " + position3D + " with volume " + volume);
         
         // Play the sound at the specified position
         AudioSource.PlayClipAtPoint(clip, position3D, volume);

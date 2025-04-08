@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8602939550424127934}
   - component: {fileID: 7674207027964126367}
   m_Layer: 0
-  m_Name: Nugget
+  m_Name: NuggetJunk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

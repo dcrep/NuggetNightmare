@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NuggetOldScare : MonoBehaviour
-{
+{ }
+/*
     public float fearLevel = 0f;
     public void scare(float fear)
     { 
@@ -11,3 +12,4 @@ public class NuggetOldScare : MonoBehaviour
         Debug.Log("Fear: " + fearLevel);
     }
 }
+*/

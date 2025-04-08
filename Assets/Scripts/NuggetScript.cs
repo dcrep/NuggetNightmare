@@ -11,29 +11,40 @@ public class NuggetScript : MonoBehaviour
 {
     [SerializeField]
     bool makeFreakOutDebug;
+
     [SerializeField]
     float freakOutSpeed = 2f;
+
     [SerializeField]
     public LayerMask nuggets;
+
     public float fearLevel = 0f;
     float timer;
+
     [SerializeField]
     float freakyRadius;
+
     [SerializeField]
     float freakCooldown;
+
     [SerializeField]
     Transform freakyAura;
+
     bool alreadyCalled = false;
+
     [SerializeField]
     Transform fearBar;
+
     [SerializeField]
     GameObject happy;
+
     [SerializeField]
     GameObject nervous;
+
     [SerializeField]
     GameObject scared;
 
-    Nightmares.Fears fear = Nightmares.Fears.Anything;
+    List<Nightmares.Fears> fears;
 
     [SerializeField] AudioClip[] soundEffectFun;
     [SerializeField] AudioClip[] soundEffectScare;
@@ -42,6 +53,11 @@ public class NuggetScript : MonoBehaviour
     {
         Gizmos.DrawSphere(transform.position, freakyRadius);
     }
+    void Awake()
+    {
+        fears = new List<Nightmares.Fears>();
+    }
+
     private void Update()
     {
         freakyAura.localScale = new Vector3(freakyRadius * 2,freakyRadius * 2, 0);
@@ -83,10 +99,18 @@ public class NuggetScript : MonoBehaviour
         }
         
     }
-    // TODO: Add an input of an array of fears as well (in the future)
-    public void SetFear(Nightmares.Fears fear)
+    public void SetSpeed(float speed)
     {
-        this.fear = fear;
+        GetComponent<NuggetPathfindingAI>().SetSpeed(speed);
+    }
+
+    public void SetFears(List<Nightmares.Fears> fears)
+    {
+        this.fears = fears;
+    }
+    public void AddFear(Nightmares.Fears fear)
+    {
+        fears.Add(fear);
     }
 
     public void resetFearLevel()
@@ -119,10 +143,10 @@ public class NuggetScript : MonoBehaviour
             SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
     }
-    public void scare(float fear, Nightmares.Fears[] fears = null)
+    public void scare(float fear, List<Nightmares.Fears> fears = null)
     { 
-        // TODO: Implement FindMatchingFears, plus 0 or *more* fears for each nugget (or 1 for now..)
-        //var Nightmares.Fears[] = Nightmares.FindMatchingFears(this.fear, fears);
+        var matchingFears = GetMatchingFears(this.fears, fears);
+        var totalFears = matchingFears.Count;
 
         fearLevel = fearLevel + fear;
         Debug.Log("Fear: " + fearLevel);
@@ -141,5 +165,30 @@ public class NuggetScript : MonoBehaviour
         {
             SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
+    }
+
+    // TODO: On exit-level, rate the experience!
+    void RateExperience()
+    {
+        var gm = FindFirstObjectByType<GameManager>();
+        int experience;
+        
+        // Arbitrary for now:
+        if (fearLevel >= 100f)
+        {
+            experience = -5;
+        }
+        else if (fearLevel >= 60f)
+        {
+            experience = 2;
+        }
+        else if (fearLevel >= 40f)
+        {
+            experience = 5;
+        }
+        else {
+            experience = 1;
+        }
+        gm.RateExperience(experience);
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6997727057308801210}
   - component: {fileID: 4645548985594845942}
   m_Layer: 0
-  m_Name: SkeletonPopup
+  m_Name: SkeletonPopupv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

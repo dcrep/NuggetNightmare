@@ -6,14 +6,23 @@ using UnityEngine.Pool;
 
 public class NuggetFactory : MonoBehaviour
 {
-
     [SerializeField] private GameObject nuggetPrefab;
 
-    // This is limiting the # of fears to 1 each for now..
+    // TODO: Implement NuggetWaveData as a scriptable object or whatnot..
+    // Here for now, but better in a scriptable object with an array or list of each type of Nugget:
+    struct NuggetWaveData
+    {
+        public List<Nightmares.Fears> fears;
+        float delay;
+        //public Vector2 position;
+    }
+    
+    // This wave-spawn limits the # of fears to 1 each for now..
     private Queue<Nightmares.Fears> nuggetWaveData = new Queue<Nightmares.Fears>();
     private Vector2 nuggetWavePosition = new Vector2(0, 0);
     //private List<GameObject> nuggetWave = new List<GameObject>();
 
+    // TODO: Implement ObjectPool for nuggets:
     // This can be used to speed up the creation of nuggets:
     //private ObjectPool<GameObject> nuggetPool;
 
@@ -22,14 +31,25 @@ public class NuggetFactory : MonoBehaviour
         nuggetPrefab = Resources.Load<GameObject>("Prefabs/Nugget");
     }
 
-    public void CreateNuggetAt(Vector2 position, Nightmares.Fears fear)
+    public void CreateNuggetAt(Vector2 position, List<Nightmares.Fears> fears, float speed = -1f)
     {
         Vector3 spawnPosition = new Vector3(position.x, position.y, 0f);
         GameObject nugget = Instantiate(nuggetPrefab, spawnPosition, Quaternion.identity);
         //nugget.transform.SetParent(transform);
-        nugget.GetComponent<NuggetScript>().SetFear(fear);
+        nugget.GetComponent<NuggetScript>().SetFears(fears);
+        if (speed > 0)
+        {
+            nugget.GetComponent<NuggetScript>().SetSpeed(speed);
+        }
+    }
+    public void CreateNuggetAt(Vector2 position, Nightmares.Fears fear, float speed = -1f)
+    {
+        var fears = new List<Nightmares.Fears> { fear };
+        CreateNuggetAt(position, fears);
     }
 
+    // TODO: Implement WaveData as an array of structs in scriptable objects?
+    // VERY basic implementation of a wave of nuggets, using just a list of fears and a single position:
     public void CreateNuggetWave(Nightmares.Fears[] fears, Vector2 position, float delay = 1f)
     {
         nuggetWaveData = new Queue<Nightmares.Fears>(fears);
@@ -43,7 +63,7 @@ public class NuggetFactory : MonoBehaviour
             Debug.LogError("CreateNuggetWaveInternal called without data!");
         }
         
-        CreateNuggetAt(nuggetWavePosition, nuggetWaveData.Dequeue());
+        CreateNuggetAt(nuggetWavePosition, nuggetWaveData.Dequeue(), 10f);
         if (nuggetWaveData.Count == 0)
         {
             Debug.Log("Nugget wave finished.");

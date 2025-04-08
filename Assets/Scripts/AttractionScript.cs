@@ -13,11 +13,11 @@ public class AttractionScript : MonoBehaviour
     AttractionScriptableObject attractionScriptable;
 
     // Unused..
-    float indexIncriment = 0.25f;
+    //float indexIncriment = 0.25f;
     
     // Unused
     // index for finding placeable location
-    float index = 0f;
+    //float index = 0f;
 
     //is attraction in an unplaceable location
     [SerializeField]
@@ -36,7 +36,7 @@ public class AttractionScript : MonoBehaviour
     [SerializeField]
     LayerMask nuggets;
 
-    Collider2D currentColider;
+//    Collider2D currentColider;
 
     [SerializeField]
     public float fearIncriment;
@@ -53,8 +53,7 @@ public class AttractionScript : MonoBehaviour
     [SerializeField]
     AnimatorController controller;
 
-    // Unused
-    private float cooldown = 0.5f;
+//  private float cooldown = 0.5f;
 
     [SerializeField]
     public Animator scareAnim;
