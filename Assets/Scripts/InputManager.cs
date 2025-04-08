@@ -85,11 +85,11 @@ public class InputManager : MonoBehaviour
 
         if (keyValue == 1)
         {
-            UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0, -5, 0), Quaternion.identity);
+            UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0.5f, -5.5f, 0), Quaternion.identity);
         }
         else if (keyValue == 2)
         {
-            UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1, -5, 0), Quaternion.identity);
+            UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
         }
         else if (keyValue == 0)
         {
@@ -109,18 +109,18 @@ public class InputManager : MonoBehaviour
         Vector2 mousePosition = Mouse.current.position.ReadValue();
 
         RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(mousePosition), Vector2.zero,
-                                                        float.PositiveInfinity, LayerMask.GetMask("Draggable","Nugget"));
+                                                        float.PositiveInfinity, LayerMask.GetMask("Draggable","Nugget", "Default"));
 
         if (hit.collider != null)
         {
             GameObject hitObject = hit.transform.gameObject;
-            Debug.Log("Hit: " + hit.transform.name);
+            Debug.Log("Click Hit: " + hit.transform.name);
 
             if (hitObject.CompareTag("Attraction"))
             {
                 if (dragging)
                 {
-                    Debug.Log("Already dragging something!");
+                    Debug.Log("Already dragging something (extra mouse-press without release)!");
                     return;
                 }
                 else
@@ -139,7 +139,14 @@ public class InputManager : MonoBehaviour
             }
             else if (hitObject.CompareTag("Nugget"))
             {
-                Debug.Log("Hit: " + hit.transform.name + " is a nugget!");
+                Debug.Log("Click Hit: " + hit.transform.name + " is a nugget!");
+            }
+            else if (hit.transform.name == "CircleCollider")
+            {
+                if (hit.collider.GetComponentInParent<AttractionScriptDualCollider>().IsScreenPointInBounds(mousePosition))
+                {
+                    Debug.Log("Click Hit Attraction");
+                }
             }
             //draggingCollider = hit.collider;
             //dragging = hit.transform;
@@ -147,6 +154,14 @@ public class InputManager : MonoBehaviour
             // Offset not necessary, we'll just track mouse moving over tile borders
             //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
             //lastHitObject = hit.transform.gameObject;
+        }
+        else
+        {
+            var gridPos = Camera.main.ScreenToWorldPoint(mousePosition);
+            
+            // Snapping to grid
+            Vector3Int cellPosition = tileGrid.WorldToCell(gridPos);
+            Debug.Log("Click at: Cell Position: " + cellPosition);
         }
 
     }
