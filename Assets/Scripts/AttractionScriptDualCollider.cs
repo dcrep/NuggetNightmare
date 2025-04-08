@@ -4,6 +4,13 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
+// TODO: Fix attraction AOE not-triggering or re-trigggering nuggets (depending on collision detection method):
+// Nuggets that trigger 'OnTriggerEnter2D' (for circle collider) while attraction is animating or recovering will
+// not retrigger the attraction because they are inside the circle collider already
+// We can keep track of the last nugget(s) that triggered the collider to trigger them when the attraction recovers,
+// and retrigger it, but then would need to do an IsTouching() check to see if the nugget is still in the collider
+// Alternatively, if we keep scanning with CircleCastAll() we have the opposite problem with retriggering nuggets regardless
+
 public class AttractionScriptDualCollider : MonoBehaviour
 {
      //incriment for finding placeable location
@@ -39,11 +46,14 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     bool bInvokeTimerOn = false;
 
-   float lastAnimationStartTime = 0.0f;
+    float lastAnimationStartTime = 0.0f;
 
     uint activations = 0;
 
     bool animPlaying = false;
+
+    // Disable attraction while being dragged
+    bool attractionDisabled = false;
     
 
     void Awake()
@@ -146,20 +156,20 @@ public class AttractionScriptDualCollider : MonoBehaviour
         // Check for attraction cooldown first
         // Ideally the check for animation+cooldown as I coded it elsewhere would cover this type of thing,
         // but hey, just for now..
-        if (!bInvokeTimerOn)
+        if (!attractionDisabled && IsAttractionRecovered())
         {
             if (collide.CompareTag("Nugget"))
             {
-                if (collide.transform.GetComponent<NuggetScript>() != null)
-                {
-                    collide.transform.GetComponent<NuggetScript>().scare(10f);
-                }
-                scareAnim.Play("Activation");
-                ChooseAndPlaySound(0.6f, gameObject.transform.position);
+                collide.transform.GetComponent<NuggetScript>()?.scare(10f);
 
-                // Unity: Call function after x seconds
-                Invoke("AnimationDoneProbably", scareCooldown);
-                bInvokeTimerOn = true;
+                //scareAnim.Play("Activation");
+                if (PlayAnimation("Activation", true))
+                {
+                    ChooseAndPlaySound(0.6f, gameObject.transform.position);
+                    // Unity: Call function after x seconds
+                    Invoke(nameof(AnimationDoneProbably), GetTimeLeftUntilReady());
+                    bInvokeTimerOn = true;
+                }
             }
         }
     }
@@ -178,17 +188,22 @@ public class AttractionScriptDualCollider : MonoBehaviour
     }
 
     // ----------------------------------------------------------
-    public void PlayAnimation(string name = "Activation", bool onlyIfRecovered = false)
+    public bool PlayAnimation(string name = "Activation", bool onlyIfRecovered = false)
     {
-        if (onlyIfRecovered && !IsAnimationRecovered())
+        if (attractionDisabled)
+        {
+            Debug.Log("PlayAnimation called, but attraction is disabled");
+            return false;
+        }
+        if (onlyIfRecovered && !IsAttractionRecovered())
         {
             Debug.Log("PlayAnimation called, but previous animation not recovered yet");
-            return;
+            return false;
         }
         if (scareAnim == null)
         {
             Debug.LogError("scareAnim is null, cannot play animation, gameObject: " + gameObject.name);
-            return;
+            return false;
         }
 
         scareAnim.Play(name);
@@ -196,6 +211,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
         animPlaying = true;
         activations++;
         lastAnimationStartTime = Time.time;
+        return true;
     }
     public bool IsAnimationPlaying()
     {
@@ -204,9 +220,26 @@ public class AttractionScriptDualCollider : MonoBehaviour
         else
             return (Time.time < lastAnimationStartTime + attractionScriptable.activationTime);
     }
-    public bool IsAnimationRecovered()
+    public float GetTimeLeftUntilReady()
     {
-        if (activations == 0)
+        if (!animPlaying)
+            return 0.0f;
+        else
+        {
+            var endTime = (lastAnimationStartTime + attractionScriptable.activationTime + attractionScriptable.recoveryTime);
+            if (endTime > Time.time)
+            {
+                return endTime - Time.time;
+            }
+            else
+            {
+                return 0.0f;
+            }
+        }        
+    }
+    public bool IsAttractionRecovered()
+    {
+        if (!animPlaying || activations == 0)
             return true;
         
         if (Time.time >= lastAnimationStartTime + attractionScriptable.activationTime + attractionScriptable.recoveryTime)
@@ -221,6 +254,15 @@ public class AttractionScriptDualCollider : MonoBehaviour
     {
         scareAnim.Play("FreezeState");
         animPlaying = false;
+    }
+    public void DisableAttraction()
+    {
+        StopAnimation();
+        attractionDisabled = true;
+    }
+    public void EnableAttraction()
+    {
+        attractionDisabled = false;
     }
     // ----------------------------------------------------------
     private void Update()

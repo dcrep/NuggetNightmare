@@ -67,7 +67,7 @@ public class NuggetFactory : MonoBehaviour
         if (nuggetWaveData.Count == 0)
         {
             Debug.Log("Nugget wave finished.");
-            CancelInvoke("CreateNuggetWaveInternal");
+            CancelInvoke(nameof(CreateNuggetWaveInternal));
         }
     }
 
