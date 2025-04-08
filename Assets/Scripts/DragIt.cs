@@ -106,8 +106,7 @@ public class DragIt : MonoBehaviour
             //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
             lastHitObject = hit.transform.gameObject;
 
-            var attractionScript = hit.transform.GetComponent<AttractionScriptDualCollider>();
-            if (attractionScript != null)
+            if (hit.transform.TryGetComponent<AttractionScriptDualCollider>(out var attractionScript))
             {
                 attractionScript.DisableAttraction();                
             }

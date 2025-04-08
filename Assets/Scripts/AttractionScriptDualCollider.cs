@@ -54,6 +54,10 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     // Disable attraction while being dragged
     bool attractionDisabled = false;
+
+    GridLayout gridLayout;
+
+    Rect cellBounds;
     
 
     void Awake()
@@ -73,9 +77,40 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     private void Start()
     {
+        gridLayout = FindObjectOfType<GridLayout>();
+        if (gridLayout == null)
+        {
+            Debug.LogError("GridLayout not found in the scene.");
+            return;
+        }
+
         home = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        DragAttractionScript = GameObject.FindFirstObjectByType<DragAttractionScript>();
+        
+        // Map world position to cell position, then finally cell bounding rectangle
+        Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
+        cellBounds = new Rect(cellPosition.x, cellPosition.y, 1, 1);
+        Debug.Log("Object " + gameObject.name + ": position: " + transform.position + ", Cell position: " + cellPosition + ", Cell bounds: " + cellBounds);
+
+        DragAttractionScript = GameObject.FindFirstObjectByType<DragAttractionScript>();       
     }
+
+    // InputManager calls this to see if a collider hit is actually inside the bounds of the attraction
+    public bool IsScreenPointInBounds(Vector2 screenPoint)
+    {
+        // Cell Position
+        Vector3Int cellPosition = gridLayout.WorldToCell(Camera.main.ScreenToWorldPoint(screenPoint));
+        Debug.Log("IsScreenPointInBounds: Cell Position: " + cellPosition);
+        // Check if the point is within the bounds of the cell
+        return cellBounds.Contains(cellPosition);
+    }
+    
+    // Other attraction: compare to this attraction's cell bounds (for placement reasons)
+    public bool DoCellBoundsOverlap(Rect bounds)
+    {
+        // Check if the cell bounds of this attraction overlap with another attraction's cell bounds
+        return cellBounds.Overlaps(bounds);
+    }
+
     /*private void OnTriggerStay2D(Collider2D collision)
     {
         //if on a nonplacable spot set bad spot to true else false
