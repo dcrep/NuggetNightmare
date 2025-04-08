@@ -95,7 +95,7 @@ public class InputManager : MonoBehaviour
         {
             nuggetFactory.CreateNuggetWave(new Nightmares.Fears[] {
                     Nightmares.Fears.CreepyCrawlies, Nightmares.Fears.Supernatural, Nightmares.Fears.EnclosedSpaces, Nightmares.Fears.Anything },
-                    new Vector2(-8, -2), 1.5f);
+                    new Vector2(-8, -2.5f), 1.5f);
         }
 
         // Now normalized to 0-9

@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: AttractionGeneric
   m_EditorClassIdentifier: 
   attractionType: 0
-  name: Genericx
+  name: Generic
   description: Generic description
   aoeRadius: 1
-  aoeMaxAffectedPeople: 1
   activationTime: 1
   recoveryTime: 1
   startHealth: 100
   attackDamage: 1
+  animator: {fileID: 0}
+  fears: 00000000

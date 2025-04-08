@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: AttractionGhost
   m_EditorClassIdentifier: 
   attractionType: 3
-  name: Ghosty
-  description: Ghost
+  name: Ghost
+  description: Ghost description
   aoeRadius: 1
-  aoeMaxAffectedPeople: 1
-  recoveryTime: 0
-  health: 100
+  activationTime: 1
+  recoveryTime: 1
+  startHealth: 100
   attackDamage: 1
+  animator: {fileID: 0}
+  fears: 05000000

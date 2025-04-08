@@ -12,15 +12,39 @@ public class GameManager : MonoBehaviour
     public enum GameState { Loading, Playing, Paused, GameOver, Win, Lose };
     //enum GameMode { Normal, Hard, Nightmare };
 
-    bool gamePaused = false;
-    bool gameOver = false;
-    bool gameWon = false;
-    bool musicPlaying = false;
-    bool sfxOn = true;
-    bool musicOn = true;
+//  bool gamePaused = false;
+//  bool gameOver = false;
+//  bool gameWon = false;
 
     public  static Level level { get;} = Level.Loading;
     private static GameState gameState { get; } = GameState.Loading;
+
+    List<int> ratings;
+
+
+    public void RateExperience(int rating)
+    {
+        ratings.Add(rating);
+    }
+
+    public float GetAverageRating()
+    {
+        if (ratings.Count == 0)
+            return 0f;
+        int sum = 0;
+        foreach (int rating in ratings)
+        {
+            sum += rating;
+        }
+        return (float)sum / ratings.Count;
+    }
+
+    public void LevelChange(string levelName)
+    {
+        Debug.Log("GameManager->LevelChange($levelName)");
+        ratings.Clear();
+        SceneManager.LoadScene(levelName, LoadSceneMode.Single);
+    }
 
 /*  // Option to initialize GameManager here instead of in BootInitializer:
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -42,12 +66,14 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            ratings = new List<int>();
         }
         else
         {
             Destroy(gameObject);
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +93,7 @@ public class GameManager : MonoBehaviour
 #endif
         // Force level change after 20 seconds (for testing)
         // NOTE: Works but for some reason I get an odd null error for animator in the AnimsEtc scene
-        //Invoke(nameof(LevelChange), 20f);
+        //Invoke(nameof(LevelChangeRandom), 20f);
     }
 
     // Update is called once per frame
@@ -75,11 +101,5 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    public void LevelChange()
-    {
-        Debug.Log("GameManager->LevelChange()");
-        SceneManager.LoadScene("AnimsEtc-Daniel", LoadSceneMode.Single);
-        // This is needed currently after level change, might just move it into the class:
-        Nightmares.Initialize();
-    }
+
 }

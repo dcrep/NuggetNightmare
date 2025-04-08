@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class InputSystemTests : MonoBehaviour
-{
+{ }
+/*
 
     public PlayerControls playerControls;
     private InputAction numKeyAction;
@@ -49,7 +50,7 @@ public class InputSystemTests : MonoBehaviour
         // This is set in our NumKeyPressed event callback
         if (isNumKeyPressed)
         {
-            Debug.Log("NumKey pressed: " + numKeyValue + ", Numpad key?: " + numpadKeyPressed);
+            //Debug.Log("NumKey pressed: " + numKeyValue + ", Numpad key?: " + numpadKeyPressed);
             // Do something with the numKeyValue here.. choose an attraction, etc.
             isNumKeyPressed = false;
         }
@@ -96,4 +97,4 @@ public class InputSystemTests : MonoBehaviour
         numKeyValue = keyValue;
         isNumKeyPressed = true;        
     }
-}
+}*/

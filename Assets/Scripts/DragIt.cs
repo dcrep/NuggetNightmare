@@ -55,7 +55,7 @@ public class DragIt : MonoBehaviour
             if (tilemap.gameObject.layer == LayerMask.NameToLayer("NonPlaceable"))
             {
                 nonPlaceableTilemap = tilemap;
-                Debug.Log("Found NonPlaceable Tilemap: " + tilemap.name);
+                //Debug.Log("Found NonPlaceable Tilemap: " + tilemap.name);
                 return;
             }
         }

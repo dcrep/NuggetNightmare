@@ -59,10 +59,15 @@ public class NuggetPathfindingAI : MonoBehaviour
         destinationSetter.target = targets.target(index).transform;
         
     }
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+        pathFinder.maxSpeed = speed;
+    }
     public void calmDown()
     {
         Scared = false;
-        index = 0;;
+        index = 0;
         destinationSetter.target = targets.target(index).transform;
     }
 

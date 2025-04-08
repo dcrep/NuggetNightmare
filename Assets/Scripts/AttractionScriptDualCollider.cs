@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -8,62 +9,62 @@ public class AttractionScriptDualCollider : MonoBehaviour
      //incriment for finding placeable location
     [SerializeField] AttractionScriptableObject attractionScriptable;
 
-    // Unused..
-    float indexIncriment = 0.25f;
-    
-    // Unused
-    // index for finding placeable location
-    float index = 0f;
+    [SerializeField] AudioClip[] soundEffect;
 
     //is attraction in an unplaceable location
-    [SerializeField] public bool badSpot;
+    public bool badSpot;
 
-    [SerializeField] DragAttractionScript DragAttractionScript;
+    DragAttractionScript DragAttractionScript;
 
-    // Usage?  spotCheck not used in this script, and what it references is an empty gameobject with transform x-2
-    [SerializeField] GameObject spotCheck;
+    //[SerializeField] LayerMask nonPlacableLayers;
 
-    [SerializeField] LayerMask nonPlacableLayers;
+    //[SerializeField] LayerMask nuggets;
 
-    [SerializeField] LayerMask nuggets;
-
-    Collider2D currentColider;
-
-    [SerializeField] public float fearIncriment;
+    //[SerializeField] public float fearIncrement;
+    [SerializeField] private float attackDamage;
 
     [SerializeField] public float radius;
 
-    [SerializeField] public float scareCooldown;
-
-    [SerializeField] public float timer;
+    private float scareCooldown;
 
     [SerializeField] AnimatorController controller;
-
-    // Unused
-    private float cooldown = 0.5f;
 
     [SerializeField] public Animator scareAnim;
 
     [SerializeField] int health;
 
+    List<Nightmares.Fears> fears;
+
     Vector3 home;
 
     bool bInvokeTimerOn = false;
 
+   float lastAnimationStartTime = 0.0f;
 
-    [SerializeField] AudioClip[] soundEffect;
+    uint activations = 0;
 
+    bool animPlaying = false;
+    
 
-    private void Start()
+    void Awake()
     {
+        //Debug.Log("AttractionScriptDualCollider->Awake()");
+        //attractionObject = Object.Instantiate(attractionInput);
+        //Debug.Log("AttractionBase " + attractionObject.name + " health: " + attractionObject.startHealth);
+        health = attractionScriptable.startHealth;
         //gets drag attaction script from drag manager
         controller = attractionScriptable.animator;
         //controller.anima
-        fearIncriment = attractionScriptable.attackDamage;
+        attackDamage = attractionScriptable.attackDamage;
         radius = attractionScriptable.aoeRadius;
         scareCooldown = attractionScriptable.recoveryTime;
+        fears = attractionScriptable.fears;
+    }
+
+    private void Start()
+    {
         home = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        DragAttractionScript = GameObject.FindGameObjectWithTag("dragManager").GetComponent<DragAttractionScript>();
+        DragAttractionScript = GameObject.FindFirstObjectByType<DragAttractionScript>();
     }
     /*private void OnTriggerStay2D(Collider2D collision)
     {
@@ -132,9 +133,10 @@ public class AttractionScriptDualCollider : MonoBehaviour
         SoundManager.PlaySoundAt(selectedClip, volume, position);
     }
 
-    void OnMouseDown() {
-        Debug.Log("OnMouseDown: Clicked on: " + gameObject.name);
-    }
+    //void OnMouseDown()
+    //{
+    //    Debug.Log("OnMouseDown: Clicked on: " + gameObject.name);
+    //}
 
     // Called from child collider (with circle collider) when it collides with nugget
     public void ChildCollider(Collider2D collide)
@@ -148,11 +150,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
         {
             if (collide.CompareTag("Nugget"))
             {
-                if (collide.transform.GetComponent<NuggetOldScare>() != null)
-                {
-                    collide.transform.GetComponent<NuggetOldScare>().scare(fearIncriment);
-                }
-                else if (collide.transform.GetComponent<NuggetScript>() != null)
+                if (collide.transform.GetComponent<NuggetScript>() != null)
                 {
                     collide.transform.GetComponent<NuggetScript>().scare(10f);
                 }
@@ -179,6 +177,52 @@ public class AttractionScriptDualCollider : MonoBehaviour
         //scareAnim.Play("Idle");
     }
 
+    // ----------------------------------------------------------
+    public void PlayAnimation(string name = "Activation", bool onlyIfRecovered = false)
+    {
+        if (onlyIfRecovered && !IsAnimationRecovered())
+        {
+            Debug.Log("PlayAnimation called, but previous animation not recovered yet");
+            return;
+        }
+        if (scareAnim == null)
+        {
+            Debug.LogError("scareAnim is null, cannot play animation, gameObject: " + gameObject.name);
+            return;
+        }
+
+        scareAnim.Play(name);
+        Debug.Log("Playing animation");
+        animPlaying = true;
+        activations++;
+        lastAnimationStartTime = Time.time;
+    }
+    public bool IsAnimationPlaying()
+    {
+        if (!animPlaying)
+            return false;
+        else
+            return (Time.time < lastAnimationStartTime + attractionScriptable.activationTime);
+    }
+    public bool IsAnimationRecovered()
+    {
+        if (activations == 0)
+            return true;
+        
+        if (Time.time >= lastAnimationStartTime + attractionScriptable.activationTime + attractionScriptable.recoveryTime)
+        {
+            Debug.Log("Time: " + Time.time + " Last animation start time: " + lastAnimationStartTime + " Activation time: " + attractionScriptable.activationTime + " Recovery time: " + attractionScriptable.recoveryTime);
+            animPlaying = false;
+            return true;
+        }
+        return false;
+    }
+    public void StopAnimation()
+    {
+        scareAnim.Play("FreezeState");
+        animPlaying = false;
+    }
+    // ----------------------------------------------------------
     private void Update()
     {
         /*RaycastHit2D[] hit = Physics2D.CircleCastAll(gameObject.transform.position, radius, Vector2.zero,nuggets);
@@ -196,7 +240,15 @@ public class AttractionScriptDualCollider : MonoBehaviour
             timer = scareCooldown;
         }
         */
-
+        if (animPlaying)
+        {
+            if (!IsAnimationPlaying())
+            {
+                StopAnimation();
+                Debug.Log("Animation finished");
+            }
+                      
+        }
     }
     
     /*private void FixedUpdate()

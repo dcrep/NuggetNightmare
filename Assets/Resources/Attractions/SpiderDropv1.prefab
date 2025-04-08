@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6786908868228324338}
   - component: {fileID: 784344272272059871}
   m_Layer: 0
-  m_Name: SpiderDrop
+  m_Name: SpiderDropv1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
