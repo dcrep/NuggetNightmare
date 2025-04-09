@@ -16,7 +16,7 @@ public class NuggetPathfindingAI : MonoBehaviour
     [SerializeField]
     bool Scared = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         pathFinder.maxSpeed = speed;
         if (!Scared)
