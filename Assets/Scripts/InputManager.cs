@@ -19,6 +19,8 @@ public class InputManager : MonoBehaviour
 
     NuggetFactory nuggetFactory;
 
+    AttractionManager attractionManager;
+
     void Awake()
     {
         playerControls = new PlayerControls();
@@ -56,6 +58,7 @@ public class InputManager : MonoBehaviour
     {
         dragScript = FindFirstObjectByType<DragIt>();
         nuggetFactory = FindFirstObjectByType<NuggetFactory>();
+        attractionManager = FindFirstObjectByType<AttractionManager>();
     }
 
     // Update is called once per frame
@@ -85,17 +88,19 @@ public class InputManager : MonoBehaviour
 
         if (keyValue == 1)
         {
-            UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0.5f, -5.5f, 0), Quaternion.identity);
+            //UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0.5f, -5.5f, 0), Quaternion.identity);
+            attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(0.5f, -5.5f));
         }
         else if (keyValue == 2)
         {
-            UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
+            //UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
+            attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(-1.5f, -5.5f));
         }
         else if (keyValue == 0)
         {
             nuggetFactory.CreateNuggetWave(new Nightmares.Fears[] {
                     Nightmares.Fears.CreepyCrawlies, Nightmares.Fears.Supernatural, Nightmares.Fears.EnclosedSpaces, Nightmares.Fears.Anything },
-                    new Vector2(-8, -2.5f), 1.5f);
+                    new Vector2(-8, -2.5f), 1f);
         }
 
         // Now normalized to 0-9
@@ -148,13 +153,8 @@ public class InputManager : MonoBehaviour
                     Debug.Log("Click Hit Attraction");
                 }
             }
-            //draggingCollider = hit.collider;
-            //dragging = hit.transform;
-            //home = dragging.position;
-            // Offset not necessary, we'll just track mouse moving over tile borders
-            //offset = dragging.position - Camera.main.ScreenToWorldPoint(mousePosition);
-            //lastHitObject = hit.transform.gameObject;
         }
+        /*
         else
         {
             var gridPos = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -163,6 +163,7 @@ public class InputManager : MonoBehaviour
             Vector3Int cellPosition = tileGrid.WorldToCell(gridPos);
             Debug.Log("Click at: Cell Position: " + cellPosition);
         }
+        */
 
     }
 

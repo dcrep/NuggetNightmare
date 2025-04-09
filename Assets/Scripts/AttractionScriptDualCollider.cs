@@ -4,8 +4,8 @@ using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-// TODO: Fix attraction AOE not-triggering or re-trigggering nuggets (depending on collision detection method):
-// Nuggets that trigger 'OnTriggerEnter2D' (for circle collider) while attraction is animating or recovering will
+// TODO: Fix attraction AOE not triggering nuggets that entered during Recovery (and are still in collider range there):
+// Nuggets that trigger 'OnTriggerEnter2D' (for circle collider) while attraction is recovering will
 // not retrigger the attraction because they are inside the circle collider already
 // We can keep track of the last nugget(s) that triggered the collider to trigger them when the attraction recovers,
 // and retrigger it, but then would need to do an IsTouching() check to see if the nugget is still in the collider
@@ -44,7 +44,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     Vector3 home;
 
-    bool bInvokeTimerOn = false;
+    bool isActivating = false;
 
     float lastAnimationStartTime = 0.0f;
 
@@ -99,7 +99,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
     {
         // Cell Position
         Vector3Int cellPosition = gridLayout.WorldToCell(Camera.main.ScreenToWorldPoint(screenPoint));
-        Debug.Log("IsScreenPointInBounds: Cell Position: " + cellPosition);
+        //Debug.Log("IsScreenPointInBounds: Cell Position: " + cellPosition);
         // Check if the point is within the bounds of the cell
         return cellBounds.Contains(cellPosition);
     }
@@ -111,12 +111,56 @@ public class AttractionScriptDualCollider : MonoBehaviour
         return cellBounds.Overlaps(bounds);
     }
 
-    /*private void OnTriggerStay2D(Collider2D collision)
+    // Alternative drag-drop initiation: This works when box collider clicked (and probably includes UI/Default layers)
+/*  void OnMouseDown()
     {
-        //if on a nonplacable spot set bad spot to true else false
-        //Debug.Log("is on a bad spot " + badSpot);
-        badSpot = !(collision.gameObject.layer == nonPlacableLayers);
-    }*/  
+        Debug.Log("OnMouseDown(): Clicked on: " + gameObject.name);
+    }
+*/
+
+    // Since child doesn't have a RigidBody attached, the parent with a RigidBody (this) handles both
+    // ! Be sure to set up layers properly for dual-colliders to work !
+    void OnTriggerEnter2D(Collider2D collide)
+    {
+        // Attraction-to-attraction collision detection, only happens on box collider
+        // (set layer to EXCLUDE Nugget and INCLUDE everything other than Nugget)
+        if (collide.CompareTag("Attraction"))
+        {
+            Debug.Log(gameObject.name + " - collided with other attraction enter");
+            badSpot = true;
+            //Debug.Log("Attraction box-collision enter");
+        }
+        // Nugget on CircleCollider (layer must be set to INCLUDE only Nugget and EXCLUDE everything other than Nugget)
+        // TODO: Keeping track of Nuggets inside collider?  Only if Nugget enters collider during cooldown and
+        //       doesn't exit collider before cooldown ends (which would ideally cause another trigger)
+        else if (collide.CompareTag("Nugget"))
+        {
+            //Debug.Log(collide.name + " [Nugget] collided with " + gameObject.name + " with tag " + collide.tag);
+            if (!attractionDisabled && (isActivating || IsAttractionRecovered()))
+            {
+                //Debug.Log("isActivating: " + isActivating + " IsAttractionRecovered: " + IsAttractionRecovered());
+                if (collide.CompareTag("Nugget"))
+                {                    
+                    if (collide.transform.TryGetComponent<NuggetScript>(out var nuggetScript))
+                    {
+                        //nuggetScript.scare(attackDamage, fears);
+                        nuggetScript.scare(20f, fears);
+                    }
+                    if (!isActivating)
+                    {
+                        if (PlayAnimation("Activation", true))
+                        {
+                            ChooseAndPlaySound(0.6f, gameObject.transform.position);
+                            // Unity: Call function after x seconds
+                            Invoke(nameof(AnimationDoneInternal), GetTimeLeftUntilActivationComplete() -0.25f);
+                            isActivating = true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         //Debug.Log(collide.name + " exited " + gameObject.name + " with tag " + collide.tag);
@@ -125,41 +169,12 @@ public class AttractionScriptDualCollider : MonoBehaviour
             badSpot = false;
             Debug.Log(gameObject.name + " - collided with other attraction exit");
         }
+        // TODO: If maintain list of nuggets, remove from the list here
+        //else if (collide.CompareTag("Nugget"))
+
         //if leaving nonplaceable spot return false, else true
         //Debug.Log("Exited: " + collision.tag);
         //badSpot = (collision.gameObject.layer == nonPlacableLayers);
-    }
-
-    // For each nugget on the layer circle collider is on..
-    // Scratch that - its on child object, this will only be called for box collider
-    void OnTriggerEnter2D(Collider2D collide)
-    {
-        if (collide.CompareTag("Attraction"))
-        {
-            Debug.Log(gameObject.name + " - collided with other attraction enter");
-            badSpot = true;
-            //Debug.Log("Attraction box-collision enter");
-        }
-        /*Debug.Log(collide.name + " collided with " + gameObject.name + " with tag " + collide.tag);
-        if (collide.CompareTag("Nugget"))
-        {
-            if (collide.transform.GetComponent<NuggetScript>() != null)
-            {
-                collide.transform.GetComponent<NuggetScript>().scare(fearIncriment);
-            }
-            scareAnim.Play("Activation");
-        }
-        else if (collide.CompareTag("Attraction"))
-        {
-            badSpot = true;
-            Debug.Log("Attraction box-collision");
-        }
-        else if (collide.CompareTag("Nonplaceabe"))
-        {
-            badSpot = true;
-            Debug.Log("NotPlaceable box-collision");
-        }   
-        */
     }
 
     void ChooseAndPlaySound(float volume = 1f, Vector2 position = default(Vector2))
@@ -178,48 +193,20 @@ public class AttractionScriptDualCollider : MonoBehaviour
         SoundManager.PlaySoundAt(selectedClip, volume, position);
     }
 
-    //void OnMouseDown()
-    //{
-    //    Debug.Log("OnMouseDown: Clicked on: " + gameObject.name);
-    //}
 
-    // Called from child collider (with circle collider) when it collides with nugget
-    public void ChildCollider(Collider2D collide)
-    {
-        //Debug.Log(gameObject.name + "'s ChildCollider called");
-
-        // Check for attraction cooldown first
-        // Ideally the check for animation+cooldown as I coded it elsewhere would cover this type of thing,
-        // but hey, just for now..
-        if (!attractionDisabled && IsAttractionRecovered())
-        {
-            if (collide.CompareTag("Nugget"))
-            {
-                collide.transform.GetComponent<NuggetScript>()?.scare(10f);
-
-                //scareAnim.Play("Activation");
-                if (PlayAnimation("Activation", true))
-                {
-                    ChooseAndPlaySound(0.6f, gameObject.transform.position);
-                    // Unity: Call function after x seconds
-                    Invoke(nameof(AnimationDoneProbably), GetTimeLeftUntilReady());
-                    bInvokeTimerOn = true;
-                }
-            }
-        }
-    }
-
-    void AnimationDoneProbably()
+    // Internally called via Invoke to stop the animation (and indicate no longer activating)
+    void AnimationDoneInternal()
     {
         // Shouldn't really retrigger before getting here
         // if we have the right value for Invoke
-        if (!bInvokeTimerOn)
+        if (!isActivating)
         {
             return;
         }
-        bInvokeTimerOn = false;
-        Debug.Log(gameObject.name + ": Animation done probably");
+        isActivating = false;
         //scareAnim.Play("Idle");
+        StopAnimation();
+        Debug.Log(gameObject.name + ": Activation/Animation done");        
     }
 
     // ----------------------------------------------------------
@@ -242,7 +229,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
         }
 
         scareAnim.Play(name);
-        Debug.Log("Playing animation");
+        Debug.Log(gameObject.name + ": Playing animation");
         animPlaying = true;
         activations++;
         lastAnimationStartTime = Time.time;
@@ -254,6 +241,23 @@ public class AttractionScriptDualCollider : MonoBehaviour
             return false;
         else
             return (Time.time < lastAnimationStartTime + attractionScriptable.activationTime);
+    }
+    public float GetTimeLeftUntilActivationComplete()
+    {
+        if (!animPlaying)
+            return 0.0f;
+        else
+        {
+            var endTime = (lastAnimationStartTime + attractionScriptable.activationTime);
+            if (endTime > Time.time)
+            {
+                return endTime - Time.time;
+            }
+            else
+            {
+                return 0.0f;
+            }
+        }        
     }
     public float GetTimeLeftUntilReady()
     {
@@ -274,8 +278,10 @@ public class AttractionScriptDualCollider : MonoBehaviour
     }
     public bool IsAttractionRecovered()
     {
-        if (!animPlaying || activations == 0)
+        if (activations == 0)
             return true;
+        if (animPlaying)
+            return false;
         
         if (Time.time >= lastAnimationStartTime + attractionScriptable.activationTime + attractionScriptable.recoveryTime)
         {
@@ -302,22 +308,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
     // ----------------------------------------------------------
     private void Update()
     {
-        /*RaycastHit2D[] hit = Physics2D.CircleCastAll(gameObject.transform.position, radius, Vector2.zero,nuggets);
-        timer -= Time.deltaTime;
-        if (timer < 0)
-        {
-            foreach (RaycastHit2D i in hit)
-            {
-                if (i.transform.GetComponent<NuggetScript>() != null)
-                {
-                    i.transform.GetComponent<NuggetScript>().scare(fearIncriment);
-                }
-            }
-            scareAnim.Play("Activation");
-            timer = scareCooldown;
-        }
-        */
-        if (animPlaying)
+        /*if (animPlaying)
         {
             if (!IsAnimationPlaying())
             {
@@ -325,14 +316,6 @@ public class AttractionScriptDualCollider : MonoBehaviour
                 Debug.Log("Animation finished");
             }
                       
-        }
+        }*/
     }
-    
-    /*private void FixedUpdate()
-    {
-        if (badSpot)
-        {
-            transform.position = home;
-        }
-    }*/
 }
