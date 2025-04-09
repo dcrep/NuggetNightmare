@@ -144,7 +144,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
                     if (collide.transform.TryGetComponent<NuggetScript>(out var nuggetScript))
                     {
                         //nuggetScript.scare(attackDamage, fears);
-                        nuggetScript.scare(20f, fears);
+                        nuggetScript.scare(attackDamage, fears);
                     }
                     if (!isActivating)
                     {
