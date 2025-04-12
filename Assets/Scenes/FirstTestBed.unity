@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileGrid: {fileID: 548431375}
+  nuggetWaveSO: {fileID: 11400000, guid: e6d97c44de769074f926e72954dc61db, type: 2}
 --- !u!4 &34266838
 Transform:
   m_ObjectHideFlags: 0

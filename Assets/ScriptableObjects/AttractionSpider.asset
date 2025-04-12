@@ -17,8 +17,8 @@ MonoBehaviour:
   description: SpiderDrop description
   aoeRadius: 1
   activationTime: 2
-  recoveryTime: 2
+  recoveryTime: 1
   startHealth: 100
-  attackDamage: 1
+  attackDamage: 5
   animator: {fileID: 9100000, guid: e1781176bc76f694c98a07728bbf3854, type: 2}
   fears: 06000000

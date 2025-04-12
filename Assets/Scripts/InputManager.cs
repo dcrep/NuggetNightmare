@@ -1,4 +1,5 @@
 using System;
+//using System.Numerics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,11 +8,14 @@ public class InputManager : MonoBehaviour
     public PlayerControls playerControls;
     private InputAction numKeyAction;
     private InputAction mouseUpDown;
+    private InputAction mouseRightClickAction;
 
     private DragIt dragScript;
     private bool dragging = false;
 
     [SerializeField] private GridLayout tileGrid;
+
+    [SerializeField] private NuggetWaveScriptableObject nuggetWaveSO;
 
     private bool isNumKeyPressed = false;
     private bool numpadKeyPressed = false;
@@ -20,6 +24,11 @@ public class InputManager : MonoBehaviour
     NuggetFactory nuggetFactory;
 
     AttractionManager attractionManager;
+
+    bool draggingMap = false;
+    Vector3 dragStart = Vector3.zero;
+
+    Rect screenBounds = new Rect(-2, -2, 4, 4);
 
     void Awake()
     {
@@ -39,9 +48,18 @@ public class InputManager : MonoBehaviour
         mouseUpDown.canceled += MouseButtonReleased;
         // Subscribe to event (calls NumKeyPressed)
         numKeyAction.performed += NumKeyPressed;
+        
+        mouseRightClickAction = playerControls.Player.RightClick;
+        mouseRightClickAction.Enable();
+        mouseRightClickAction.performed += MouseRightButtonPressed;
+        mouseRightClickAction.canceled += MouseRightButtonReleased;
+
     }
     void OnDisable()
     {
+        mouseRightClickAction.performed -= MouseRightButtonPressed;
+        mouseRightClickAction.canceled -= MouseRightButtonReleased;
+        mouseRightClickAction.Disable();
         // Unsubscribe to event)
         mouseUpDown.performed -= MouseButtonPressed;
         mouseUpDown.canceled -= MouseButtonReleased;
@@ -65,6 +83,44 @@ public class InputManager : MonoBehaviour
     void Update()
     {
         //if (playerControls.Player.ClickAndRelease.triggered) {}
+
+        if (playerControls.Player.Zoom.triggered)
+        {
+            Debug.Log("Zoom triggered! " + playerControls.Player.Zoom.ReadValue<float>());
+            float zoomValue = playerControls.Player.Zoom.ReadValue<float>();
+            // == 0 is often inaccurate for floats
+            if (zoomValue > 0.01 || zoomValue < -0.01)
+            {
+                //Camera.main.zoom += 0.1f;
+                CameraZoom(zoomValue / 120);
+            }
+            // Do something when the zoom key is pressed
+        }
+    }
+
+    void LateUpdate()
+    {
+        if (draggingMap)
+        {
+            Vector2 mousePosition = Mouse.current.position.ReadValue();
+
+            //float moveSpeed = 0.5f; // Adjust this value to control the speed of the camera movement
+            // Get mouse movement
+            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
+            Vector3 difference = dragStart - mouseWorldPos;
+            Vector3 newPos = Camera.main.transform.position + difference;
+            // Clamp the camera position to the screen bounds
+            newPos.x = Mathf.Clamp(newPos.x, screenBounds.xMin, screenBounds.xMax);
+            newPos.y = Mathf.Clamp(newPos.y, screenBounds.yMin, screenBounds.yMax);
+            Camera.main.transform.position = newPos;
+        }  
+    }
+
+    private void CameraZoom(float zoomAdjust)
+    {
+        Camera.main.orthographicSize -= zoomAdjust;
+        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1f, 6f);
+        Debug.Log("Zoom: " + Camera.main.orthographicSize);
     }
 
     private void NumKeyPressed(InputAction.CallbackContext context)
@@ -96,6 +152,10 @@ public class InputManager : MonoBehaviour
             //UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
             attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(-1.5f, -5.5f));
         }
+        else if (keyValue == 3)
+        {
+            nuggetFactory.CreateNuggetWave(nuggetWaveSO, new Vector2(-8, -2.5f));
+        }
         else if (keyValue == 0)
         {
             nuggetFactory.CreateNuggetWave(new Nightmares.Fears[] {
@@ -106,6 +166,26 @@ public class InputManager : MonoBehaviour
         // Now normalized to 0-9
         numKeyValue = keyValue;
         isNumKeyPressed = true;        
+    }
+
+    void MouseRightButtonPressed(InputAction.CallbackContext context)
+    {
+        if (draggingMap)
+            return;
+
+        //Debug.Log("InpMan: Right Click triggered!");
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        dragStart = Camera.main.ScreenToWorldPoint(mousePosition);
+
+        draggingMap = true;
+    }
+    void MouseRightButtonReleased(InputAction.CallbackContext context)
+    {
+        if (draggingMap)
+        {
+            draggingMap = false;
+            Debug.Log("InpMan: Right Click released!");
+        }
     }
 
     private void MouseButtonPressed(InputAction.CallbackContext context)

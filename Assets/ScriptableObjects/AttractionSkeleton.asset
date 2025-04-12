@@ -17,8 +17,8 @@ MonoBehaviour:
   description: SkeletonPopUp description
   aoeRadius: 1
   activationTime: 2
-  recoveryTime: 2
+  recoveryTime: 1
   startHealth: 100
-  attackDamage: 1
+  attackDamage: 5
   animator: {fileID: 9100000, guid: 39bd656105e81d84483b62fb0d1231a8, type: 2}
   fears: 0500000008000000
