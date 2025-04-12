@@ -22,6 +22,10 @@ public class NuggetFactory : MonoBehaviour
     private Vector2 nuggetWavePosition = new Vector2(0, 0);
     //private List<GameObject> nuggetWave = new List<GameObject>();
 
+    private NuggetWaveScriptableObject _nuggetWaveSO;
+    private Vector2 _nuggetWavePosition;
+    private int _nuggetWaveIndex = 0;
+
     // TODO: Implement ObjectPool for nuggets:
     // This can be used to speed up the creation of nuggets:
     //private ObjectPool<GameObject> nuggetPool;
@@ -69,6 +73,45 @@ public class NuggetFactory : MonoBehaviour
             Debug.Log("Nugget wave finished.");
             CancelInvoke(nameof(CreateNuggetWaveInternal));
         }
+    }
+
+    public void CreateNuggetWave(NuggetWaveScriptableObject nuggetWaveSO, Vector2 position)
+    {
+        if (nuggetWaveSO == null || nuggetWaveSO.nuggetWaves.Count < 1)
+        {
+            Debug.LogError("CreateNuggetWave(NW-SO) called with no data!");
+            return;
+        }
+        _nuggetWaveSO = nuggetWaveSO;
+        _nuggetWavePosition = position;
+        _nuggetWaveIndex = 0;
+        Invoke(nameof(CreateNuggetWaveInternalSO), nuggetWaveSO.delayBeforeFirstNugget);
+    }
+    private void CreateNuggetWaveInternalSO()
+    {
+        if (_nuggetWaveIndex >= _nuggetWaveSO.nuggetWaves.Count)
+        {
+            Debug.Log("Nugget wave finished.");
+            //CancelInvoke(nameof(CreateNuggetWaveInternalSO));
+            return;
+        }
+
+        NuggetWaveScriptableObject.NuggetWave nuggetWave = _nuggetWaveSO.nuggetWaves[_nuggetWaveIndex];
+        CreateNuggetAt(_nuggetWavePosition, nuggetWave);
+        _nuggetWaveIndex++;
+        Invoke(nameof(CreateNuggetWaveInternalSO), nuggetWave.nextNuggetSpawnTime);
+    }
+
+    public void CreateNuggetAt(Vector2 position, NuggetWaveScriptableObject.NuggetWave nuggetWave)
+    {
+
+        Vector3 spawnPosition = new Vector3(position.x, position.y, 0f);
+        // UNUSED (for now):
+        //nuggetWave.spawnRadius
+        GameObject nugget = Instantiate(nuggetWave.nuggetPrefab, spawnPosition, Quaternion.identity);
+        //nugget.transform.SetParent(transform);        
+        nugget.GetComponent<NuggetScript>().SetFears(nuggetWave.nuggetFears);
+        //nugget.GetComponent<NuggetScript>().SetSpeed(nuggetWave.walkSpeed);
     }
 
     // Start is called before the first frame update
