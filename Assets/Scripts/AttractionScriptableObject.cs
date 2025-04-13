@@ -56,8 +56,8 @@ public class AttractionScriptableObject : ScriptableObject {
     // Called on Creation or when "Reset" is clicked.
     void Reset()
     {
-            //Debug.Log("Created/Reset");
-            SetValuesPerAttractionType(attractionType);
+        //Debug.Log("Created/Reset");
+        //SetValuesPerAttractionType(attractionType);
     }
 
     // Validate() is called only in Editor Mode. (use to ensure values are within range)
@@ -72,6 +72,7 @@ public class AttractionScriptableObject : ScriptableObject {
             Debug.LogWarning("Area of Effect: Radius cannot be greater than 3");
             aoeRadius = 3;
         }*/
+/*        
 #if UNITY_EDITOR        
         if (attractionType != attractionTypePrev)
         {
@@ -80,6 +81,7 @@ public class AttractionScriptableObject : ScriptableObject {
             //Debug.Log("New attractionType: " + attractionType.ToString());
         }
 #endif
+*/
     }
 /*
     private void OnEnable()
