@@ -150,10 +150,18 @@ public class NuggetScript : MonoBehaviour
     public void scare(float fear, List<Nightmares.Fears> fears = null)
     { 
         var matchingFears = GetMatchingFears(this.fears, fears);
-        var totalFears = matchingFears.Count;
+        var totalMatchingFears = matchingFears.Count;
 
-        fearLevel += fear;
-        Debug.Log("Fear: " + fearLevel);
+        if (totalMatchingFears != 0)
+        {
+            fearLevel += fear * (totalMatchingFears + 1);
+            Debug.Log("FEAR multiplier! Total matching fears = " + totalMatchingFears + " new Fear level: " + fearLevel);
+        }
+        else
+        {
+            fearLevel += fear;
+            Debug.Log("FEAR normal, new fear level: " + fearLevel);
+        }
         
         if (fearLevel >= 100f || makeFreakOutDebug)
         {

@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
     private InputAction numKeyAction;
     private InputAction mouseUpDown;
     private InputAction mouseRightClickAction;
+    private InputAction mouseWheelAction;
 
     private DragIt dragScript;
     private bool dragging = false;
@@ -24,6 +25,8 @@ public class InputManager : MonoBehaviour
     NuggetFactory nuggetFactory;
 
     AttractionManager attractionManager;
+
+    CameraMovement cameraMovement;
 
     bool draggingMap = false;
     Vector3 dragStart = Vector3.zero;
@@ -54,9 +57,16 @@ public class InputManager : MonoBehaviour
         mouseRightClickAction.performed += MouseRightButtonPressed;
         mouseRightClickAction.canceled += MouseRightButtonReleased;
 
+        mouseWheelAction = playerControls.Player.Zoom;
+        mouseWheelAction.performed += MouseWheelScrolled;
+        mouseWheelAction.Enable();
+
     }
     void OnDisable()
     {
+        mouseWheelAction.performed -= MouseWheelScrolled;
+        mouseWheelAction.Disable();
+
         mouseRightClickAction.performed -= MouseRightButtonPressed;
         mouseRightClickAction.canceled -= MouseRightButtonReleased;
         mouseRightClickAction.Disable();
@@ -77,51 +87,19 @@ public class InputManager : MonoBehaviour
         dragScript = FindFirstObjectByType<DragIt>();
         nuggetFactory = FindFirstObjectByType<NuggetFactory>();
         attractionManager = FindFirstObjectByType<AttractionManager>();
+        cameraMovement = FindFirstObjectByType<CameraMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if (playerControls.Player.ClickAndRelease.triggered) {}
 
-        if (playerControls.Player.Zoom.triggered)
-        {
-            Debug.Log("Zoom triggered! " + playerControls.Player.Zoom.ReadValue<float>());
-            float zoomValue = playerControls.Player.Zoom.ReadValue<float>();
-            // == 0 is often inaccurate for floats
-            if (zoomValue > 0.01 || zoomValue < -0.01)
-            {
-                //Camera.main.zoom += 0.1f;
-                CameraZoom(zoomValue / 120);
-            }
-            // Do something when the zoom key is pressed
-        }
     }
 
-    void LateUpdate()
+    /*void LateUpdate()
     {
-        if (draggingMap)
-        {
-            Vector2 mousePosition = Mouse.current.position.ReadValue();
 
-            //float moveSpeed = 0.5f; // Adjust this value to control the speed of the camera movement
-            // Get mouse movement
-            Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(mousePosition);
-            Vector3 difference = dragStart - mouseWorldPos;
-            Vector3 newPos = Camera.main.transform.position + difference;
-            // Clamp the camera position to the screen bounds
-            newPos.x = Mathf.Clamp(newPos.x, screenBounds.xMin, screenBounds.xMax);
-            newPos.y = Mathf.Clamp(newPos.y, screenBounds.yMin, screenBounds.yMax);
-            Camera.main.transform.position = newPos;
-        }  
-    }
-
-    private void CameraZoom(float zoomAdjust)
-    {
-        Camera.main.orthographicSize -= zoomAdjust;
-        Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1f, 6f);
-        Debug.Log("Zoom: " + Camera.main.orthographicSize);
-    }
+    }*/
 
     private void NumKeyPressed(InputAction.CallbackContext context)
     {
@@ -154,13 +132,13 @@ public class InputManager : MonoBehaviour
         }
         else if (keyValue == 3)
         {
-            nuggetFactory.CreateNuggetWave(nuggetWaveSO, new Vector2(-8, -2.5f));
+            nuggetFactory.CreateNuggetWave(nuggetWaveSO, new Vector2(-9.5f, -2.5f));
         }
         else if (keyValue == 0)
         {
             nuggetFactory.CreateNuggetWave(new Nightmares.Fears[] {
                     Nightmares.Fears.CreepyCrawlies, Nightmares.Fears.Supernatural, Nightmares.Fears.EnclosedSpaces, Nightmares.Fears.Anything },
-                    new Vector2(-8, -2.5f), 2f);
+                    new Vector2(-9.5f, -2.5f), 2f);
         }
 
         // Now normalized to 0-9
@@ -173,19 +151,27 @@ public class InputManager : MonoBehaviour
         if (draggingMap)
             return;
 
-        //Debug.Log("InpMan: Right Click triggered!");
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
-        dragStart = Camera.main.ScreenToWorldPoint(mousePosition);
-
+        cameraMovement.CameraDragStart();
         draggingMap = true;
     }
     void MouseRightButtonReleased(InputAction.CallbackContext context)
     {
         if (draggingMap)
         {
+            cameraMovement.CameraDragEnd();
             draggingMap = false;
             Debug.Log("InpMan: Right Click released!");
         }
+    }
+
+    private void MouseWheelScrolled(InputAction.CallbackContext context)
+    {
+        //Debug.Log("Mouse Wheel scrolled!");
+        float scrollValue = context.ReadValue<float>();
+        if (Math.Abs(scrollValue) < 0.01)
+            return; // Ignore small scroll values
+        
+        cameraMovement.CameraZoomOnUpdate(scrollValue / 120);
     }
 
     private void MouseButtonPressed(InputAction.CallbackContext context)
