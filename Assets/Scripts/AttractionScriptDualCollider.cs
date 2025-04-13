@@ -55,6 +55,8 @@ public class AttractionScriptDualCollider : MonoBehaviour
     // Disable attraction while being dragged
     bool attractionDisabled = false;
 
+    public GameObject AOECircleChild { get; private set; } = null;
+
     GridLayout gridLayout;
 
     Rect cellBounds;
@@ -91,7 +93,21 @@ public class AttractionScriptDualCollider : MonoBehaviour
         cellBounds = new Rect(cellPosition.x, cellPosition.y, 1, 1);
         Debug.Log("Object " + gameObject.name + ": position: " + transform.position + ", Cell position: " + cellPosition + ", Cell bounds: " + cellBounds);
 
-        DragAttractionScript = GameObject.FindFirstObjectByType<DragAttractionScript>();       
+        DragAttractionScript = GameObject.FindFirstObjectByType<DragAttractionScript>();
+
+        AOECircleChild = transform.Find("Circle")?.gameObject;
+
+        if (AOECircleChild != null)
+        {
+            /*
+            // This doesn't work, and can't disable after changing transform..
+            AOECircleChild.SetActive(true);
+            // This only works if active first
+            var diameter = GetComponent<CircleCollider2D>().radius * 2f;
+            AOECircleChild.transform.localScale = new Vector3(diameter * 2, diameter, 1f);
+            AOECircleChild.SetActive(false);
+            */
+        }
     }
 
     // InputManager calls this to see if a collider hit is actually inside the bounds of the attraction
