@@ -108,8 +108,9 @@ public class DragIt : MonoBehaviour
 
             if (hit.transform.TryGetComponent<AttractionScriptDualCollider>(out var attractionScript))
             {
-                attractionScript.DisableAttraction();                
-            }
+                attractionScript.DisableAttraction();
+                attractionScript.AOECircleChild?.SetActive(true);
+            }           
 
             // Drag updates?  Just leave in Update() for now.
             // Also, Coroutines run on the main thread at given intervals
@@ -188,6 +189,7 @@ public class DragIt : MonoBehaviour
             lastDraggedObject = dragging.transform; 
             dragging = null;
             draggingCollider = null;
+            attractionScript.AOECircleChild?.SetActive(false);
             attractionScript.EnableAttraction();
         }
 
