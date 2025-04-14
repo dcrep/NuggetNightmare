@@ -66,8 +66,9 @@ public class AttractionScript : MonoBehaviour
     private void Start()
     {
         //gets drag attaction script from drag manager
-        controller = attractionScriptable.animator;
+        //controller = attractionScriptable.animator;
         //controller.anima
+        scareAnim = attractionScriptable.animator;
         fearIncriment = attractionScriptable.attackDamage;
         radius = attractionScriptable.aoeRadius;
         scareCooldown = attractionScriptable.recoveryTime;

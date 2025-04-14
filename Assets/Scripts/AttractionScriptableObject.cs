@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.Unity.VisualStudio.Editor;
-using UnityEditor.Animations;
+using UnityEngine.Animations;
 using UnityEngine;
 
 
@@ -33,7 +33,7 @@ public class AttractionScriptableObject : ScriptableObject {
     public int startHealth = 100;
     public uint attackDamage = 1;
 
-    public AnimatorController animator;
+    public Animator animator;
 
     public Image image; // image to display in the UI (for now, just a placeholder)
 
