@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using UnityEditor.Animations;
+using UnityEngine.Animations;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -21,8 +21,6 @@ public class AttractionScriptDualCollider : MonoBehaviour
     //is attraction in an unplaceable location
     public bool badSpot;
 
-    DragAttractionScript DragAttractionScript;
-
     //[SerializeField] LayerMask nonPlacableLayers;
 
     //[SerializeField] LayerMask nuggets;
@@ -34,7 +32,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     private float scareCooldown;
 
-    [SerializeField] AnimatorController controller;
+    //[SerializeField] AnimatorController controller;
 
     [SerializeField] public Animator scareAnim;
 
@@ -69,8 +67,8 @@ public class AttractionScriptDualCollider : MonoBehaviour
         //Debug.Log("AttractionBase " + attractionObject.name + " health: " + attractionObject.startHealth);
         health = attractionScriptable.startHealth;
         //gets drag attaction script from drag manager
-        controller = attractionScriptable.animator;
-        //controller.anima
+        //controller = attractionScriptable.animator;
+        //scareAnim = attractionScriptable.animator;
         attackDamage = attractionScriptable.attackDamage;
         radius = attractionScriptable.aoeRadius;
         scareCooldown = attractionScriptable.recoveryTime;
@@ -92,8 +90,6 @@ public class AttractionScriptDualCollider : MonoBehaviour
         Vector3Int cellPosition = gridLayout.WorldToCell(transform.position);
         cellBounds = new Rect(cellPosition.x, cellPosition.y, 1, 1);
         Debug.Log("Object " + gameObject.name + ": position: " + transform.position + ", Cell position: " + cellPosition + ", Cell bounds: " + cellBounds);
-
-        DragAttractionScript = GameObject.FindFirstObjectByType<DragAttractionScript>();
 
         AOECircleChild = transform.Find("Circle")?.gameObject;
 
