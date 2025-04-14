@@ -12,7 +12,7 @@ public class AttractionScriptableObject : ScriptableObject {
 
 #if UNITY_EDITOR
     // Keep track of previous attraction type to detect editor changes
-    private Nightmares.AttractionTypes attractionTypePrev = Nightmares.AttractionTypes.OOB;
+    //private Nightmares.AttractionTypes attractionTypePrev = Nightmares.AttractionTypes.OOB;
 #endif
 
 	public new string name;

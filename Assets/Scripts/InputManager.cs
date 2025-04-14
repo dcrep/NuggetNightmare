@@ -1,6 +1,7 @@
 using System;
 //using System.Numerics;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
@@ -151,6 +152,14 @@ public class InputManager : MonoBehaviour
         if (draggingMap)
             return;
 
+        // TODO: change?  Doesn't seem all that noticeable
+        // ! Maybe move this into Update() checks instead of Input event system due to EventSystem last-frame warning?
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Right-mouse button pressed over UI!");
+            return; // Ignore if mouse is over UI element
+        }
+
         cameraMovement.CameraDragStart();
         draggingMap = true;
     }
@@ -170,7 +179,14 @@ public class InputManager : MonoBehaviour
         float scrollValue = context.ReadValue<float>();
         if (Math.Abs(scrollValue) < 0.01)
             return; // Ignore small scroll values
-        
+
+        // TODO: change? Doesn't seem all that noticeable
+        // ! Maybe move this into Update() checks instead of Input event system due to EventSystem last-frame warning
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Debug.Log("Mouse Wheel scrolled over UI! [maybe should unsubscribe from event and check in Update() loop because of EventSystem last-frame error]");
+            return; // Ignore if mouse is over UI element
+        }
         cameraMovement.CameraZoomOnUpdate(scrollValue / 120);
     }
 
