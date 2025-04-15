@@ -42,6 +42,8 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     Vector3 home;
 
+    private float totalScareHP = 0.0f;
+
     bool isActivating = false;
 
     float lastAnimationStartTime = 0.0f;
@@ -156,7 +158,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
                     if (collide.transform.TryGetComponent<NuggetScript>(out var nuggetScript))
                     {
                         //nuggetScript.scare(attackDamage, fears);
-                        nuggetScript.scare(attackDamage, fears);
+                        totalScareHP += nuggetScript.scare(attackDamage, fears);
                     }
                     if (!isActivating)
                     {
@@ -164,7 +166,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
                         {
                             ChooseAndPlaySound(0.6f, gameObject.transform.position);
                             // Unity: Call function after x seconds
-                            Invoke(nameof(AnimationDoneInternal), GetTimeLeftUntilActivationComplete() -0.25f);
+                            Invoke(nameof(AnimationDoneInternal), GetTimeLeftUntilActivationComplete());
                             isActivating = true;
                         }
                     }

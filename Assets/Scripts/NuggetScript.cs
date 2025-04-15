@@ -147,21 +147,24 @@ public class NuggetScript : MonoBehaviour
             SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
     }
-    public void scare(float fear, List<Nightmares.Fears> fears = null)
+    // Returns total fear increase
+    public float scare(float fear, List<Nightmares.Fears> fears = null)
     { 
         var matchingFears = GetMatchingFears(this.fears, fears);
         var totalMatchingFears = matchingFears.Count;
+        float totalFearIncrease = fear;
 
         if (totalMatchingFears != 0)
         {
-            fearLevel += fear * (totalMatchingFears + 1);
+            totalFearIncrease += fear * totalMatchingFears;
             Debug.Log("FEAR multiplier! Total matching fears = " + totalMatchingFears + " new Fear level: " + fearLevel);
         }
         else
         {
-            fearLevel += fear;
+            //totalFearIncrease = fear;
             Debug.Log("FEAR normal, new fear level: " + fearLevel);
         }
+        fearLevel += totalFearIncrease;
         
         if (fearLevel >= 100f || makeFreakOutDebug)
         {
@@ -177,9 +180,10 @@ public class NuggetScript : MonoBehaviour
         {
             SoundManager.PlaySoundAtFromArray(soundEffectFun, 1f, gameObject.transform.position);
         }
+        return totalFearIncrease;
     }
 
-    // TODO: On exit-level, rate the experience!
+    // TODO: On 'die'/exit-level, rate the experience!
     void RateExperience()
     {
         var gm = FindFirstObjectByType<GameManager>();
