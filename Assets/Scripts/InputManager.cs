@@ -1,8 +1,11 @@
 using System;
+using UnityEditor;
+
 //using System.Numerics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -27,6 +30,10 @@ public class InputManager : MonoBehaviour
 
     AttractionManager attractionManager;
 
+    GameObject pauseMenuPrefab;
+    GameObject pauseMenuInstance = null;
+    bool pauseMenuOpen = false;
+
     CameraMovement cameraMovement;
 
     bool draggingMap = false;
@@ -37,6 +44,12 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         playerControls = new PlayerControls();
+        pauseMenuPrefab = Resources.Load<GameObject>("Prefabs/" + "PauseModalDialog");
+        if (pauseMenuPrefab == null)
+        {
+            Debug.Log("Pause menu prefab not found!");
+            return;
+        }
     }
     void OnEnable()
     {
@@ -94,13 +107,92 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (playerControls.Player.Pause.triggered)
+        {
+            PauseMenuOpen();
+        }
     }
 
     /*void LateUpdate()
     {
 
     }*/
+
+    private bool PauseMenuOpen()
+    {
+            if (pauseMenuOpen)
+            {
+                pauseMenuInstance.SetActive(false);
+                Destroy(pauseMenuInstance);
+                pauseMenuInstance = null;
+                Debug.Log("Pause menu closed!");
+                // Unfreeze game
+                Time.timeScale = 1;                
+                pauseMenuOpen = false;
+            }
+            else
+            {
+                Debug.Log("Pause triggered!");
+                if (pauseMenuPrefab != null)
+                {
+                    pauseMenuInstance = Instantiate(pauseMenuPrefab, Vector3.zero, Quaternion.identity);
+                    if (pauseMenuInstance == null)
+                    {
+                        Debug.LogError("Pause menu prefab not found!");
+                        return false;
+                    }
+                    var canvas = GameObject.Find("Canvas");
+                    if (canvas == null)
+                    {
+                        Debug.LogError("Canvas not found for Pause Menu!");
+                        return false;
+                    }
+                    pauseMenuInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                    pauseMenuInstance.SetActive(true);
+                    // Add OnClick listener to the button in the prefab
+                    Button closeButton = pauseMenuInstance.transform.Find("ResumeGameButton").GetComponent<Button>();
+                    if (closeButton != null)
+                    {
+                        closeButton.onClick.AddListener(() =>
+                        {
+                            Debug.Log("Pause menu Resume Game button clicked!");
+                            pauseMenuInstance.SetActive(false);
+                            Destroy(pauseMenuInstance);
+                            pauseMenuInstance = null;
+                            Time.timeScale = 1; // Unfreeze game
+                            pauseMenuOpen = false;
+                        });
+                    }
+                    else
+                    {
+                        Debug.LogError("Button not found in pause menu prefab!");
+                    }
+                    Button menuButton = pauseMenuInstance.transform.Find("MainMenuButton").GetComponent<Button>();
+                    if (menuButton != null)
+                    {
+                        menuButton.onClick.AddListener(() =>
+                        {
+                            Debug.Log("Pause Main Menu button clicked!");
+                            pauseMenuInstance.SetActive(false);
+                            Destroy(pauseMenuInstance);
+                            pauseMenuInstance = null;
+                            Time.timeScale = 1; // Unfreeze game
+                            pauseMenuOpen = false;
+                            GameManager.Instance.LoadLevel("MainMenuBasic");
+                        });
+                    }
+                    else
+                    {
+                        Debug.LogError("Button not found in pause menu prefab!");
+                    }
+                    // Freeze game
+                    Time.timeScale = 0;
+                    pauseMenuOpen = true;
+                }
+            }
+        return pauseMenuOpen;
+    }
+
 
     private void NumKeyPressed(InputAction.CallbackContext context)
     {

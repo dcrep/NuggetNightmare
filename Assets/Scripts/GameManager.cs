@@ -48,6 +48,10 @@ public class GameManager : MonoBehaviour
         return sum;
     }
 
+    public void LoadLevel(string levelName)
+    {
+        LevelChange(levelName);
+    }
     public void LevelChange(string levelName)
     {
         Debug.Log("GameManager->LevelChange($levelName)");
