@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Ian-MainMenu.unity
+    guid: 92d77f2d440aece458ef6222d5b4fa9c
+  - enabled: 1
+    path: Assets/Scenes/Experimental-with-Nugs2-Daniel.unity
+    guid: 80be47f21503bb24d84f1625e75c7028
+  - enabled: 1
     path: Assets/Scenes/AnimsEtc-Daniel.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}
