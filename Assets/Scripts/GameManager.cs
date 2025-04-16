@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Timeline.Actions;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +17,8 @@ public class GameManager : MonoBehaviour
 //  bool gameOver = false;
 //  bool gameWon = false;
 
-    public  static Level level { get;} = Level.Loading;
-    private static GameState gameState { get; } = GameState.Loading;
+    public static Level level { get; private set; } = Level.Loading;
+    public static GameState gameState { get; private set; } = GameState.Loading;
 
     List<int> ratings;
 
@@ -55,6 +56,11 @@ public class GameManager : MonoBehaviour
     public void LevelChange(string levelName)
     {
         Debug.Log("GameManager->LevelChange($levelName)");
+        // 1st resume game if paused
+        if (gameState == GameState.Paused)
+        {
+            ResumeGame();
+        }
         ratings.Clear();
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
@@ -72,6 +78,26 @@ public class GameManager : MonoBehaviour
         }
     }
 */
+
+    public void PauseGame()
+    {
+        if (gameState != GameState.Paused)
+        {
+            gameState = GameState.Paused;
+            // Freeze game
+            Time.timeScale = 0;
+        }
+    }
+    public void ResumeGame()
+    {
+        if (gameState == GameState.Paused)
+        {
+            gameState = GameState.Playing;
+            // Unfreeze game
+            Time.timeScale = 1;
+        }
+    }
+
     void Awake()
     {
         //Debug.Log("GameManager->Awake()");

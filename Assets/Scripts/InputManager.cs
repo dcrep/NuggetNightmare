@@ -118,17 +118,26 @@ public class InputManager : MonoBehaviour
 
     }*/
 
+    public bool PauseMenuClose()
+    {
+        if (pauseMenuOpen)
+        {
+            pauseMenuInstance.SetActive(false);
+            Destroy(pauseMenuInstance);
+            pauseMenuInstance = null;
+            Debug.Log("Pause menu closed!");
+            // Unfreeze game
+            //Time.timeScale = 1;           
+            GameManager.Instance.ResumeGame();
+            pauseMenuOpen = false;
+        }
+        return true;
+    }
     private bool PauseMenuOpen()
     {
             if (pauseMenuOpen)
             {
-                pauseMenuInstance.SetActive(false);
-                Destroy(pauseMenuInstance);
-                pauseMenuInstance = null;
-                Debug.Log("Pause menu closed!");
-                // Unfreeze game
-                Time.timeScale = 1;                
-                pauseMenuOpen = false;
+                return PauseMenuClose();                
             }
             else
             {
@@ -149,44 +158,8 @@ public class InputManager : MonoBehaviour
                     }
                     pauseMenuInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
                     pauseMenuInstance.SetActive(true);
-                    // Add OnClick listener to the button in the prefab
-                    Button closeButton = pauseMenuInstance.transform.Find("ResumeGameButton").GetComponent<Button>();
-                    if (closeButton != null)
-                    {
-                        closeButton.onClick.AddListener(() =>
-                        {
-                            Debug.Log("Pause menu Resume Game button clicked!");
-                            pauseMenuInstance.SetActive(false);
-                            Destroy(pauseMenuInstance);
-                            pauseMenuInstance = null;
-                            Time.timeScale = 1; // Unfreeze game
-                            pauseMenuOpen = false;
-                        });
-                    }
-                    else
-                    {
-                        Debug.LogError("Button not found in pause menu prefab!");
-                    }
-                    Button menuButton = pauseMenuInstance.transform.Find("MainMenuButton").GetComponent<Button>();
-                    if (menuButton != null)
-                    {
-                        menuButton.onClick.AddListener(() =>
-                        {
-                            Debug.Log("Pause Main Menu button clicked!");
-                            pauseMenuInstance.SetActive(false);
-                            Destroy(pauseMenuInstance);
-                            pauseMenuInstance = null;
-                            Time.timeScale = 1; // Unfreeze game
-                            pauseMenuOpen = false;
-                            GameManager.Instance.LoadLevel("MainMenuBasic");
-                        });
-                    }
-                    else
-                    {
-                        Debug.LogError("Button not found in pause menu prefab!");
-                    }
-                    // Freeze game
-                    Time.timeScale = 0;
+
+                    GameManager.Instance.PauseGame();
                     pauseMenuOpen = true;
                 }
             }
