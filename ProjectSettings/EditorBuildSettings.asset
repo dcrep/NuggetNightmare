@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FirstTestBed.unity
     guid: 5889ae3d8bafe9c42be2b045973983fe
+  - enabled: 1
+    path: Assets/Scenes/Ian-MainMenu.unity
+    guid: 92d77f2d440aece458ef6222d5b4fa9c
   m_configObjects: {}
