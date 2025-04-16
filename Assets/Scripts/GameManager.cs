@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
 
     List<int> ratings;
 
-
     public void RateExperience(int rating)
     {
+        Debug.Log("GameManager->RateExperience: " + rating);
         ratings.Add(rating);
     }
 
@@ -47,6 +47,10 @@ public class GameManager : MonoBehaviour
             sum += rating;
         }
         return sum;
+    }
+    public int GetTotalRatings()
+    {
+        return ratings.Count;
     }
 
     public void LoadLevel(string levelName)
