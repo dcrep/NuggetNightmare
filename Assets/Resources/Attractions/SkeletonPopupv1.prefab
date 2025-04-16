@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3104120744444125423}
   - component: {fileID: 4126162309350205776}
   m_Layer: 3
-  m_Name: SkeletonPopup
+  m_Name: SkeletonPopupv1
   m_TagString: Attraction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 164138628224126470}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -4.5, y: -1.5, z: 0}
   m_LocalScale: {x: 0.49999997, y: 0.49999997, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -80,7 +80,7 @@ SpriteRenderer:
   m_SortingLayerID: 1199148909
   m_SortingLayer: 2
   m_SortingOrder: 3
-  m_Sprite: {fileID: -968797928, guid: 5b96086332e6f334289bb79acbf4131f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0dda271567199b34bbacb5d0edca1964, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -126,8 +126,8 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 3.2007813, y: 6.4}
+    pivot: {x: 0.5, y: 0.2}
+    oldSize: {x: 3.2, y: 6.4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -182,6 +182,7 @@ MonoBehaviour:
   badSpot: 0
   attackDamage: 0
   radius: 3
+  controller: {fileID: 9100000, guid: 39bd656105e81d84483b62fb0d1231a8, type: 2}
   scareAnim: {fileID: 4126162309350205776}
   health: 0
 --- !u!95 &4126162309350205776
@@ -194,7 +195,7 @@ Animator:
   m_GameObject: {fileID: 164138628224126470}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 490591176c1c28e4ca2bcfe9cccb0443, type: 2}
+  m_Controller: {fileID: 9100000, guid: 39bd656105e81d84483b62fb0d1231a8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
