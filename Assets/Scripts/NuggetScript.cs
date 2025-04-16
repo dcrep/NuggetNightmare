@@ -60,10 +60,9 @@ public class NuggetScript : MonoBehaviour
 
     private void Update()
     {
-        // !! RayCast continually bombards all nuggets in the area every update
-        // TODO: Fix this using a circle collider on FreakyAura, and use OnTriggerEnter2D/Exit2D
+        // !! RayCast bombards all nuggets in the area every x-seconds update
+        // TODO: Use circle collider on FreakyAura, and use OnTriggerEnter2D/Exit2D
         //       Layer filter should be set to include Nuggets only (maybe Attractions too if want to damage them..)
-        // !     Note this probably means changing Nugget's collider to BoxCollider2D!
         freakyAura.localScale = new Vector3(freakyRadius * 2,freakyRadius * 2, 0);
         if (fearLevel >= 100f || makeFreakOutDebug)
         {
@@ -103,6 +102,14 @@ public class NuggetScript : MonoBehaviour
         }
         
     }
+    // Rating OnDisable allows both destruction and Disable/Reenable for object pools
+    private void OnDisable()
+    {
+        RateExperience();
+    }
+    // This would double-up the experience rating, so commented out for now
+    //private void OnDestroy() => RateExperience();
+
     public void SetSpeed(float speed)
     {
         GetComponent<NuggetPathfindingAI>().SetSpeed(speed);
@@ -186,7 +193,6 @@ public class NuggetScript : MonoBehaviour
     // TODO: On 'die'/exit-level, rate the experience!
     void RateExperience()
     {
-        var gm = FindFirstObjectByType<GameManager>();
         int experience;
         
         // Arbitrary for now:
@@ -205,6 +211,6 @@ public class NuggetScript : MonoBehaviour
         else {
             experience = 1;
         }
-        gm.RateExperience(experience);
+        GameManager.Instance.RateExperience(experience);
     }
 }
