@@ -16,7 +16,7 @@ public class NuggetPathfindingAI : MonoBehaviour
     [SerializeField]
     bool Scared = false;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         pathFinder.maxSpeed = speed;
         if (!Scared)
@@ -58,6 +58,17 @@ public class NuggetPathfindingAI : MonoBehaviour
         destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
         destinationSetter.target = targets.target(index).transform;
         
+    }
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+        pathFinder.maxSpeed = speed;
+    }
+    public void calmDown()
+    {
+        Scared = false;
+        index = 0;
+        destinationSetter.target = targets.target(index).transform;
     }
 
     public void freakOut(float speed)

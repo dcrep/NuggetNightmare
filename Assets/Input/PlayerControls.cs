@@ -116,6 +116,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Zoom"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""2d6097b0-95a6-4101-a394-9a6fea9f1af0"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Value"",
+                    ""id"": ""d78c1e48-911e-4158-8984-551f775a6e0b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -666,6 +684,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""Heavy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2a46bcfa-d50a-4d70-adf7-ef07a5c56819"",
+                    ""path"": ""<Mouse>/scroll/y"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""50bcc8cb-da8b-4e11-8bf5-ed7efb8360a7"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""RightClick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1263,6 +1303,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Back = m_Player.FindAction("Back", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_Heavy = m_Player.FindAction("Heavy", throwIfNotFound: true);
+        m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1346,6 +1388,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Back;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_Heavy;
+    private readonly InputAction m_Player_Zoom;
+    private readonly InputAction m_Player_RightClick;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1360,6 +1404,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Back => m_Wrapper.m_Player_Back;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @Heavy => m_Wrapper.m_Player_Heavy;
+        public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1399,6 +1445,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Heavy.started += instance.OnHeavy;
             @Heavy.performed += instance.OnHeavy;
             @Heavy.canceled += instance.OnHeavy;
+            @Zoom.started += instance.OnZoom;
+            @Zoom.performed += instance.OnZoom;
+            @Zoom.canceled += instance.OnZoom;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1433,6 +1485,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @Heavy.started -= instance.OnHeavy;
             @Heavy.performed -= instance.OnHeavy;
             @Heavy.canceled -= instance.OnHeavy;
+            @Zoom.started -= instance.OnZoom;
+            @Zoom.performed -= instance.OnZoom;
+            @Zoom.canceled -= instance.OnZoom;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1625,6 +1683,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnBack(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnHeavy(InputAction.CallbackContext context);
+        void OnZoom(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
