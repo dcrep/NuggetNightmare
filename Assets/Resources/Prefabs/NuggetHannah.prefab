@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 7668122194731010412}
   - component: {fileID: 9108189109191755992}
   m_Layer: 7
-  m_Name: Nugget
+  m_Name: NuggetHannah
   m_TagString: Nugget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -538,7 +538,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e72b71a2268e45345a82187ec03607af, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 23776aa14d77a9d418ed744cdebb59a7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

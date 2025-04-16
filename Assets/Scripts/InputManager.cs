@@ -15,6 +15,9 @@ public class InputManager : MonoBehaviour
     private InputAction mouseRightClickAction;
     private InputAction mouseWheelAction;
 
+    //private InputAction speedUp;
+    //private InputAction speedDown;
+
     private DragIt dragScript;
     private bool dragging = false;
 
@@ -110,6 +113,21 @@ public class InputManager : MonoBehaviour
         if (playerControls.Player.Pause.triggered)
         {
             PauseMenuOpen();
+        }
+        else if (playerControls.Player.SpeedUp.triggered)
+        {
+            //GameManager.Instance.SpeedUpGame();
+            GameManager.Instance.IncreaseGameSpeed(2f);
+        }
+        else if (playerControls.Player.SpeedDown.triggered)
+        {
+            //GameManager.Instance.SlowDownGame();
+            GameManager.Instance.DecreaseGameSpeed(2f);
+        }
+        else if (playerControls.Player.Mute.triggered)
+        {
+            //GameManager.Instance.MuteGame();
+            SoundManager.PauseToggle();
         }
     }
 

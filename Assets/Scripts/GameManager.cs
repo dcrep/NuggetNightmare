@@ -4,13 +4,14 @@ using UnityEditor.Timeline.Actions;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using Unity.VisualScripting;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    public enum Level { Loading, Credits, MainMenu, Level1, Level2, GameOver, Pause, Win, Lose, OOB };
-    public enum GameState { Loading, Playing, Paused, GameOver, Win, Lose };
+    public enum Level { Loading, Credits, MainMenu, Options, UIMisc, Level1, Level2, GameOver, OOB };
+    public enum GameState { Loading, Playing, Paused, UI, GameOver, Win, Lose };
     //enum GameMode { Normal, Hard, Nightmare };
 
 //  bool gamePaused = false;
@@ -19,6 +20,8 @@ public class GameManager : MonoBehaviour
 
     public static Level level { get; private set; } = Level.Loading;
     public static GameState gameState { get; private set; } = GameState.Loading;
+
+    [SerializeField] public static float timeScale { get; private set; } = 1f;
 
     List<int> ratings;
 
@@ -68,6 +71,10 @@ public class GameManager : MonoBehaviour
         ratings.Clear();
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
     }
+    public string GetLevelName()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
 
 /*  // Option to initialize GameManager here instead of in BootInitializer:
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -83,6 +90,46 @@ public class GameManager : MonoBehaviour
     }
 */
 
+    public void IncreaseGameSpeed(float multiplier)
+    {
+        if (gameState == GameState.Playing)
+        {
+            timeScale *= multiplier;
+            if (timeScale > 32f)
+            {
+                timeScale = 32f;
+            }
+            Time.timeScale = timeScale;
+        }
+    }
+    public void DecreaseGameSpeed(float multiplier)
+    {
+        if (gameState == GameState.Playing)
+        {
+            timeScale /= multiplier;
+            if (timeScale < 0.10f)
+            {
+                timeScale = 0.125f;
+            }
+            Time.timeScale = timeScale;
+        }
+    }
+    public void SetGameSpeed(float speed)
+    {
+        if (gameState == GameState.Playing)
+        {
+            if (speed < 0.01f)
+            {
+                PauseGame();
+            }
+            else
+            {
+                timeScale = speed;
+                Time.timeScale = timeScale;
+            }
+        }
+    }
+
     public void PauseGame()
     {
         if (gameState != GameState.Paused)
@@ -90,6 +137,7 @@ public class GameManager : MonoBehaviour
             gameState = GameState.Paused;
             // Freeze game
             Time.timeScale = 0;
+            timeScale = 0;
         }
     }
     public void ResumeGame()
@@ -99,6 +147,7 @@ public class GameManager : MonoBehaviour
             gameState = GameState.Playing;
             // Unfreeze game
             Time.timeScale = 1;
+            timeScale = 1;
         }
     }
 
@@ -132,11 +181,50 @@ public class GameManager : MonoBehaviour
 #if UNITY_EDITOR
         // No level-loading
 #else
-        //SceneManager.LoadScene("AnimsEtc-Daniel");
-#endif
-        // Force level change after 20 seconds (for testing)
-        // NOTE: Works but for some reason I get an odd null error for animator in the AnimsEtc scene
         //Invoke(nameof(LevelChangeRandom), 20f);
+#endif
+
+        if (level == Level.Loading)
+        {
+            var leveName = GetLevelName();
+            if (leveName.Contains("MainMenu"))
+            {
+                level = Level.MainMenu;
+                gameState = GameState.UI;
+            }
+            else if (leveName.Contains("Over"))
+            {
+                level = Level.GameOver;
+                gameState = GameState.UI;
+            }
+            else if (leveName.Contains("FirstTestBed"))
+            {
+                level = Level.Level1;
+                gameState = GameState.Playing;
+            }
+            else if (leveName.Contains("Options"))
+            {
+                level = Level.Options;
+                gameState = GameState.UI;
+            }
+            else if (leveName.Contains("UI"))
+            {
+                level = Level.UIMisc;
+                gameState = GameState.UI;
+            }
+            else if (leveName.Contains("Level2"))
+            {
+                level = Level.Level2;
+                gameState = GameState.Playing;
+            }
+            else if (leveName.Contains("Credits"))
+            {
+                level = Level.Credits;
+                gameState = GameState.UI;
+            }
+            level = Level.MainMenu;
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
     }
 
     // Update is called once per frame

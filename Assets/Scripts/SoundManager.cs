@@ -68,6 +68,17 @@ public class SoundManager : MonoBehaviour
     public static void Stop() => audioSource.Stop();
     public static void Pause() => audioSource.Pause();
     public static void UnPause() => audioSource.UnPause();
+    public static void PauseToggle()
+    {
+        if (IsPlaying())
+        {
+            Pause();
+        }
+        else
+        {
+            UnPause();
+        }
+    }
     public static void SetVolume(float volume) => audioSource.volume = volume;
     public static bool IsPlaying() => audioSource.isPlaying;
     public static bool IsPaused() => audioSource.isPlaying == false && audioSource.time > 0;

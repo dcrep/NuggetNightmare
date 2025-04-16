@@ -7,7 +7,8 @@ public class MainMenuIan : MonoBehaviour
 {
     public void Play()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        GameManager.Instance.LoadLevel("FirstTestBed");
     }
 
     public void Quit()

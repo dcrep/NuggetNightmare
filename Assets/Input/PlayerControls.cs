@@ -134,6 +134,33 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""SpeedUp"",
+                    ""type"": ""Button"",
+                    ""id"": ""88b2ca60-7035-430f-9931-64a2f96e2141"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SpeedDown"",
+                    ""type"": ""Button"",
+                    ""id"": ""99d5f5ff-60c3-412c-9ece-8f9273b867b2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Mute"",
+                    ""type"": ""Button"",
+                    ""id"": ""81578394-cbd4-4187-8e62-09e1611c727c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -706,6 +733,39 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""91d24546-1312-4d6a-9b0a-eac369587493"",
+                    ""path"": ""<Keyboard>/rightBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SpeedUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2bfbd901-2fe6-4ff8-a3f9-59af96e6ec21"",
+                    ""path"": ""<Keyboard>/leftBracket"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""SpeedDown"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""10f3c354-a70c-43a8-9efb-213abdb36519"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Mute"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1305,6 +1365,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Heavy = m_Player.FindAction("Heavy", throwIfNotFound: true);
         m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
         m_Player_RightClick = m_Player.FindAction("RightClick", throwIfNotFound: true);
+        m_Player_SpeedUp = m_Player.FindAction("SpeedUp", throwIfNotFound: true);
+        m_Player_SpeedDown = m_Player.FindAction("SpeedDown", throwIfNotFound: true);
+        m_Player_Mute = m_Player.FindAction("Mute", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1390,6 +1453,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Heavy;
     private readonly InputAction m_Player_Zoom;
     private readonly InputAction m_Player_RightClick;
+    private readonly InputAction m_Player_SpeedUp;
+    private readonly InputAction m_Player_SpeedDown;
+    private readonly InputAction m_Player_Mute;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -1406,6 +1472,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Heavy => m_Wrapper.m_Player_Heavy;
         public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
         public InputAction @RightClick => m_Wrapper.m_Player_RightClick;
+        public InputAction @SpeedUp => m_Wrapper.m_Player_SpeedUp;
+        public InputAction @SpeedDown => m_Wrapper.m_Player_SpeedDown;
+        public InputAction @Mute => m_Wrapper.m_Player_Mute;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1451,6 +1520,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RightClick.started += instance.OnRightClick;
             @RightClick.performed += instance.OnRightClick;
             @RightClick.canceled += instance.OnRightClick;
+            @SpeedUp.started += instance.OnSpeedUp;
+            @SpeedUp.performed += instance.OnSpeedUp;
+            @SpeedUp.canceled += instance.OnSpeedUp;
+            @SpeedDown.started += instance.OnSpeedDown;
+            @SpeedDown.performed += instance.OnSpeedDown;
+            @SpeedDown.canceled += instance.OnSpeedDown;
+            @Mute.started += instance.OnMute;
+            @Mute.performed += instance.OnMute;
+            @Mute.canceled += instance.OnMute;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1491,6 +1569,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RightClick.started -= instance.OnRightClick;
             @RightClick.performed -= instance.OnRightClick;
             @RightClick.canceled -= instance.OnRightClick;
+            @SpeedUp.started -= instance.OnSpeedUp;
+            @SpeedUp.performed -= instance.OnSpeedUp;
+            @SpeedUp.canceled -= instance.OnSpeedUp;
+            @SpeedDown.started -= instance.OnSpeedDown;
+            @SpeedDown.performed -= instance.OnSpeedDown;
+            @SpeedDown.canceled -= instance.OnSpeedDown;
+            @Mute.started -= instance.OnMute;
+            @Mute.performed -= instance.OnMute;
+            @Mute.canceled -= instance.OnMute;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1685,6 +1772,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnHeavy(InputAction.CallbackContext context);
         void OnZoom(InputAction.CallbackContext context);
         void OnRightClick(InputAction.CallbackContext context);
+        void OnSpeedUp(InputAction.CallbackContext context);
+        void OnSpeedDown(InputAction.CallbackContext context);
+        void OnMute(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
