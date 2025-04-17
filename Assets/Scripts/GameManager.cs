@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     public enum Level { Loading, Credits, MainMenu, Options, UIMisc, Level1, Level2, GameOver, OOB };
     public enum GameState { Loading, Playing, Paused, UI, GameOver, Win, Lose };
-    //enum GameMode { Normal, Hard, Nightmare };
+    //enum GameDifficulty { Normal, Hard, Nightmare };
 
 //  bool gamePaused = false;
 //  bool gameOver = false;
@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public static GameState gameState { get; private set; } = GameState.Loading;
 
     [SerializeField] public static float timeScale { get; private set; } = 1f;
+    float timeScalePriorToPause = 1f;
 
     List<int> ratings;
 
@@ -56,25 +57,71 @@ public class GameManager : MonoBehaviour
         return ratings.Count;
     }
 
+    //public void LoadLevel(Level level) {}
     public void LoadLevel(string levelName)
     {
-        LevelChange(levelName);
-    }
-    public void LevelChange(string levelName)
-    {
-        Debug.Log("GameManager->LevelChange($levelName)");
+        Debug.Log("GameManager->LoadLevel: " + levelName);
         // 1st resume game if paused
         if (gameState == GameState.Paused)
         {
             ResumeGame();
         }
+        SetGameSpeed(1f);
         ratings.Clear();
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
+        LevelInternalInit(levelName);
+    }
+    public void LevelChange(string levelName)
+    {
+        LoadLevel(levelName);
     }
     public string GetLevelName()
     {
         return SceneManager.GetActiveScene().name;
     }
+    public void LevelInternalInit(string levelName)
+    {
+        if (levelName.Contains("MainMenu"))
+        {
+            level = Level.MainMenu;
+            gameState = GameState.UI;
+        }
+        else if (levelName.Contains("Over"))
+        {
+            level = Level.GameOver;
+            gameState = GameState.UI;
+        }
+        else if (levelName.Contains("FirstTestBed"))
+        {
+            level = Level.Level1;
+            gameState = GameState.Playing;
+        }
+        else if (levelName.Contains("Options"))
+        {
+            level = Level.Options;
+            gameState = GameState.UI;
+        }
+        else if (levelName.Contains("UI"))
+        {
+            level = Level.UIMisc;
+            gameState = GameState.UI;
+        }
+        else if (levelName.Contains("Level2"))
+        {
+            level = Level.Level2;
+            gameState = GameState.Playing;
+        }
+        else if (levelName.Contains("Credits"))
+        {
+            level = Level.Credits;
+            gameState = GameState.UI;
+        }
+    }
+    public void LevelCurrentInternalInit()
+    {
+        LevelInternalInit(GetLevelName());
+    }
+
 
 /*  // Option to initialize GameManager here instead of in BootInitializer:
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -102,11 +149,11 @@ public class GameManager : MonoBehaviour
             Time.timeScale = timeScale;
         }
     }
-    public void DecreaseGameSpeed(float multiplier)
+    public void DecreaseGameSpeed(float divider)
     {
         if (gameState == GameState.Playing)
         {
-            timeScale /= multiplier;
+            timeScale /= divider;
             if (timeScale < 0.10f)
             {
                 timeScale = 0.125f;
@@ -135,6 +182,7 @@ public class GameManager : MonoBehaviour
         if (gameState != GameState.Paused)
         {
             gameState = GameState.Paused;
+            timeScalePriorToPause = timeScale;
             // Freeze game
             Time.timeScale = 0;
             timeScale = 0;
@@ -145,9 +193,9 @@ public class GameManager : MonoBehaviour
         if (gameState == GameState.Paused)
         {
             gameState = GameState.Playing;
+            timeScale = timeScalePriorToPause;
             // Unfreeze game
-            Time.timeScale = 1;
-            timeScale = 1;
+            Time.timeScale = timeScale;
         }
     }
 
@@ -179,52 +227,11 @@ public class GameManager : MonoBehaviour
         SoundManager.Loop();
         Debug.Log("Playing music: " + clip.name);
 #if UNITY_EDITOR
-        // No level-loading
+        // Keep current editor level if in Editor
+        LevelCurrentInternalInit();
 #else
-        //Invoke(nameof(LevelChangeRandom), 20f);
+        LoadLevel("MainMenuBasic");
 #endif
-
-        if (level == Level.Loading)
-        {
-            var leveName = GetLevelName();
-            if (leveName.Contains("MainMenu"))
-            {
-                level = Level.MainMenu;
-                gameState = GameState.UI;
-            }
-            else if (leveName.Contains("Over"))
-            {
-                level = Level.GameOver;
-                gameState = GameState.UI;
-            }
-            else if (leveName.Contains("FirstTestBed"))
-            {
-                level = Level.Level1;
-                gameState = GameState.Playing;
-            }
-            else if (leveName.Contains("Options"))
-            {
-                level = Level.Options;
-                gameState = GameState.UI;
-            }
-            else if (leveName.Contains("UI"))
-            {
-                level = Level.UIMisc;
-                gameState = GameState.UI;
-            }
-            else if (leveName.Contains("Level2"))
-            {
-                level = Level.Level2;
-                gameState = GameState.Playing;
-            }
-            else if (leveName.Contains("Credits"))
-            {
-                level = Level.Credits;
-                gameState = GameState.UI;
-            }
-            level = Level.MainMenu;
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-        }
     }
 
     // Update is called once per frame
