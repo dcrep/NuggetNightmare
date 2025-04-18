@@ -57,7 +57,27 @@ public class GameManager : MonoBehaviour
         return ratings.Count;
     }
 
-    //public void LoadLevel(Level level) {}
+    public void LoadLevel(Level level)
+    {
+        switch (level)
+        {
+            case Level.MainMenu:
+                LoadLevel("MainMenuBasic");
+                break;
+            case Level.Level1:
+                LoadLevel("FirstTestBed");
+                break;
+            //case Level.Options:
+            //    LoadLevel("Options");
+            //    break;
+            //case Level.GameOver:
+            //    LoadLevel("GameOver");
+            //    break;
+            default:
+                Debug.LogError("GameManager->LoadLevel: Invalid level specified.");
+                break;
+        }
+    }
     public void LoadLevel(string levelName)
     {
         Debug.Log("GameManager->LoadLevel: " + levelName);

@@ -18,6 +18,6 @@ public class PauseScript : MonoBehaviour
     {
         Debug.Log("Main menu button!");
         //GameManager.Instance.ResumeGame();
-        GameManager.Instance.LoadLevel("MainMenuBasic");
+        GameManager.Instance.LoadLevel(GameManager.Level.MainMenu);
     }
 }
