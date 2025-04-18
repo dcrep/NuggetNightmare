@@ -8,7 +8,7 @@ public class MainMenuNavigateBasic : MonoBehaviour
     // Start is called before the first frame update
     public void StartButton()
     {
-        GameManager.Instance.LevelChange("FirstTestBed");
+        GameManager.Instance.LoadLevel(GameManager.Level.Level1);
     }
 
     // Update is called once per frame
