@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Ian-MainMenu.unity
     guid: 92d77f2d440aece458ef6222d5b4fa9c
+  - enabled: 1
+    path: Assets/Scenes/OptionsScreen.unity
+    guid: 9df2d446844462846a82c1e904c25ab8
   m_configObjects: {}
