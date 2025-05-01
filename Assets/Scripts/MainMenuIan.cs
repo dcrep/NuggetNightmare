@@ -12,6 +12,12 @@ public class MainMenuIan : MonoBehaviour
         GameManager.Instance.LoadLevel(GameManager.Level.Level1);
     }
 
+    public void Options()
+    {
+        // Load the options menu scene
+        GameManager.Instance.LoadLevel("OptionsScreen");
+    }
+
     public void Quit()
     {
 #if UNITY_EDITOR
