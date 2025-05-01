@@ -28,6 +28,7 @@ public class Level1 : MonoBehaviour
             return;
         }
         nuggetFactory.CreateNuggetWave(nuggetWaveSO[nuggetWaveIndex], new Vector2(-9.5f, -2.5f));
+        nuggetWaveIndex++;
         Invoke(nameof(WaveLaunch), 18.5f);
     }
 
