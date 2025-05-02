@@ -250,7 +250,7 @@ public class GameManager : MonoBehaviour
         // Keep current editor level if in Editor
         LevelCurrentInternalInit();
 #else
-        LoadLevel("MainMenuBasic");
+        LoadLevel(GameManager.Level.MainMenu);
 #endif
     }
 
