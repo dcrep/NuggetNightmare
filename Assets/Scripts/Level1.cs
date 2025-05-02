@@ -10,6 +10,8 @@ public class Level1 : MonoBehaviour
 
     [SerializeField] private NuggetWaveScriptableObject[] nuggetWaveSO;
     int nuggetWaveIndex = 0;
+    int nuggetsDispatched = 0;
+    int nuggetsFinished = 0;
 
 
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class Level1 : MonoBehaviour
             return;
         }
         nuggetFactory.CreateNuggetWave(nuggetWaveSO[nuggetWaveIndex], new Vector2(-9.5f, -2.5f));
+        GameManager.Instance.NuggetInPlayAdd(nuggetWaveSO[nuggetWaveIndex].nuggetWaves.Count);
         nuggetWaveIndex++;
         Invoke(nameof(WaveLaunch), 18.5f);
     }

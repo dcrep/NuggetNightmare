@@ -106,6 +106,7 @@ public class NuggetScript : MonoBehaviour
     private void OnDisable()
     {
         RateExperience();
+        GameManager.Instance.NuggetInPlayRemoveOne();
     }
     // This would double-up the experience rating, so commented out for now
     //private void OnDestroy() => RateExperience();

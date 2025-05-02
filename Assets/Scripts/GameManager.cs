@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     List<int> ratings;
 
+    int nuggetsInPlay = 0;
+
     public void RateExperience(int rating)
     {
         Debug.Log("GameManager->RateExperience: " + rating);
@@ -142,6 +144,28 @@ public class GameManager : MonoBehaviour
         LevelInternalInit(GetLevelName());
     }
 
+    public void NuggetInPlayAdd(int nuggetCount = 1)
+    {
+        nuggetsInPlay += nuggetCount;
+        Debug.Log("GameManager->NuggetInPlayAdd: nuggetsInPlay is now " + nuggetsInPlay + ".");
+    }
+    public void NuggetInPlayRemoveOne()
+    {
+        if (nuggetsInPlay == 0)
+        {
+            Debug.LogError("GameManager->NuggetInPlayRemove: nuggetsInPlay is already 0.");
+            return;
+        }
+        else if (nuggetsInPlay == 1)
+        {
+            Debug.Log("GameManager->NuggetInPlayRemove: nuggetsInPlay is now 0.");
+        }
+        else
+        {
+            Debug.Log("GameManager->NuggetInPlayRemove: nuggetsInPlay is now " + (nuggetsInPlay - 1) + ".");
+        }
+        nuggetsInPlay--;
+    }
 
 /*  // Option to initialize GameManager here instead of in BootInitializer:
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
