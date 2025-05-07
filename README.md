@@ -3,14 +3,14 @@
 2D Game Development Class
 
 ## Team
-Emery
+Emery V - Programming, Game Design & Documentation
 
-Daniel
+Daniel C - Programming, systems design
 
-David
+David G - Social Media
 
-Emily
+Emily P - Art, Animation, Backgrounds
 
-Hannah
+Hannah R - Art, Animation
 
-Ian
+Ian N - UI, Level Design
