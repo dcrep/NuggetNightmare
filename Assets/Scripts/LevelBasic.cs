@@ -10,8 +10,17 @@ public class Level1 : MonoBehaviour
 
     [SerializeField] private NuggetWaveScriptableObject[] nuggetWaveSO;
     int nuggetWaveIndex = 0;
-    int nuggetsDispatched = 0;
-    int nuggetsFinished = 0;
+
+    [SerializeField] Vector2 startPosition;
+    [SerializeField] Vector2 endPosition;
+
+    void Awake()
+    {
+        if (startPosition == null)
+        {
+            startPosition = new Vector2(-9.5f, -2.5f);
+        }
+    }
 
 
     // Start is called before the first frame update
@@ -29,8 +38,9 @@ public class Level1 : MonoBehaviour
             Debug.Log("Nugget wave finished.");
             return;
         }
-        nuggetFactory.CreateNuggetWave(nuggetWaveSO[nuggetWaveIndex], new Vector2(-9.5f, -2.5f));
-        GameManager.Instance.NuggetInPlayAdd(nuggetWaveSO[nuggetWaveIndex].nuggetWaves.Count);
+        nuggetFactory.CreateNuggetWave(nuggetWaveSO[nuggetWaveIndex], startPosition);
+        // Moved the following to NuggetFactory (per-nugget):
+        //GameManager.Instance.NuggetInPlayAdd(nuggetWaveSO[nuggetWaveIndex].nuggetWaves.Count);
         nuggetWaveIndex++;
         Invoke(nameof(WaveLaunch), 18.5f);
     }

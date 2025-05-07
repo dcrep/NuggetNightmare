@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuBasic.unity
     guid: f5af033936eda2d4691f04ddb6f2868a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AnimsEtc-Daniel.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FirstTestBed.unity
     guid: 5889ae3d8bafe9c42be2b045973983fe
   - enabled: 1
@@ -20,4 +20,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/OptionsScreen.unity
     guid: 9df2d446844462846a82c1e904c25ab8
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: 722331efe486d7a4c921ae44569647aa
+  - enabled: 1
+    path: Assets/Scenes/Level2.unity
+    guid: c468bd16c587f5d47a06d7d216db4bb5
+  - enabled: 1
+    path: Assets/Scenes/GameOverBasic.unity
+    guid: bdd58eec61235e04caf36d7f2a3e6e4d
   m_configObjects: {}

@@ -57,6 +57,8 @@ public class AttractionScriptDualCollider : MonoBehaviour
 
     public GameObject AOECircleChild { get; private set; } = null;
 
+    List<GameObject> nuggetsInColliderWhileRecovering;
+
     GridLayout gridLayout;
 
     Rect cellBounds;
@@ -75,6 +77,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
         radius = attractionScriptable.aoeRadius;
         scareCooldown = attractionScriptable.recoveryTime;
         fears = attractionScriptable.fears;
+        nuggetsInColliderWhileRecovering = new List<GameObject>();
     }
 
     private void Start()
@@ -147,14 +150,14 @@ public class AttractionScriptDualCollider : MonoBehaviour
         // Nugget on CircleCollider (layer must be set to INCLUDE only Nugget and EXCLUDE everything other than Nugget)
         // TODO: Keeping track of Nuggets inside collider?  Only if Nugget enters collider during cooldown and
         //       doesn't exit collider before cooldown ends (which would ideally cause another trigger)
-        else if (collide.CompareTag("Nugget"))
+        else if (collide.CompareTag("Nugget") && !attractionDisabled)
         {
             //Debug.Log(collide.name + " [Nugget] collided with " + gameObject.name + " with tag " + collide.tag);
-            if (!attractionDisabled && (isActivating || IsAttractionRecovered()))
+            if (isActivating || IsAttractionRecovered())
             {
                 //Debug.Log("isActivating: " + isActivating + " IsAttractionRecovered: " + IsAttractionRecovered());
                 if (collide.CompareTag("Nugget"))
-                {                    
+                {
                     if (collide.transform.TryGetComponent<NuggetScript>(out var nuggetScript))
                     {
                         //nuggetScript.scare(attackDamage, fears);
@@ -162,16 +165,26 @@ public class AttractionScriptDualCollider : MonoBehaviour
                     }
                     if (!isActivating)
                     {
-                        if (PlayAnimation("Activation", true))
-                        {
-                            ChooseAndPlaySound(0.6f, gameObject.transform.position);
-                            // Unity: Call function after x seconds
-                            Invoke(nameof(AnimationDoneInternal), GetTimeLeftUntilActivationComplete());
-                            isActivating = true;
-                        }
+                        ActivateAndInvoke();
                     }
                 }
             }
+            else if (!IsAttractionRecovered())
+            {
+                Debug.Log("[AS] - Attraction is not recovered yet, cannot trigger again - storing nugget");
+                nuggetsInColliderWhileRecovering.Add(collide.gameObject);
+            }
+        }
+    }
+
+    private void ActivateAndInvoke()
+    {
+        if (PlayAnimation("Activation", true))
+        {
+            ChooseAndPlaySound(0.6f, gameObject.transform.position);
+            // Unity: Call function after x seconds
+            Invoke(nameof(AnimationDoneInternal), GetTimeLeftUntilActivationComplete());
+            isActivating = true;
         }
     }
 
@@ -184,7 +197,15 @@ public class AttractionScriptDualCollider : MonoBehaviour
             Debug.Log(gameObject.name + " - collided with other attraction exit");
         }
         // TODO: If maintain list of nuggets, remove from the list here
-        //else if (collide.CompareTag("Nugget"))
+        else if (collision.CompareTag("Nugget"))
+        {
+            //Debug.Log(collide.name + " exited " + gameObject.name + " with tag " + collide.tag);
+            if (nuggetsInColliderWhileRecovering.Contains(collision.gameObject))
+            {
+                nuggetsInColliderWhileRecovering.Remove(collision.gameObject);
+                Debug.Log("[AS] Nugget removed from nuggetsInColliderWhileRecovering list: " + collision.gameObject.name);
+            }
+        }
 
         //if leaving nonplaceable spot return false, else true
         //Debug.Log("Exited: " + collision.tag);
@@ -220,7 +241,22 @@ public class AttractionScriptDualCollider : MonoBehaviour
         isActivating = false;
         //scareAnim.Play("Idle");
         StopAnimation();
-        Debug.Log(gameObject.name + ": Activation/Animation done");        
+        Debug.Log(gameObject.name + ": Activation/Animation done");
+        if (nuggetsInColliderWhileRecovering.Count > 0)
+        {
+            Debug.Log("[AS] Attraction recovered, nuggets still in collider: " + nuggetsInColliderWhileRecovering.Count);
+            ActivateAndInvoke();
+        }
+        while (nuggetsInColliderWhileRecovering.Count > 0)
+        {
+            var nugget = nuggetsInColliderWhileRecovering[0];
+            nuggetsInColliderWhileRecovering.RemoveAt(0);
+            if (nugget != null && nugget.TryGetComponent<NuggetScript>(out var nuggetScript))
+            {
+                nuggetScript.scare(attackDamage, fears);
+                Debug.Log("[AS] Attraction Recovered, Nugget still in collider - scare+activating: " + nugget.name);
+            }
+        }
     }
 
     // ----------------------------------------------------------

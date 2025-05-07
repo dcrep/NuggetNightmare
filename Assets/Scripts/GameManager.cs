@@ -67,14 +67,17 @@ public class GameManager : MonoBehaviour
                 LoadLevel("MainMenuBasic");
                 break;
             case Level.Level1:
-                LoadLevel("FirstTestBed");
+                LoadLevel("Level1");
+                break;
+            case Level.Level2:
+                LoadLevel("Level2");
                 break;
             //case Level.Options:
             //    LoadLevel("Options");
             //    break;
-            //case Level.GameOver:
-            //    LoadLevel("GameOver");
-            //    break;
+            case Level.GameOver:
+                LoadLevel("GameOverBasic");
+                break;
             default:
                 Debug.LogError("GameManager->LoadLevel: Invalid level specified.");
                 break;
@@ -113,7 +116,7 @@ public class GameManager : MonoBehaviour
             level = Level.GameOver;
             gameState = GameState.UI;
         }
-        else if (levelName.Contains("FirstTestBed"))
+        else if (levelName.Contains("Level1"))
         {
             level = Level.Level1;
             gameState = GameState.Playing;
@@ -156,15 +159,41 @@ public class GameManager : MonoBehaviour
             Debug.LogError("GameManager->NuggetInPlayRemove: nuggetsInPlay is already 0.");
             return;
         }
-        else if (nuggetsInPlay == 1)
+
+        nuggetsInPlay--;
+
+        if (nuggetsInPlay == 0)
         {
             Debug.Log("GameManager->NuggetInPlayRemove: nuggetsInPlay is now 0.");
+            LevelFinished();
+            
         }
         else
         {
-            Debug.Log("GameManager->NuggetInPlayRemove: nuggetsInPlay is now " + (nuggetsInPlay - 1) + ".");
+            Debug.Log("GameManager->NuggetInPlayRemove: nuggetsInPlay is now " + nuggetsInPlay + ".");
         }
-        nuggetsInPlay--;
+    }
+
+    public void LevelFinished()
+    {
+        Debug.Log("GameManager->LevelFinished: " + level.ToString() + " finished.");
+        if (GetRatingTotal() < 1)
+        {
+            Debug.Log("GameManager->LevelFinished: Rating 0 or less, Failure state");
+            LoadLevel(Level.GameOver);
+            return;
+        }
+        //else
+        if (level == Level.Level1)
+        {
+            Debug.Log("GameManager->LevelFinished: Level 1 finished, loading Level 2.");
+            LoadLevel(Level.Level2);
+        }
+        else if (level == Level.Level2)
+        {
+            Debug.Log("GameManager->LevelFinished: Level 2 finished, loading Main Menu.");
+            LoadLevel(Level.MainMenu);
+        }
     }
 
 /*  // Option to initialize GameManager here instead of in BootInitializer:
