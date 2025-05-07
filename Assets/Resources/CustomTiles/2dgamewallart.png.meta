@@ -1,0 +1,1566 @@
+fileFormatVersion: 2
+guid: c279ee76d2e4d6c44bbd1951727926b2
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 2dgamewallart_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9e6088ab094a084a843710a58bfc095
+      internalID: 1186220019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd89ebe55e8406346a9a15464afc69ea
+      internalID: -146947808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 828b4af4d4711904c88250d8b2b26a5d
+      internalID: -1864121982
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd0e3c54c794c44492f8876216a12d6
+      internalID: 1449861822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e7459f7029a5928418dc2a088a2520fe
+      internalID: 231906185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81c8dcf3b7a35c84c82cfd5c5aaad6bf
+      internalID: 1712231242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8c4d5d56b9b2484498b347b152087f5
+      internalID: 1508674645
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_7
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64713dfc7a32f0644a6406f2ce6bcad1
+      internalID: 1707645457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_8
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe3a7ebd020ca014bbbe0014b75180b5
+      internalID: 1416086935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_9
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5b63a96a9626a444a62f0943b3aac9a
+      internalID: 2029244385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_10
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 166.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4a75bf9c2ce40040bcedd41ce5720cc
+      internalID: -241834095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_11
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fed27d2142e1fa2489cf1aa2a7920d98
+      internalID: -1904571107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_12
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ac5b71c384a5bb42a72e4ff596b5a01
+      internalID: 2092638428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df4b9c0d0f5ac54a9fe4fc0e18a1708
+      internalID: -1062394627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_14
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a4b5834c7d8d7849918ebb45fad9763
+      internalID: 1355866927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_15
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 635da3c0de449d748aa50115b24eef11
+      internalID: 2019706424
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_16
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: da6ad49cf417b4b499cc0474f40a6410
+      internalID: -1371426524
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 675f4d57aa50c1e49bbec3ea1345aa69
+      internalID: -800250008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_18
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8aa953362e986543a76e6c7dc3246d0
+      internalID: 945239895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_19
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49faaf21c74b5384ca4db8924d38a6ac
+      internalID: -1957786768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_20
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8460ed9687961d34abe02e3b308b006d
+      internalID: 286658849
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_21
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 133.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ca703c77487b8ea42987f83afd9e3767
+      internalID: -1934302435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_22
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b10c1e66227fe7143b642360ea5b3ee9
+      internalID: 298886988
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_23
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a187919adc0acf1428e4e6c79eb1cb96
+      internalID: -1659745868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_24
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3286549dcded13443b095259c7eca254
+      internalID: -2127420544
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_25
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9c82149a14462e4bbfb9d70ec82cf19
+      internalID: 1026449602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_26
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2c06a16de3e8d3e4c8ee1debc4fef293
+      internalID: -1689429644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_27
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73de130fb3632ce4dad933e45866466b
+      internalID: -336293252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_28
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c9a0c18f5940224da5c2db6ddc068dd
+      internalID: -1417044898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_29
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 05542902e77a138489e01eb064608634
+      internalID: 763828720
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_30
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65e59f7db38e08945a4446c6766e1748
+      internalID: -704026797
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_31
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37b1ce4cb2c7912498e6d294a49781e4
+      internalID: -1712597557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_32
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 100.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9816f84b90c1c644a9704b9527e10140
+      internalID: -2144522324
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_33
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5adb44014c613742873a2c4805091bf
+      internalID: 448801465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_34
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c16e7bc51eb04034a8d621c43814a18d
+      internalID: -2067871036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_35
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ff1195724ba7b0478a847df830a0175
+      internalID: -1339065107
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_36
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bf888b3695d8a64a9450e5ef5b3abf3
+      internalID: 715871355
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_37
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9cc3f76dc8ef4743b8536767cb1c83a
+      internalID: -510214005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_38
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ef2779e4af2020b4888e453d90598c4e
+      internalID: 2091881629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_39
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 57f285401c4ebc645a0d72951d200b7e
+      internalID: 492674304
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_40
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fdfaa797f4c01940b14c37ca38ce39d
+      internalID: 461348726
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_41
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a32bf1057cfa2146ba95f0ba2361968
+      internalID: 912703398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_42
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 13ad962a64ae2124cb858a8ec624042e
+      internalID: 762890635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_43
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 67.66667
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdf184a0ae3b42a4c9f7e5e189d559c9
+      internalID: -1090893551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_44
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7d5e86f448a3a54fa43953428a1acdf
+      internalID: -2045231329
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_45
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8e3302a01c94dd419908553ec67b9d0
+      internalID: -1259045263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_46
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b432a00f85169ab468d6cadfb8b2c138
+      internalID: -1674340798
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_47
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fa41a8685bc947f409cb944df6527b48
+      internalID: 1699719065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_48
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d97aea33091e4741a0cc6b7bcad1881
+      internalID: -520461848
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_49
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea895f649fd289c458f8b042d663c33b
+      internalID: 1842153283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_50
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 87454342b1c3e6740b096e643e54040d
+      internalID: 1514363976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_51
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d29daa4a518825849a5589ee20f343f5
+      internalID: 1151582019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_52
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68bd3b0ba8be614478f4acdfff92ab07
+      internalID: -2041073624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_53
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6132c010be8cb545b4b6960c56d6298
+      internalID: 493286898
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_54
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 34.666668
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5b9a4abe1052ceb4d8436993d8ad48e8
+      internalID: -186103980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_55
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2eca2bcc1b208d24c8d692dacab09ccb
+      internalID: -349671093
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_56
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc2cb98bcebd5664d8559dc41afcf03b
+      internalID: 67304573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_57
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84fd15062827cf6498d15f7ef8840d00
+      internalID: -518550112
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_58
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 07b94d1e1c811be4b8bba66985591361
+      internalID: 1447237478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_59
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26e23f41450095e4b9190fa4bf728ad5
+      internalID: 1197634962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_60
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b6ca6ffe6284ff45b70726bf72d39d1
+      internalID: 1790242469
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_61
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 214fd9da33d07784bb7c61494726ca91
+      internalID: 1219197778
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_62
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8531f9e103ff8ed49a6c3a499f105ea6
+      internalID: -616556684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_63
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c0375d45f78ca943a9158810e338c70
+      internalID: -1749291435
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_64
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2794490676aaf34e943e1a7585fe05a
+      internalID: 546268108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamewallart_65
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 1.6666679
+        width: 33.090908
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6c0580880d982245adfb98789bc424b
+      internalID: -692602480
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      2dgamewallart_0: 1186220019
+      2dgamewallart_1: -146947808
+      2dgamewallart_10: -241834095
+      2dgamewallart_11: -1904571107
+      2dgamewallart_12: 2092638428
+      2dgamewallart_13: -1062394627
+      2dgamewallart_14: 1355866927
+      2dgamewallart_15: 2019706424
+      2dgamewallart_16: -1371426524
+      2dgamewallart_17: -800250008
+      2dgamewallart_18: 945239895
+      2dgamewallart_19: -1957786768
+      2dgamewallart_2: -1864121982
+      2dgamewallart_20: 286658849
+      2dgamewallart_21: -1934302435
+      2dgamewallart_22: 298886988
+      2dgamewallart_23: -1659745868
+      2dgamewallart_24: -2127420544
+      2dgamewallart_25: 1026449602
+      2dgamewallart_26: -1689429644
+      2dgamewallart_27: -336293252
+      2dgamewallart_28: -1417044898
+      2dgamewallart_29: 763828720
+      2dgamewallart_3: 1449861822
+      2dgamewallart_30: -704026797
+      2dgamewallart_31: -1712597557
+      2dgamewallart_32: -2144522324
+      2dgamewallart_33: 448801465
+      2dgamewallart_34: -2067871036
+      2dgamewallart_35: -1339065107
+      2dgamewallart_36: 715871355
+      2dgamewallart_37: -510214005
+      2dgamewallart_38: 2091881629
+      2dgamewallart_39: 492674304
+      2dgamewallart_4: 231906185
+      2dgamewallart_40: 461348726
+      2dgamewallart_41: 912703398
+      2dgamewallart_42: 762890635
+      2dgamewallart_43: -1090893551
+      2dgamewallart_44: -2045231329
+      2dgamewallart_45: -1259045263
+      2dgamewallart_46: -1674340798
+      2dgamewallart_47: 1699719065
+      2dgamewallart_48: -520461848
+      2dgamewallart_49: 1842153283
+      2dgamewallart_5: 1712231242
+      2dgamewallart_50: 1514363976
+      2dgamewallart_51: 1151582019
+      2dgamewallart_52: -2041073624
+      2dgamewallart_53: 493286898
+      2dgamewallart_54: -186103980
+      2dgamewallart_55: -349671093
+      2dgamewallart_56: 67304573
+      2dgamewallart_57: -518550112
+      2dgamewallart_58: 1447237478
+      2dgamewallart_59: 1197634962
+      2dgamewallart_6: 1508674645
+      2dgamewallart_60: 1790242469
+      2dgamewallart_61: 1219197778
+      2dgamewallart_62: -616556684
+      2dgamewallart_63: -1749291435
+      2dgamewallart_64: 546268108
+      2dgamewallart_65: -692602480
+      2dgamewallart_7: 1707645457
+      2dgamewallart_8: 1416086935
+      2dgamewallart_9: 2029244385
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

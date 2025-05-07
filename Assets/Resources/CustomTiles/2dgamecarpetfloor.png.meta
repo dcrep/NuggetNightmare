@@ -1,0 +1,1566 @@
+fileFormatVersion: 2
+guid: 05d4458f3fe3c0249b26f01845d71a3b
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_0
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea9ffba892b65984bafc73d8e51b4f14
+      internalID: -1841229658
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_1
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80065270b5c35e749b525aab620aa47d
+      internalID: -620421136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_2
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b68086497a8932e4ea45afbde71373c4
+      internalID: 1181547568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_3
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 056040f05b894ff49a352ced5e18261c
+      internalID: 917119053
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_4
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e38a5b522f46e2f47adf8c71f304ba54
+      internalID: -503210312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e34d03a839450c64dae1bea7abbd961f
+      internalID: 1791873750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_6
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ea6fc77ac3f542e4ea54147923b5c142
+      internalID: -959496210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_7
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be8e868aff6d85747a4bd6f8b89a7aa5
+      internalID: 1196532096
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_8
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f43d53b2d6628a45b5ec527c3ad85cb
+      internalID: 272865207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_9
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aaf46a6f00ff01f409076516ba4e80a4
+      internalID: -1679976695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_10
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 166.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 58d81657f4114824a918d114dbbf4b9f
+      internalID: 1675421057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_11
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01ad49f5043066044a20767d98c0f935
+      internalID: -1489210131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_12
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 855013e6b7eb39d4c9d2623e8f129e1b
+      internalID: -2141375353
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_13
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7640f43869bb5d54abf237498d283aa4
+      internalID: 1719824015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_14
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 816decfb9bf440f44bdee7a08c7c6f63
+      internalID: -2083351507
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_15
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84849cf6a8f19bf489664f319329dd1d
+      internalID: 331510915
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_16
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5ac3ef48cb48fb34690ea1f17e41bc37
+      internalID: 943370884
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_17
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 68325b54d32edb84fb0b69bde928a24c
+      internalID: -1282367530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_18
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29c0441820944d1499876bdf85fbbf8d
+      internalID: -962365627
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_19
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a86fbc12562975b4782c3602f92d1c1e
+      internalID: 765153939
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_20
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bf3d0e4c553aa34c9e45d60f22583da
+      internalID: 1714291099
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_21
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 133.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30c9adc30c944a547a8d3dbc0708b1d5
+      internalID: -329754852
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_22
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 458694fd281180c4eadd7b42deac8017
+      internalID: 401207757
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_23
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bf697c739a5f49a4f98f285fec583bac
+      internalID: 29139523
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_24
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0969ffa2492f0749a989ae33580b021
+      internalID: 528715194
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_25
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a800cff057d7a06458d7454580b2f73d
+      internalID: -55915330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_26
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 378d071cf7f37bb449c1c5f31e99681c
+      internalID: 1530802445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_27
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 646e804d7246cfe4e9efdd2a834f99cb
+      internalID: -1177111113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_28
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b964f684a268a4469978f5666858df5
+      internalID: -1937021993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_29
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bccd9587c66045a429f0480c89c8e6a3
+      internalID: 1906128457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_30
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 680c4768ab1613643b58a30eb9a65c04
+      internalID: 574163056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_31
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63e99e9d0842f994eb0229a0e52f1404
+      internalID: 527778534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_32
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 100.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4469f31ab8c35254ab277ff5ca7c9f51
+      internalID: -1433040871
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_33
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3e87873acb422345bfc0f2890d70669
+      internalID: 719309046
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_34
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35305ccf3bbdb254fb35333687ec6bb4
+      internalID: -1641927945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_35
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fff545eff0b5bc94da0bdf43b4527c1f
+      internalID: -405406554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_36
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86c5c7dcbd09f17438d7541e920cc7ae
+      internalID: 1869570253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_37
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93ce452f8a1ad5f44896461dcf6c8c94
+      internalID: 1965687541
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_38
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a565077166630f44bb1cabebdb9f7c85
+      internalID: -389051282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_39
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f983ab5fa8519b94086e0b0a8136dd57
+      internalID: 84988185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_40
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d2feb5fb594a664d874112f13dea0f8
+      internalID: 2055616370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_41
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e4b0a057c2c57a347bd95056c0d79e65
+      internalID: 350750445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_42
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bae070f954522c94f92967e992e0482d
+      internalID: 1670845040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_43
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 67.66667
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4c04cbfad79cff6429d5213fe4cc6fa1
+      internalID: 753579381
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_44
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 32eb85ec2da020242b8c8ad3f7a95906
+      internalID: -1125072968
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_45
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1aec8f5000d5ea44498627983f7acba8
+      internalID: -150103222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_46
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f49cc9bfc890f66459f1097ace7281ca
+      internalID: 929282610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_47
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f158e6fae445a2c41a1dd93708460b0a
+      internalID: -1802703048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_48
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4727efa66b86ca04b954b144d9fe787f
+      internalID: 772017376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_49
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5adc42a9e28a1a4885d4eb1dd370d92
+      internalID: -841058392
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_50
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f85a729b2a008b41aed59197b095c1c
+      internalID: 366678556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_51
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e823079dfa882b4fbc8f6447b99bb47
+      internalID: -749816029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_52
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e240946ed907e0469cb964518e2df16
+      internalID: -988351328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_53
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c723c20ade153c34fb62c23be5356f1e
+      internalID: -417901900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_54
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 34.666668
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49764f787afb22848a35f8b8b0f90d88
+      internalID: -1412015192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_55
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d32bf9c59f8dcf4487149578bb77cf1
+      internalID: -741271689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_56
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db6dc5d45118bdb40a9e8783d44fab4c
+      internalID: 756066881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_57
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bdae7770ec569b94ea9fc77b0b4034a3
+      internalID: 1831417767
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_58
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab04160dc768a6547a71e72b1936797a
+      internalID: -1042891316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_59
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7142bb3d43c696f4ba1e28e702c4185e
+      internalID: 1973696248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_60
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15154da0d3b810141bfb5d8c67d2ec98
+      internalID: -296718421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_61
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebfbfe2dc6f21374c8b181c23554804b
+      internalID: -315474395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_62
+      rect:
+        serializedVersion: 2
+        x: 233
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cd841bfe5b4ee24488ba2df36fb52160
+      internalID: 1422285087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_63
+      rect:
+        serializedVersion: 2
+        x: 266
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f0b893b1e241de44fa17c0ec34e3c874
+      internalID: -179641043
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_64
+      rect:
+        serializedVersion: 2
+        x: 299
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964109865a0d68b4d86a921780153b41
+      internalID: 1892079249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2dgamecarpetfloor_65
+      rect:
+        serializedVersion: 2
+        x: 332
+        y: 1.6666679
+        width: 33.272728
+        height: 33.333332
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8c75694709d5e5429c1ea73211fc302
+      internalID: -1810127770
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      2dgamecarpetfloor_0: -1841229658
+      2dgamecarpetfloor_1: -620421136
+      2dgamecarpetfloor_10: 1675421057
+      2dgamecarpetfloor_11: -1489210131
+      2dgamecarpetfloor_12: -2141375353
+      2dgamecarpetfloor_13: 1719824015
+      2dgamecarpetfloor_14: -2083351507
+      2dgamecarpetfloor_15: 331510915
+      2dgamecarpetfloor_16: 943370884
+      2dgamecarpetfloor_17: -1282367530
+      2dgamecarpetfloor_18: -962365627
+      2dgamecarpetfloor_19: 765153939
+      2dgamecarpetfloor_2: 1181547568
+      2dgamecarpetfloor_20: 1714291099
+      2dgamecarpetfloor_21: -329754852
+      2dgamecarpetfloor_22: 401207757
+      2dgamecarpetfloor_23: 29139523
+      2dgamecarpetfloor_24: 528715194
+      2dgamecarpetfloor_25: -55915330
+      2dgamecarpetfloor_26: 1530802445
+      2dgamecarpetfloor_27: -1177111113
+      2dgamecarpetfloor_28: -1937021993
+      2dgamecarpetfloor_29: 1906128457
+      2dgamecarpetfloor_3: 917119053
+      2dgamecarpetfloor_30: 574163056
+      2dgamecarpetfloor_31: 527778534
+      2dgamecarpetfloor_32: -1433040871
+      2dgamecarpetfloor_33: 719309046
+      2dgamecarpetfloor_34: -1641927945
+      2dgamecarpetfloor_35: -405406554
+      2dgamecarpetfloor_36: 1869570253
+      2dgamecarpetfloor_37: 1965687541
+      2dgamecarpetfloor_38: -389051282
+      2dgamecarpetfloor_39: 84988185
+      2dgamecarpetfloor_4: -503210312
+      2dgamecarpetfloor_40: 2055616370
+      2dgamecarpetfloor_41: 350750445
+      2dgamecarpetfloor_42: 1670845040
+      2dgamecarpetfloor_43: 753579381
+      2dgamecarpetfloor_44: -1125072968
+      2dgamecarpetfloor_45: -150103222
+      2dgamecarpetfloor_46: 929282610
+      2dgamecarpetfloor_47: -1802703048
+      2dgamecarpetfloor_48: 772017376
+      2dgamecarpetfloor_49: -841058392
+      2dgamecarpetfloor_5: 1791873750
+      2dgamecarpetfloor_50: 366678556
+      2dgamecarpetfloor_51: -749816029
+      2dgamecarpetfloor_52: -988351328
+      2dgamecarpetfloor_53: -417901900
+      2dgamecarpetfloor_54: -1412015192
+      2dgamecarpetfloor_55: -741271689
+      2dgamecarpetfloor_56: 756066881
+      2dgamecarpetfloor_57: 1831417767
+      2dgamecarpetfloor_58: -1042891316
+      2dgamecarpetfloor_59: 1973696248
+      2dgamecarpetfloor_6: -959496210
+      2dgamecarpetfloor_60: -296718421
+      2dgamecarpetfloor_61: -315474395
+      2dgamecarpetfloor_62: 1422285087
+      2dgamecarpetfloor_63: -179641043
+      2dgamecarpetfloor_64: 1892079249
+      2dgamecarpetfloor_65: -1810127770
+      2dgamecarpetfloor_7: 1196532096
+      2dgamecarpetfloor_8: 272865207
+      2dgamecarpetfloor_9: -1679976695
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
