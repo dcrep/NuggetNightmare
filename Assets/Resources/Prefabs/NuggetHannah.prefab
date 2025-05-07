@@ -730,7 +730,7 @@ MonoBehaviour:
     m_Bits: 128
   fearLevel: 0
   freakyRadius: 3
-  freakCooldown: 1.5
+  freakCooldown: 2
   freakyAura: {fileID: 8946339207127802947}
   fearBar: {fileID: 8298503224248451213}
   happy: {fileID: 2487178097179909521}

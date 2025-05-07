@@ -45,6 +45,7 @@ public class NuggetFactory : MonoBehaviour
         {
             nugget.GetComponent<NuggetScript>().SetSpeed(speed);
         }
+        GameManager.Instance.NuggetInPlayAdd();
     }
     public void CreateNuggetAt(Vector2 position, Nightmares.Fears fear, float speed = -1f)
     {
@@ -112,6 +113,7 @@ public class NuggetFactory : MonoBehaviour
         //nugget.transform.SetParent(transform);        
         nugget.GetComponent<NuggetScript>().SetFears(nuggetWave.nuggetFears);
         //nugget.GetComponent<NuggetScript>().SetSpeed(nuggetWave.walkSpeed);
+        GameManager.Instance.NuggetInPlayAdd();
     }
 
     // Start is called before the first frame update
