@@ -7,8 +7,11 @@ using System.Security.Cryptography;
 public class DragIt : MonoBehaviour
 {
     private Grid grid;
+    //private GridLayout gridLayout;
     private GridLayout gridLayout;
     private Tilemap nonPlaceableTilemap;
+
+    private Tilemap placeableTilemap;
 
     private Vector3 home;
     private Transform dragging = null;
@@ -17,19 +20,18 @@ public class DragIt : MonoBehaviour
 
     private GameObject lastHitObject;
     
-    private  PlayerControls playerControls;
-
 
     void Awake()
     {
-        playerControls = new PlayerControls();        
+        
     }
 
     private void Start()
     {
         lastHitObject = null;
  
-        gridLayout = FindObjectOfType<GridLayout>();
+        //gridLayout = FindObjectOfType<GridLayout>();
+        gridLayout = FindObjectOfType<Grid>();
         if (gridLayout == null)
         {
             Debug.LogError("GridLayout not found in the scene.");
@@ -56,6 +58,11 @@ public class DragIt : MonoBehaviour
             {
                 nonPlaceableTilemap = tilemap;
                 //Debug.Log("Found NonPlaceable Tilemap: " + tilemap.name);
+                return;
+            } else if (tilemap.gameObject.layer == LayerMask.NameToLayer("Draggable"))
+            {
+                placeableTilemap = tilemap;
+                //Debug.Log("Found Placeable Tilemap: " + tilemap.name);
                 return;
             }
         }
@@ -127,6 +134,7 @@ public class DragIt : MonoBehaviour
         {
             return;
         }
+        Debug.Log("[Drag]-Click-DragEnd()");
         
         //Debug.Log("Click released!");
         //Vector2 mousePosition = Mouse.current.position.ReadValue();
@@ -174,15 +182,27 @@ public class DragIt : MonoBehaviour
 
                 Vector3Int cellPosition = gridLayout.WorldToCell(dragging.position);
                 // tilemap should be the 'Default'/placeable one
-                if (nonPlaceableTilemap.HasTile(cellPosition))
+                if (nonPlaceableTilemap != null)
                 {
-                    // layer always 0? hmm
-                    Debug.Log("NonPlaceable Tilemap location! Layer =" + nonPlaceableTilemap.gameObject.layer);
-                    //cellPosition = tilemap.WorldToCell(dragging.position);
-                    //Debug.Log("Cell Position: " + cellPosition);            
-                    //dragging.position = tilemap.GetCellCenterWorld(cellPosition) + gridLayout.cellSize / 2;
+                    if (nonPlaceableTilemap.HasTile(cellPosition))
+                    {
+                        // layer always 0? hmm
+                        Debug.Log("NonPlaceable Tilemap location! Layer =" + nonPlaceableTilemap.gameObject.layer);
+                        //cellPosition = tilemap.WorldToCell(dragging.position);
+                        //Debug.Log("Cell Position: " + cellPosition);            
+                        //dragging.position = tilemap.GetCellCenterWorld(cellPosition) + gridLayout.cellSize / 2;
+                        dragging.position = home;
+                        Debug.Log("Badspot");
+                    }
+                }
+                else if (placeableTilemap.HasTile(cellPosition))
+                {
+                    Debug.Log("Placeable Tilemap location! Layer =" + placeableTilemap.gameObject.layer);
+                }
+                else
+                {
                     dragging.position = home;
-                    Debug.Log("Badspot");
+                    Debug.Log("Badspot[3]");
                 }
                 Debug.Log("Cell Position: " + cellPosition);
             }

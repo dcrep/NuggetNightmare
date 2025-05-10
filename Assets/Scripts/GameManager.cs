@@ -8,9 +8,11 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
+    // Singleton pattern for GameManager (GameManager.Instance.xx())
     public static GameManager Instance { get; private set; }
 
-    public enum Level { Loading, Credits, MainMenu, Options, UIMisc, Level1, Level2, GameOver, OOB };
+    // Enumerations for level and game state
+    public enum Level { Loading, Credits, MainMenu, Options, UIMisc, Level1, Level2, Level3, GameOver, OOB };
     public enum GameState { Loading, Playing, Paused, UI, GameOver, Win, Lose };
     //enum GameDifficulty { Normal, Hard, Nightmare };
 
@@ -18,12 +20,33 @@ public class GameManager : MonoBehaviour
 //  bool gameOver = false;
 //  bool gameWon = false;
 
+//  Level and GameState variables
+
     public static Level level { get; private set; } = Level.Loading;
     public static GameState gameState { get; private set; } = GameState.Loading;
+
+
+    GameObject attractionManager;
+    GameObject nuggetFactory;
+
+    public GameObject levelObject;
+
+    public Camera mainCamera;
+
+    public CameraMovement cameraMovement;
+    public GameObject dragManager;
+
+    public InputManager inputManager;
+
+    public DragIt dragObject;
+
+
+    // Time scale-related variables
 
     [SerializeField] public static float timeScale { get; private set; } = 1f;
     float timeScalePriorToPause = 1f;
 
+    // Nugget-related ratings variables
     List<int> ratings;
 
     int nuggetsInPlay = 0;
@@ -67,10 +90,15 @@ public class GameManager : MonoBehaviour
                 LoadLevel("MainMenuBasic");
                 break;
             case Level.Level1:
-                LoadLevel("Level1");
+                //LoadLevel("Level1");
+                LoadLevel("Day 1 - Tutorial");
                 break;
             case Level.Level2:
-                LoadLevel("Level2");
+                //LoadLevel("Level2");
+                LoadLevel("Day 2");
+                break;
+            case Level.Level3:                
+                LoadLevel("Day 3");
                 break;
             //case Level.Options:
             //    LoadLevel("Options");
@@ -116,7 +144,8 @@ public class GameManager : MonoBehaviour
             level = Level.GameOver;
             gameState = GameState.UI;
         }
-        else if (levelName.Contains("Level1"))
+        //else if (levelName.Contains("Level1"))
+        else if (levelName.Contains("Day 1"))
         {
             level = Level.Level1;
             gameState = GameState.Playing;
@@ -131,9 +160,15 @@ public class GameManager : MonoBehaviour
             level = Level.UIMisc;
             gameState = GameState.UI;
         }
-        else if (levelName.Contains("Level2"))
+        //else if (levelName.Contains("Level2"))
+        else if (levelName.Contains("Day 2"))
         {
             level = Level.Level2;
+            gameState = GameState.Playing;
+        }
+        else if (levelName.Contains("Day 3"))
+        {
+            level = Level.Level3;
             gameState = GameState.Playing;
         }
         else if (levelName.Contains("Credits"))
@@ -141,10 +176,33 @@ public class GameManager : MonoBehaviour
             level = Level.Credits;
             gameState = GameState.UI;
         }
+        Debug.Log("[GM]->LevelInternalInit: Level set to " + level.ToString() + ", gameState set to " + gameState.ToString() + ".");
     }
     public void LevelCurrentInternalInit()
     {
         LevelInternalInit(GetLevelName());
+    }
+
+    // Level object's Start() method called, calls this to initialize other objects
+    // needed for levels
+    public void LevelStartCalled(GameLevel levelObject)
+    {
+        nuggetFactory = new GameObject("NuggetFactory");
+        nuggetFactory.AddComponent<NuggetFactory>();
+        attractionManager = new GameObject("AttractionManager");
+        attractionManager.AddComponent<AttractionManager>();
+        dragManager = new GameObject("DragManager");
+        dragObject = dragManager.AddComponent<DragIt>();
+        //mainCamera = levelObject.mainCamera;
+        //cameraMovement = mainCamera.GetComponent<CameraMovement>();
+    }
+    public NuggetFactory GetNuggetFactory()
+    {
+        return nuggetFactory.GetComponent<NuggetFactory>();
+    }
+    public AttractionManager GetAttractionManager()
+    {
+        return attractionManager.GetComponent<AttractionManager>();
     }
 
     public void NuggetInPlayAdd(int nuggetCount = 1)
@@ -184,15 +242,23 @@ public class GameManager : MonoBehaviour
             return;
         }
         //else
-        if (level == Level.Level1)
+        switch (level)
         {
-            Debug.Log("GameManager->LevelFinished: Level 1 finished, loading Level 2.");
-            LoadLevel(Level.Level2);
-        }
-        else if (level == Level.Level2)
-        {
-            Debug.Log("GameManager->LevelFinished: Level 2 finished, loading Main Menu.");
-            LoadLevel(Level.MainMenu);
+            case Level.Level1:
+                Debug.Log("GameManager->LevelFinished: Level 1 finished, loading Level 2.");
+                LoadLevel(Level.Level2);
+                break;
+            case Level.Level2:
+                Debug.Log("GameManager->LevelFinished: Level 2 finished, loading Level 3.");
+                LoadLevel(Level.Level3);
+                break;
+            case Level.Level3:
+                Debug.Log("GameManager->LevelFinished: Level 3 finished, loading Main Menu.");
+                LoadLevel(Level.MainMenu);
+                break;
+            default:
+                Debug.LogError("GameManager->LevelFinished: Invalid level specified.");
+                break;
         }
     }
 

@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level1 : MonoBehaviour
+public class GameLevel : MonoBehaviour
 {
-
-    private NuggetFactory nuggetFactory;
-    AttractionManager attractionManager;
 
     [SerializeField] private NuggetWaveScriptableObject[] nuggetWaveSO;
     int nuggetWaveIndex = 0;
@@ -14,21 +11,49 @@ public class Level1 : MonoBehaviour
     [SerializeField] Vector2 startPosition;
     [SerializeField] Vector2 endPosition;
 
+    [SerializeField] Vector2 attractionSpawnPosition;
+
+    [SerializeField] public Camera mainCamera {get; private set; }
+
+    [SerializeField] public float firstWaveDelay = 1f;
+    [SerializeField] public float waveDelay = 18.5f;
+
     void Awake()
     {
         if (startPosition == null)
         {
             startPosition = new Vector2(-9.5f, -2.5f);
         }
+
+        GameManager.Instance.levelObject = gameObject;
+    }
+
+    void OnDisable()
+    {
+        GameManager.Instance.levelObject = null;
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        attractionManager = FindFirstObjectByType<AttractionManager>();
-        nuggetFactory = FindFirstObjectByType<NuggetFactory>();
-        Invoke(nameof(WaveLaunch), 1f);        
+        //attractionManager = FindFirstObjectByType<AttractionManager>();
+        //nuggetFactory = FindFirstObjectByType<NuggetFactory>();
+        
+        mainCamera = (mainCamera == null) ? Camera.main : mainCamera;
+
+        //if (mainCamera.orthographic) {}   // always true for this game
+
+        {
+            float projectionHeight = mainCamera.orthographicSize;
+            float width = projectionHeight * mainCamera.aspect;       // Total width of the view
+            Debug.Log($"Orthographic Camera Size: Width = {width}, Height = {projectionHeight}");
+        }
+        // Set up objects required for level:
+        GameManager.Instance.LevelStartCalled(this);
+
+        // Start nugget wave launching:
+        Invoke(nameof(WaveLaunch), firstWaveDelay);
     }
 
     void WaveLaunch()
@@ -38,11 +63,12 @@ public class Level1 : MonoBehaviour
             Debug.Log("Nugget wave finished.");
             return;
         }
-        nuggetFactory.CreateNuggetWave(nuggetWaveSO[nuggetWaveIndex], startPosition);
+        GameManager.Instance.GetNuggetFactory().
+                        CreateNuggetWave(nuggetWaveSO[nuggetWaveIndex], startPosition);
         // Moved the following to NuggetFactory (per-nugget):
         //GameManager.Instance.NuggetInPlayAdd(nuggetWaveSO[nuggetWaveIndex].nuggetWaves.Count);
         nuggetWaveIndex++;
-        Invoke(nameof(WaveLaunch), 18.5f);
+        Invoke(nameof(WaveLaunch), waveDelay);
     }
 
     // Update is called once per frame
@@ -53,11 +79,15 @@ public class Level1 : MonoBehaviour
 
     public void PurchaseSpider()
     {
-        attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(0.5f, -5.5f));
+        GameManager.Instance.GetAttractionManager().
+            SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, attractionSpawnPosition);
+            //new Vector2(0.5f, -5.5f));
             
     }
     public void PurchaseSkeleton()
     {
-        attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(-1.5f, -5.5f));
+        GameManager.Instance.GetAttractionManager().
+            SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, attractionSpawnPosition);
+            //new Vector2(-1.5f, -5.5f));
     }
 }
