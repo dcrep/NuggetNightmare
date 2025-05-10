@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InputManager : MonoBehaviour
+public class InputManagerBasic : MonoBehaviour
 {
     public PlayerControls playerControls;
     private InputAction numKeyAction;
@@ -21,23 +21,23 @@ public class InputManager : MonoBehaviour
     private DragIt dragScript;
     private bool dragging = false;
 
-    //[SerializeField] private GridLayout tileGrid;
+    [SerializeField] private GridLayout tileGrid;
 
-    //[SerializeField] private NuggetWaveScriptableObject nuggetWaveSO;
+    [SerializeField] private NuggetWaveScriptableObject nuggetWaveSO;
 
     private bool isNumKeyPressed = false;
     private bool numpadKeyPressed = false;
     private int numKeyValue = -1; // 0-9
 
-    // NuggetFactory nuggetFactory;
+    NuggetFactory nuggetFactory;
 
-    // AttractionManager attractionManager;
+    AttractionManager attractionManager;
 
     GameObject pauseMenuPrefab;
     GameObject pauseMenuInstance = null;
     bool pauseMenuOpen = false;
 
-    //CameraMovement cameraMovement;
+    CameraMovement cameraMovement;
 
     bool draggingMap = false;
     Vector3 dragStart = Vector3.zero;
@@ -101,10 +101,10 @@ public class InputManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //dragScript = FindFirstObjectByType<DragIt>();
-        //nuggetFactory = FindFirstObjectByType<NuggetFactory>();
-        //attractionManager = FindFirstObjectByType<AttractionManager>();
-        //cameraMovement = FindFirstObjectByType<CameraMovement>();
+        dragScript = FindFirstObjectByType<DragIt>();
+        nuggetFactory = FindFirstObjectByType<NuggetFactory>();
+        attractionManager = FindFirstObjectByType<AttractionManager>();
+        cameraMovement = FindFirstObjectByType<CameraMovement>();
     }
 
     // Update is called once per frame
@@ -112,7 +112,6 @@ public class InputManager : MonoBehaviour
     {
         if (playerControls.Player.Pause.triggered)
         {
-            Debug.Log("Esc/Pause triggered!");
             PauseMenuOpen();
         }
         else if (playerControls.Player.SpeedUp.triggered)
@@ -158,7 +157,7 @@ public class InputManager : MonoBehaviour
             {
                 return PauseMenuClose();                
             }
-            else if (GameManager.gameState == GameManager.GameState.Playing)
+            else
             {
                 Debug.Log("Pause triggered!");
                 if (pauseMenuPrefab != null)
@@ -205,32 +204,25 @@ public class InputManager : MonoBehaviour
             numpadKeyPressed = false;
         }
 
-        if (GameManager.gameState == GameManager.GameState.Playing)
+        if (keyValue == 1)
         {
-            if (keyValue == 1)
-            {
-                //UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0.5f, -5.5f, 0), Quaternion.identity);
-                GameManager.Instance.GetAttractionManager().
-                    SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(0.5f, -1.5f));
-            }
-            else if (keyValue == 2)
-            {
-                //UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
-                GameManager.Instance.GetAttractionManager().
-                    SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(-1f, 1.5f));
-            }
-            else if (keyValue == 3)
-            {
-                //GameManager.Instance.GetNuggetFactory().
-                //    CreateNuggetWave(nuggetWaveSO, new Vector2(-9.5f, -2.5f));
-            }
-            else if (keyValue == 0)
-            {
-                GameManager.Instance.GetNuggetFactory().
-                    CreateNuggetWave(new Nightmares.Fears[] {
-                        Nightmares.Fears.CreepyCrawlies, Nightmares.Fears.Supernatural, Nightmares.Fears.EnclosedSpaces, Nightmares.Fears.Anything },
-                        new Vector2(-9.5f, -2.5f), 2f);
-            }
+            //UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0.5f, -5.5f, 0), Quaternion.identity);
+            attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(0.5f, -5.5f));
+        }
+        else if (keyValue == 2)
+        {
+            //UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
+            attractionManager.SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(-1.5f, -5.5f));
+        }
+        else if (keyValue == 3)
+        {
+            nuggetFactory.CreateNuggetWave(nuggetWaveSO, new Vector2(-9.5f, -2.5f));
+        }
+        else if (keyValue == 0)
+        {
+            nuggetFactory.CreateNuggetWave(new Nightmares.Fears[] {
+                    Nightmares.Fears.CreepyCrawlies, Nightmares.Fears.Supernatural, Nightmares.Fears.EnclosedSpaces, Nightmares.Fears.Anything },
+                    new Vector2(-9.5f, -2.5f), 2f);
         }
 
         // Now normalized to 0-9
@@ -240,9 +232,6 @@ public class InputManager : MonoBehaviour
 
     void MouseRightButtonPressed(InputAction.CallbackContext context)
     {
-        if (GameManager.gameState != GameManager.GameState.Playing)
-            return;
-
         if (draggingMap)
             return;
 
@@ -253,43 +242,22 @@ public class InputManager : MonoBehaviour
             Debug.Log("Right-mouse button pressed over UI!");
             return; // Ignore if mouse is over UI element
         }
-        CameraMovement cameraMovement = GameManager.Instance.cameraMovement;
-        if (cameraMovement == null)
-        {
-            Debug.Log("CameraMovement not found!");
-            return;
-        }
-        else
-        {
-            GameManager.Instance.cameraMovement.CameraDragStart();
-            draggingMap = true;
-        }
+
+        cameraMovement.CameraDragStart();
+        draggingMap = true;
     }
     void MouseRightButtonReleased(InputAction.CallbackContext context)
     {
-        if (GameManager.gameState != GameManager.GameState.Playing)
-            return;
         if (draggingMap)
         {
-            CameraMovement cameraMovement = GameManager.Instance.cameraMovement;
-            if (cameraMovement == null)
-            {
-                Debug.Log("CameraMovement not found!");
-                return;
-            }
-            else
-            {
-                GameManager.Instance.cameraMovement.CameraDragEnd();
-                draggingMap = false;
-            }            
+            cameraMovement.CameraDragEnd();
+            draggingMap = false;
             Debug.Log("InpMan: Right Click released!");
         }
     }
 
     private void MouseWheelScrolled(InputAction.CallbackContext context)
     {
-        if (GameManager.gameState != GameManager.GameState.Playing)
-            return;
         //Debug.Log("Mouse Wheel scrolled!");
         float scrollValue = context.ReadValue<float>();
         if (Math.Abs(scrollValue) < 0.01)
@@ -302,13 +270,11 @@ public class InputManager : MonoBehaviour
             Debug.Log("Mouse Wheel scrolled over UI! [maybe should unsubscribe from event and check in Update() loop because of EventSystem last-frame error]");
             return; // Ignore if mouse is over UI element
         }
-        GameManager.Instance.cameraMovement.CameraZoomOnUpdate(scrollValue / 120);
+        cameraMovement.CameraZoomOnUpdate(scrollValue / 120);
     }
 
     private void MouseButtonPressed(InputAction.CallbackContext context)
     {
-        if (GameManager.gameState != GameManager.GameState.Playing)
-            return;
         //Debug.Log("InpMan: Click triggered!");
         Vector2 mousePosition = Mouse.current.position.ReadValue();
 
@@ -329,14 +295,14 @@ public class InputManager : MonoBehaviour
                 }
                 else
                 {
-                    if (GameManager.Instance.dragObject == null)
+                    if (dragScript == null)
                     {
                         Debug.Log("DragIt script not found!");
                         return;
                     }
                     else
                     {
-                        GameManager.Instance.dragObject.ClickDragStart(hit, mousePosition);
+                        dragScript.ClickDragStart(hit, mousePosition);
                         dragging = true;
                     }
                 }                
@@ -368,15 +334,12 @@ public class InputManager : MonoBehaviour
 
     private void MouseButtonReleased(InputAction.CallbackContext context)
     {
-        if (GameManager.gameState != GameManager.GameState.Playing)
-            return;
         if (dragging)
         {
-            GameManager.Instance.dragObject.ClickDragEnd();
+            dragScript.ClickDragEnd();
             dragging = false;
             Debug.Log("InpMan: Click released!");
         }
     }
 
 }
-

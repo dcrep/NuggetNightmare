@@ -28,6 +28,8 @@ public class AttractionManager : MonoBehaviour
 
     public List<GameObject> attractionGameObjects { get; private set; }
 
+    GameObject dragAttraction;
+
     // Awake is called when the script instance is being loaded
     void Awake()
     {
@@ -114,7 +116,8 @@ public class AttractionManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        dragAttraction = new GameObject("DragAttraction");
+        dragAttraction.AddComponent<DragIt>();
     }
 
     // Update is called once per frame

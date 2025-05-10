@@ -6,7 +6,7 @@ using UnityEngine.Pool;
 
 public class NuggetFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject nuggetPrefab;
+    private GameObject nuggetPrefab;
 
     // TODO: Implement NuggetWaveData as a scriptable object or whatnot..
     // Here for now, but better in a scriptable object with an array or list of each type of Nugget:

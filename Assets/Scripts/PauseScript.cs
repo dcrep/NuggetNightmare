@@ -7,11 +7,12 @@ public class PauseScript : MonoBehaviour
     public void ResumeGamePressed()
     {
         Debug.Log("Resume menu button!");
-        var inputManager = GameObject.FindFirstObjectByType<InputManager>();
-        if (inputManager != null)
-        {
-            inputManager.GetComponent<InputManager>().PauseMenuClose();
-        }
+        GameManager.Instance.inputManager.PauseMenuClose();
+        //var inputManager = GameObject.FindFirstObjectByType<InputManager>();
+        //if (inputManager != null)
+        //{            
+         //   inputManager.GetComponent<InputManager>().PauseMenuClose();
+        //}
         //GameManager.Instance.ResumeGame();
     }
     public void MainMenuButtonPressed()

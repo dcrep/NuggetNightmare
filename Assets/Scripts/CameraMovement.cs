@@ -14,9 +14,9 @@ public class CameraMovement : MonoBehaviour
     bool zoomOnUpdate = false;
     float zoomAmount = 0f;
     float zoomOutMax = 6f;
-    const float MAX_ZOOM_IN = 1f;
+    float zoomInMax = 1f;
 
-    private GridLayout tileGrid;
+    private Grid tileGrid;
 
     // At zoom level 1, tile bounds seem to be 4x3
     Rect screenBounds = new Rect(-2, -2, 4, 4);
@@ -38,12 +38,19 @@ public class CameraMovement : MonoBehaviour
     public void CameraDragEnd()
     {
         draggingMap = false;
-    }    
+    }
+
+    void Awake()
+    {
+        GameManager.Instance.mainCamera = Camera.main;
+        GameManager.Instance.cameraMovement = this;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        tileGrid = FindObjectOfType<GridLayout>();
+        //tileGrid = FindObjectOfType<GridLayout>();
+        tileGrid = FindObjectOfType<Grid>();
         if (tileGrid == null)
         {
             Debug.LogError("GridLayout not found in the scene.");
@@ -67,14 +74,16 @@ public class CameraMovement : MonoBehaviour
             tileGridBounds = tileMap.cellBounds;
             //Debug.Log("Tilemap bounds: " + tileGridBounds);
             screenBounds = new Rect(
-            tileGridBounds.xMin * tileGrid.cellSize.x,
-            tileGridBounds.yMin * tileGrid.cellSize.y,
-            tileGridBounds.size.x * tileGrid.cellSize.x,
-            tileGridBounds.size.y * tileGrid.cellSize.y
+                tileGridBounds.xMin * tileGrid.cellSize.x,
+                tileGridBounds.yMin * tileGrid.cellSize.y,
+                tileGridBounds.size.x * tileGrid.cellSize.x,
+                tileGridBounds.size.y * tileGrid.cellSize.y
             );
             Debug.Log("Screen bounds set to: " + screenBounds);
         }
         originalZoom = Camera.main.orthographicSize;
+        zoomOutMax = originalZoom;
+        zoomInMax = originalZoom / 6f;
     }
 
     // Update is called once per frame
@@ -88,7 +97,7 @@ public class CameraMovement : MonoBehaviour
         if (zoomOnUpdate)
         {
             Camera.main.orthographicSize -= zoomAmount;
-            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, MAX_ZOOM_IN, zoomOutMax);            
+            Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, zoomInMax, zoomOutMax);            
             zoomOnUpdate = false;
             //Debug.Log("Zoom: " + Camera.main.orthographicSize);
         }

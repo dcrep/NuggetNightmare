@@ -15,9 +15,9 @@ public class MainMenuNavigateBasic : MonoBehaviour
     public void QuitButton()
     {
 #if UNITY_EDITOR
-    EditorApplication.ExitPlaymode();
+        EditorApplication.ExitPlaymode();
 #else
-    Application.Quit(); // For standalone builds
+        Application.Quit(); // For standalone builds
 #endif
         Debug.Log("Quit Game");        
     }

@@ -8,12 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainMenuBasic.unity
     guid: f5af033936eda2d4691f04ddb6f2868a
-  - enabled: 0
-    path: Assets/Scenes/AnimsEtc-Daniel.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/Scenes/FirstTestBed.unity
-    guid: 5889ae3d8bafe9c42be2b045973983fe
   - enabled: 1
     path: Assets/Scenes/Ian-MainMenu.unity
     guid: 92d77f2d440aece458ef6222d5b4fa9c
@@ -21,12 +15,27 @@ EditorBuildSettings:
     path: Assets/Scenes/OptionsScreen.unity
     guid: 9df2d446844462846a82c1e904c25ab8
   - enabled: 1
+    path: Assets/Scenes/Day 1 - Tutorial.unity
+    guid: 450e926d75137844c83fa0d5c64aceec
+  - enabled: 1
+    path: Assets/Scenes/Day 2.unity
+    guid: 24b8c73d0a5de174bacfe92459515263
+  - enabled: 1
+    path: Assets/Scenes/Day 3.unity
+    guid: 8a43c59edc6eb444ca1da0e95498b20d
+  - enabled: 1
+    path: Assets/Scenes/GameOverBasic.unity
+    guid: bdd58eec61235e04caf36d7f2a3e6e4d
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 722331efe486d7a4c921ae44569647aa
   - enabled: 1
     path: Assets/Scenes/Level2.unity
     guid: c468bd16c587f5d47a06d7d216db4bb5
-  - enabled: 1
-    path: Assets/Scenes/GameOverBasic.unity
-    guid: bdd58eec61235e04caf36d7f2a3e6e4d
+  - enabled: 0
+    path: Assets/Scenes/FirstTestBed.unity
+    guid: 5889ae3d8bafe9c42be2b045973983fe
+  - enabled: 0
+    path: Assets/Scenes/AnimsEtc-Daniel.unity
+    guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects: {}

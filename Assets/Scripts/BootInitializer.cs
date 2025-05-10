@@ -40,7 +40,12 @@ public class BootInitializer : MonoBehaviour {
 
         // TODO: Input Manager here?  Currently it's just added to the play levels rather than the UI levels
         // (since UI input doesn't require it.  Or does it?  Escape/back key on Main Menu, Game Over screen, etc.)
-        // InputManager
+        GameObject inputManagerObject = new("InputManager");
+        inputManagerObject.AddComponent<InputManager>();
+        DontDestroyOnLoad(inputManagerObject);
+        Debug.Log("[BI]: InputManager initialized..");
+
+        gameManagerObject.GetComponent<GameManager>().inputManager = inputManagerObject.GetComponent<InputManager>();
 
     /*
         // Load all AttractionScriptableObjects
