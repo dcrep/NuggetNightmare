@@ -25,12 +25,15 @@ public class GameLevel : MonoBehaviour
             startPosition = new Vector2(-9.5f, -2.5f);
         }
 
-        GameManager.Instance.levelObject = gameObject;
+        GameManager.Instance.levelGameObject = gameObject;
+        // Set up objects required for level:
+        GameManager.Instance.LevelAwakeCalled(this);
     }
 
     void OnDisable()
     {
-        GameManager.Instance.levelObject = null;
+        GameManager.Instance.levelGameObject = null;
+        GameManager.Instance.LevelDisableCalled();
     }
 
 
