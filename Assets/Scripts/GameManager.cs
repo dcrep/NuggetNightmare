@@ -29,7 +29,8 @@ public class GameManager : MonoBehaviour
     GameObject attractionManager;
     GameObject nuggetFactory;
 
-    public GameObject levelObject;
+    public GameObject levelGameObject;
+    GameLevel levelObject;
 
     public Camera mainCamera;
 
@@ -183,9 +184,9 @@ public class GameManager : MonoBehaviour
         LevelInternalInit(GetLevelName());
     }
 
-    // Level object's Start() method called, calls this to initialize other objects
-    // needed for levels
-    public void LevelStartCalled(GameLevel levelObject)
+    // Level object's Awake() method called, calls this to build objects
+    // needed for levels and set current level
+    public void LevelAwakeCalled(GameLevel _levelObject)
     {
         nuggetFactory = new GameObject("NuggetFactory");
         nuggetFactory.AddComponent<NuggetFactory>();
@@ -193,8 +194,20 @@ public class GameManager : MonoBehaviour
         attractionManager.AddComponent<AttractionManager>();
         dragManager = new GameObject("DragManager");
         dragObject = dragManager.AddComponent<DragIt>();
+        levelObject = _levelObject;
+    }
+
+    // Level object's Start() method called, calls this for further initialization
+    // that relies on other objects
+    public void LevelStartCalled(GameLevel levelObject)
+    {
         //mainCamera = levelObject.mainCamera;
         //cameraMovement = mainCamera.GetComponent<CameraMovement>();
+    }
+    public void LevelDisableCalled()
+    {
+        levelObject = null;
+        levelGameObject = null;
     }
     public NuggetFactory GetNuggetFactory()
     {
