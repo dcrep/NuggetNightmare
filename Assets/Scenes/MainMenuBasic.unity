@@ -225,19 +225,20 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Credits:
 
-    Emery Vallejo - Programming
+    Emery Vallejo - Programming, Game Design
 
-    Emily Persicano - Art,
-    Animation, Backgrounds
+    Emily Persicano
+    - Art, Animation, Backgrounds
 
     Hannah Romero - Art, Animation
 
-    Daniel Corritore
-    - Programming
+    Daniel
+    Corritore - Programming, Design
 
     Ian North - UI, Level Design
 
-    David Giraldo - Social Media'
+    David
+    Giraldo - Social Media'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
