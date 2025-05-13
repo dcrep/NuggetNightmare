@@ -8,10 +8,10 @@ public class GameLevel : MonoBehaviour
     [SerializeField] private NuggetWaveScriptableObject[] nuggetWaveSO;
     int nuggetWaveIndex = 0;
 
-    [SerializeField] Vector2 startPosition;
-    [SerializeField] Vector2 endPosition;
+    [field:SerializeField] public Vector2 startPosition { get; private set; }
+    [field:SerializeField] public Vector2 endPosition { get; private set; }
 
-    [SerializeField] Vector2 attractionSpawnPosition;
+    [field:SerializeField] public Vector2 attractionSpawnPosition { get; private set; }
 
     [SerializeField] public Camera mainCamera {get; private set; }
 
