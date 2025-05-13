@@ -6,19 +6,22 @@ public class TargetProperties : MonoBehaviour
     public enum TargetTypes 
     {
         Basic,
+        Start,
+        End,
         Branching,
         Jump,
-        Start,
-        End
+        Blocking
     }
     public TargetTypes targetType = TargetTypes.Basic;
     // Branch left/right based on flip
     public bool branchFlipLeft = true;
 
+    public bool isBlocked = false;
+
     public GameObject flipLeftTarget;
     public GameObject flipRightTarget;
 
-    public GameObject jumpFromBranchTarget;
+    public GameObject jumpTarget;
     public GameObject jumpInReverseTarget;
 
     //void Start() { }

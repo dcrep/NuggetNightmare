@@ -47,7 +47,7 @@ public class Nugget : MonoBehaviour
     bool reachedEnd = false;
     int targetIndex = 0;
 
-    bool reachedCurrentTarget = false;
+    //bool reachedCurrentTarget = false;
 
     // Draw freakout Aura
     private void OnDrawGizmos()
@@ -102,7 +102,7 @@ public class Nugget : MonoBehaviour
                         nextTarget = targetProperties.flipLeftTarget != null ? targetProperties.flipLeftTarget : targetProperties.flipRightTarget;
                         if (nextTarget == null)
                         {
-                            nextTarget = targetProperties.jumpFromBranchTarget;
+                            nextTarget = targetProperties.jumpTarget;
                             if (nextTarget == null)
                             {
                                 Debug.LogError("[NUG] - Branching Target: Branch & Jump targets not set!");
@@ -120,7 +120,7 @@ public class Nugget : MonoBehaviour
                         nextTarget = targetProperties.flipRightTarget != null ? targetProperties.flipRightTarget : targetProperties.flipLeftTarget;
                         if (nextTarget == null)
                         {
-                            nextTarget = targetProperties.jumpFromBranchTarget;
+                            nextTarget = targetProperties.jumpTarget;
                             if (nextTarget == null)
                             {
                                 Debug.LogError("[NUG] - Branching Target: Branch & Jump targets not set!");
@@ -136,13 +136,13 @@ public class Nugget : MonoBehaviour
                 }
                 else if (targetProperties.targetType == TargetProperties.TargetTypes.Jump)
                 {
-                    nextTarget = targetProperties.jumpFromBranchTarget;
+                    nextTarget = targetProperties.jumpTarget;
                     if (nextTarget == null)
                     {
                         Debug.LogError("Jump target not set!");
                         targetIndex++;  // movingForward
                     }
-                    else    // jumpFromBranchTarget != null
+                    else    // jumpTarget != null
                     {                        
                         targetIndex = System.Array.IndexOf(movementTargets, nextTarget);
                         if (targetIndex == -1)
@@ -280,15 +280,20 @@ public class Nugget : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, GetTarget().transform.position, speed * Time.deltaTime);
         if (prevPosition == transform.position)
         {
-            if (!SetNextTarget())
+            Debug.Log("[NUG]: Position hasn't changed");
+            if (GetTarget().GetComponent<Collider2D>().IsTouching(gameObject.GetComponent<Collider2D>()))
             {
-                if (reachedEnd)
+                Debug.Log("[NUG]: Nugget is touching target!");
+                if (!SetNextTarget())
                 {
-                    Debug.Log("[NUG]: Reached end of path, destroying nugget!");
-                    Destroy(gameObject);
+                    if (reachedEnd)
+                    {
+                        Debug.Log("[NUG]: Reached end of path, destroying nugget!");
+                        Destroy(gameObject);
+                    }
                 }
             }
-        }        
+        }
     }
     // Rating OnDisable allows both destruction and Disable/Reenable for object pools
     private void OnDisable()
