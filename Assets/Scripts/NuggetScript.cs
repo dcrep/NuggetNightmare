@@ -18,7 +18,7 @@ public class NuggetScript : MonoBehaviour
     [SerializeField]
     public LayerMask nuggets;
 
-    public float fearLevel = 0f;
+    float fearLevel = 0f;
     float timer;
 
     [SerializeField]
@@ -191,27 +191,49 @@ public class NuggetScript : MonoBehaviour
         return totalFearIncrease;
     }
 
-    // TODO: On 'die'/exit-level, rate the experience!
+    // On 'die'/exit-level, rate the experience!
     void RateExperience()
     {
         int experience;
         
-        // Arbitrary for now:
-        if (fearLevel >= 100f)
+        // Rating 1-5 based on fear level - or -5 if nugget was terrified (>= 100)
+        // [0-9.99, 90-99.999]: 1
+        // [10-19.99, 80-89.999]: 2
+        // [20-29.99, 70-79.999]: 3
+        // [30-39.99, 60-69.999]: 4
+        // [40-59.99]: 5
+        // *IMPORTANT: Order of comparisons is important!
+        if (fearLevel < 0 || fearLevel >= 100f)
         {
             experience = -5;
         }
-        else if (fearLevel >= 60f)
+        else if (fearLevel < 10f || fearLevel >= 90f)
+        {
+            experience = 1;
+        }
+        else if (fearLevel < 20f || fearLevel >= 80f)
         {
             experience = 2;
         }
-        else if (fearLevel >= 40f)
+        else if (fearLevel < 30f || fearLevel >= 70f)
+        {
+            experience = 3;
+        }
+        else if (fearLevel < 40f || fearLevel >= 60f)
+        {
+            experience = 4;
+        }
+        else //else if (fearLevel 40 <-> 59.999)       
         {
             experience = 5;
         }
-        else {
-            experience = 1;
-        }
+
         GameManager.Instance.RateExperience(experience);
+    }
+
+    void OnTriggerEnter2D(Collider2D collide)
+    {
+        //if (collide.CompareTag("Nugget"))
+        Debug.Log("[NUG]: OnTriggerEnter2D: " + collide.gameObject.name + " Tag: " + collide.tag);
     }
 }

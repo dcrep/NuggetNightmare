@@ -40,10 +40,10 @@ public class NuggetFactory : MonoBehaviour
         Vector3 spawnPosition = new Vector3(position.x, position.y, 0f);
         GameObject nugget = Instantiate(nuggetPrefab, spawnPosition, Quaternion.identity);
         //nugget.transform.SetParent(transform);
-        nugget.GetComponent<NuggetScript>().SetFears(fears);
+        nugget.GetComponent<Nugget>().SetFears(fears);
         if (speed > 0)
         {
-            nugget.GetComponent<NuggetScript>().SetSpeed(speed);
+            nugget.GetComponent<Nugget>().SetSpeed(speed);
         }
         GameManager.Instance.NuggetInPlayAdd();
     }
@@ -105,14 +105,15 @@ public class NuggetFactory : MonoBehaviour
 
     public void CreateNuggetAt(Vector2 position, NuggetWaveScriptableObject.NuggetWave nuggetWave)
     {
-
+        Debug.Log($"Creating nugget at {position} with fears: {nuggetWave.nuggetFears}");
         Vector3 spawnPosition = new Vector3(position.x, position.y, 0f);
         // UNUSED (for now):
         //nuggetWave.spawnRadius
         GameObject nugget = Instantiate(nuggetWave.nuggetPrefab, spawnPosition, Quaternion.identity);
         //nugget.transform.SetParent(transform);        
-        nugget.GetComponent<NuggetScript>().SetFears(nuggetWave.nuggetFears);
-        //nugget.GetComponent<NuggetScript>().SetSpeed(nuggetWave.walkSpeed);
+        //nugget.GetComponent<Nugget>().SetFears(nuggetWave.nuggetFears);
+        //nugget.GetComponent<Nugget>().SetSpeed(nuggetWave.walkSpeed);
+        nugget.GetComponent<Nugget>().SetFears(nuggetWave.nuggetFears);
         GameManager.Instance.NuggetInPlayAdd();
     }
 
