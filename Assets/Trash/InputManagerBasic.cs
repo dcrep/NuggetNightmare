@@ -7,8 +7,9 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class InputManagerBasic : MonoBehaviour
-{
+public class InputManagerBasicv1 : MonoBehaviour
+{ }
+/*
     public PlayerControls playerControls;
     private InputAction numKeyAction;
     private InputAction mouseUpDown;
@@ -131,10 +132,7 @@ public class InputManagerBasic : MonoBehaviour
         }
     }
 
-    /*void LateUpdate()
-    {
-
-    }*/
+    //void LateUpdate() { }
 
     public bool PauseMenuClose()
     {
@@ -319,16 +317,15 @@ public class InputManagerBasic : MonoBehaviour
                 }
             }
         }
-        /*
-        else
-        {
-            var gridPos = Camera.main.ScreenToWorldPoint(mousePosition);
+        // else
+        //{
+        //    var gridPos = Camera.main.ScreenToWorldPoint(mousePosition);
             
             // Snapping to grid
-            Vector3Int cellPosition = tileGrid.WorldToCell(gridPos);
-            Debug.Log("Click at: Cell Position: " + cellPosition);
-        }
-        */
+        //    Vector3Int cellPosition = tileGrid.WorldToCell(gridPos);
+        //    Debug.Log("Click at: Cell Position: " + cellPosition);
+        //}
+        //
 
     }
 
@@ -342,4 +339,4 @@ public class InputManagerBasic : MonoBehaviour
         }
     }
 
-}
+}*/
