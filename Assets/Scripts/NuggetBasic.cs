@@ -321,6 +321,7 @@ public class Nugget : MonoBehaviour
     public void resetFearLevel()
     {
         freakyAuraStarted = false;
+        movingForward = true;
         fearLevel = 0f;
         freakyAura.gameObject.SetActive(false);
         happy.SetActive(true);
@@ -340,6 +341,8 @@ public class Nugget : MonoBehaviour
                 //gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 freakyAuraStarted = true;
                 SoundManager.PlaySoundAtFromArray(soundEffectScare, 1f, gameObject.transform.position);
+                movingForward = false;
+                SetNextTarget();
             }
             freakyAura.gameObject.SetActive(true);
         }
@@ -374,6 +377,8 @@ public class Nugget : MonoBehaviour
                 gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 freakyAuraStarted = true;
                 SoundManager.PlaySoundAtFromArray(soundEffectScare, 1f, gameObject.transform.position);
+                movingForward = false;
+                SetNextTarget();
             }
             freakyAura.gameObject.SetActive(true);
         }
