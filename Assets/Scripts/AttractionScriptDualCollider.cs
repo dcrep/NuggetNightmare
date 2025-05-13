@@ -152,13 +152,13 @@ public class AttractionScriptDualCollider : MonoBehaviour
         //       doesn't exit collider before cooldown ends (which would ideally cause another trigger)
         else if (collide.CompareTag("Nugget") && !attractionDisabled)
         {
-            //Debug.Log(collide.name + " [Nugget] collided with " + gameObject.name + " with tag " + collide.tag);
+            Debug.Log(collide.name + " [Nugget] collided with " + gameObject.name + " with tag " + collide.tag);
             if (isActivating || IsAttractionRecovered())
             {
                 //Debug.Log("isActivating: " + isActivating + " IsAttractionRecovered: " + IsAttractionRecovered());
                 if (collide.CompareTag("Nugget"))
                 {
-                    if (collide.transform.TryGetComponent<NuggetScript>(out var nuggetScript))
+                    if (collide.transform.TryGetComponent<Nugget>(out var nuggetScript))
                     {
                         //nuggetScript.scare(attackDamage, fears);
                         totalScareHP += nuggetScript.scare(attackDamage, fears);
@@ -251,7 +251,7 @@ public class AttractionScriptDualCollider : MonoBehaviour
         {
             var nugget = nuggetsInColliderWhileRecovering[0];
             nuggetsInColliderWhileRecovering.RemoveAt(0);
-            if (nugget != null && nugget.TryGetComponent<NuggetScript>(out var nuggetScript))
+            if (nugget != null && nugget.TryGetComponent<Nugget>(out var nuggetScript))
             {
                 nuggetScript.scare(attackDamage, fears);
                 Debug.Log("[AS] Attraction Recovered, Nugget still in collider - scare+activating: " + nugget.name);
