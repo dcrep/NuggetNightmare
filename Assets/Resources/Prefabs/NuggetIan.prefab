@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 6827675211651184144}
   m_Layer: 7
   m_Name: FreakOutCollider
-  m_TagString: Nugget
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1308,7 +1308,7 @@ GameObject:
   - component: {fileID: 4140512559578527285}
   - component: {fileID: 4848939082601638595}
   m_Layer: 7
-  m_Name: NuggetEmily
+  m_Name: NuggetIan
   m_TagString: Nugget
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1374,7 +1374,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f32062618fda2fc419f5c1aa252c7b01, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9295fd93f346cc447817dda9e8317b8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
