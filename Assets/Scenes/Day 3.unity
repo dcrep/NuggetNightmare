@@ -1685,9 +1685,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8738f64ce82d7264491c124916113af4, type: 2}
   - {fileID: 11400000, guid: 77dc82f4fbd76924e95ba8849e055357, type: 2}
   - {fileID: 11400000, guid: 6ca97f014ad72a945aab944b364a22cf, type: 2}
-  startPosition: {x: -10.5, y: -6.5}
-  endPosition: {x: 1.5, y: -6.5}
-  attractionSpawnPosition: {x: -4.5, y: -2.5}
+  <startPosition>k__BackingField: {x: -10.5, y: -6.5}
+  <endPosition>k__BackingField: {x: 1.5, y: -6.5}
+  <attractionSpawnPosition>k__BackingField: {x: -4.5, y: -2.5}
   firstWaveDelay: 1
   waveDelay: 15
 --- !u!4 &1049871305

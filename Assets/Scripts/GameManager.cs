@@ -83,6 +83,11 @@ public class GameManager : MonoBehaviour
         return ratings.Count;
     }
 
+    public GameLevel GetLevelObject()
+    {
+        return levelObject;
+    }
+
     public void LoadLevel(Level level)
     {
         switch (level)
@@ -199,7 +204,7 @@ public class GameManager : MonoBehaviour
 
     // Level object's Start() method called, calls this for further initialization
     // that relies on other objects
-    public void LevelStartCalled(GameLevel levelObject)
+    public void LevelStartCalled(GameLevel _levelObject)
     {
         //mainCamera = levelObject.mainCamera;
         //cameraMovement = mainCamera.GetComponent<CameraMovement>();

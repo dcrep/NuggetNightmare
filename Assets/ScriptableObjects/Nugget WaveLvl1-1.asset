@@ -45,3 +45,9 @@ MonoBehaviour:
     walkSpeed: 0
     nextNuggetSpawnTime: 1
     nuggetPrefab: {fileID: 8470779619767152417, guid: 21b39d5bfa5571140a770ae4a8096c24, type: 3}
+  - name: Nugzy2
+    nuggetFears: 06000000
+    spawnRadius: 2
+    walkSpeed: 0
+    nextNuggetSpawnTime: 1
+    nuggetPrefab: {fileID: 8470779619767152417, guid: e6ec70caccd9e9d43a57f272d0a03706, type: 3}

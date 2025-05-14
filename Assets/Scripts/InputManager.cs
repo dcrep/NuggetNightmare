@@ -211,13 +211,15 @@ public class InputManager : MonoBehaviour
             {
                 //UnityEngine.Object.Instantiate(GameObject.Find("Spider"), new Vector3(0.5f, -5.5f, 0), Quaternion.identity);
                 GameManager.Instance.GetAttractionManager().
-                    SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, new Vector2(0.5f, -1.5f));
+                    SpawnAttractionByType(Nightmares.AttractionTypes.SpiderDrop, GameManager.Instance.GetLevelObject().attractionSpawnPosition);
+                    //new Vector2(0.5f, -1.5f));
             }
             else if (keyValue == 2)
             {
                 //UnityEngine.Object.Instantiate(GameObject.Find("Skeleton"), new Vector3(-1.5f, -5.5f, 0), Quaternion.identity);
                 GameManager.Instance.GetAttractionManager().
-                    SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, new Vector2(-1f, 1.5f));
+                    SpawnAttractionByType(Nightmares.AttractionTypes.SkeletonPopUp, GameManager.Instance.GetLevelObject().attractionSpawnPosition);
+                    //new Vector2(-1f, 1.5f));
             }
             else if (keyValue == 3)
             {
