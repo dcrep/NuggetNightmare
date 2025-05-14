@@ -154,34 +154,34 @@ public class InputManager : MonoBehaviour
     }
     private bool PauseMenuOpen()
     {
-            if (pauseMenuOpen)
+        if (pauseMenuOpen)
+        {
+            return PauseMenuClose();                
+        }
+        else if (GameManager.gameState == GameManager.GameState.Playing)
+        {
+            Debug.Log("Pause triggered!");
+            if (pauseMenuPrefab != null)
             {
-                return PauseMenuClose();                
-            }
-            else if (GameManager.gameState == GameManager.GameState.Playing)
-            {
-                Debug.Log("Pause triggered!");
-                if (pauseMenuPrefab != null)
+                pauseMenuInstance = Instantiate(pauseMenuPrefab, Vector3.zero, Quaternion.identity);
+                if (pauseMenuInstance == null)
                 {
-                    pauseMenuInstance = Instantiate(pauseMenuPrefab, Vector3.zero, Quaternion.identity);
-                    if (pauseMenuInstance == null)
-                    {
-                        Debug.LogError("Pause menu prefab not found!");
-                        return false;
-                    }
-                    var canvas = GameObject.Find("Canvas");
-                    if (canvas == null)
-                    {
-                        Debug.LogError("Canvas not found for Pause Menu!");
-                        return false;
-                    }
-                    pauseMenuInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
-                    pauseMenuInstance.SetActive(true);
-
-                    GameManager.Instance.PauseGame();
-                    pauseMenuOpen = true;
+                    Debug.LogError("Pause menu prefab not found!");
+                    return false;
                 }
+                var canvas = GameObject.Find("Canvas");
+                if (canvas == null)
+                {
+                    Debug.LogError("Canvas not found for Pause Menu!");
+                    return false;
+                }
+                pauseMenuInstance.transform.SetParent(GameObject.Find("Canvas").transform, false);
+                pauseMenuInstance.SetActive(true);
+
+                GameManager.Instance.PauseGame();
+                pauseMenuOpen = true;
             }
+        }
         return pauseMenuOpen;
     }
 
