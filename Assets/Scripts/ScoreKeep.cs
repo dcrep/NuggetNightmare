@@ -10,7 +10,7 @@ public class ScoreKeep : MonoBehaviour
     // Start is called before the first frame update
 
     // Update is called once per frame
-    void Update()
+    public void UpdateScore()
     {
         int totalRatings = GameManager.Instance.GetTotalRatings();
         int ratingValue = GameManager.Instance.GetRatingTotal();

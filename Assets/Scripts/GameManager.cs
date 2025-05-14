@@ -52,10 +52,14 @@ public class GameManager : MonoBehaviour
 
     int nuggetsInPlay = 0;
 
+    //int totalNuggetsPlayed = 0;
+    //int totalOverallRatings = 0;
+
     public void RateExperience(int rating)
     {
         Debug.Log("GameManager->RateExperience: " + rating);
         ratings.Add(rating);
+        levelObject.UpdateScore();
     }
 
     public float GetAverageRating()
@@ -78,6 +82,8 @@ public class GameManager : MonoBehaviour
         }
         return sum;
     }
+    // # ratings * 5 = best
+    // # ratings * 1 = nobody liked it, and under, at least some hated it
     public int GetTotalRatings()
     {
         return ratings.Count;
@@ -253,6 +259,8 @@ public class GameManager : MonoBehaviour
     public void LevelFinished()
     {
         Debug.Log("GameManager->LevelFinished: " + level.ToString() + " finished.");
+        levelObject.GameOver();
+        /*
         if (GetRatingTotal() < 1)
         {
             Debug.Log("GameManager->LevelFinished: Rating 0 or less, Failure state");
@@ -276,6 +284,28 @@ public class GameManager : MonoBehaviour
                 break;
             default:
                 Debug.LogError("GameManager->LevelFinished: Invalid level specified.");
+                break;
+        }
+        */
+    }
+    public void LoadNextLevel()
+    {
+        switch (level)
+        {
+            case Level.Level1:
+                Debug.Log("[GM]->LevelFinished: Level 1 finished, loading Level 2.");
+                LoadLevel(Level.Level2);
+                break;
+            case Level.Level2:
+                Debug.Log("[GM]->LevelFinished: Level 2 finished, loading Level 3.");
+                LoadLevel(Level.Level3);
+                break;
+            case Level.Level3:
+                Debug.Log("[GM]->LevelFinished: Level 3 finished, loading Main Menu.");
+                LoadLevel(Level.MainMenu);
+                break;
+            default:
+                Debug.LogError("[GM]->LevelFinished: Invalid level specified.");
                 break;
         }
     }
