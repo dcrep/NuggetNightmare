@@ -26,7 +26,8 @@ public class CameraMovement : MonoBehaviour
     {
         zoomOnUpdate = true;
         zoomAmount = zoomAdjust;
-        Debug.Log("Zoom: " + Camera.main.orthographicSize);
+        Debug.Log("Zoom: (half-Y height): " + Camera.main.orthographicSize +
+                  ", width (half-X):" + Camera.main.orthographicSize * Camera.main.aspect);
     }
 
     public void CameraDragStart()
@@ -111,8 +112,8 @@ public class CameraMovement : MonoBehaviour
             Vector3 difference = dragStart - mouseWorldPos;
             Vector3 newPos = Camera.main.transform.position + difference;
             // Clamp the camera position to the screen bounds
-            newPos.x = Mathf.Clamp(newPos.x, screenBounds.xMin, screenBounds.xMax);
-            newPos.y = Mathf.Clamp(newPos.y, screenBounds.yMin, screenBounds.yMax);
+            newPos.x = Mathf.Clamp(newPos.x, screenBounds.xMin, screenBounds.xMax / 2);
+            newPos.y = Mathf.Clamp(newPos.y, screenBounds.yMin, screenBounds.yMax / 2);
             Camera.main.transform.position = newPos;
         }
     }
