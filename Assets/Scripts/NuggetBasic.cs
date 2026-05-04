@@ -63,32 +63,63 @@ public class Nugget : MonoBehaviour
 
     void Start()
     {
-        // Set up movement targets
+        TryInitializeMovementTargets();
+    }
+
+    bool TryInitializeMovementTargets()
+    {
+        if (movementTargets != null && movementTargets.Length > 0)
+        {
+            return true;
+        }
+
+        // Set up movement targets lazily so nuggets can spawn before the target parent exists.
         movementTargetsParent = movementTargetsParent == null ? GameObject.Find("MovementTargets") : movementTargetsParent;
         if (movementTargetsParent == null)
         {
-            Debug.LogError("MovementTargets (parent) not found!");
+            return false;
         }
-        else
+
+        int childCount = movementTargetsParent.transform.childCount;
+        if (childCount == 0)
         {
-            movementTargets = new GameObject[movementTargetsParent.transform.childCount];
-            for (int i = 0; i < movementTargetsParent.transform.childCount; i++)
-            {
-                movementTargets[i] = movementTargetsParent.transform.GetChild(i).gameObject;
-                Debug.Log("[NUG]: Movement target adding #" + i + ": " + movementTargets[i].name);
-            }
+            return false;
         }
+
+        movementTargets = new GameObject[childCount];
+        for (int i = 0; i < childCount; i++)
+        {
+            movementTargets[i] = movementTargetsParent.transform.GetChild(i).gameObject;
+            Debug.Log("[NUG]: Movement target adding #" + i + ": " + movementTargets[i].name);
+        }
+
         targetIndex = movingForward ? 0 : movementTargets.Length - 1;
+        return true;
     }
 
     GameObject GetTarget()
     {
+        if (!TryInitializeMovementTargets() || targetIndex < 0 || targetIndex >= movementTargets.Length)
+        {
+            return null;
+        }
         return movementTargets[targetIndex];
     }
     // At Target, now get Next
     bool SetNextTarget()
     {
+        if (!TryInitializeMovementTargets())
+        {
+            return false;
+        }
+        
         GameObject nextTarget = null;
+        if (targetIndex < 0 || targetIndex >= movementTargets.Length)
+        {
+            Debug.LogError("[NUG] - SetNextTarget: targetIndex " + targetIndex + " is out of bounds for movementTargets array (length: " + movementTargets.Length + ")");
+            return false;
+        }
+        
         TargetProperties targetProperties = movementTargets[targetIndex].GetComponent<TargetProperties>();
         if (movingForward)
         {
@@ -277,22 +308,31 @@ public class Nugget : MonoBehaviour
             scared.SetActive(true);
         }
         var prevPosition = transform.position;
-        transform.position = Vector2.MoveTowards(transform.position, GetTarget().transform.position, speed * Time.deltaTime);
-        if (prevPosition == transform.position)
+        GameObject currentTarget = GetTarget();
+        if (currentTarget != null)
         {
-            Debug.Log("[NUG]: Position hasn't changed");
-            if (GetTarget().GetComponent<Collider2D>().IsTouching(gameObject.GetComponent<Collider2D>()))
+            transform.position = Vector2.MoveTowards(transform.position, currentTarget.transform.position, speed * Time.deltaTime);
+            if (prevPosition == transform.position)
             {
-                Debug.Log("[NUG]: Nugget is touching target!");
-                if (!SetNextTarget())
+                Debug.Log("[NUG]: Position hasn't changed");
+                var targetCollider = currentTarget.GetComponent<Collider2D>();
+                if (targetCollider != null && targetCollider.IsTouching(gameObject.GetComponent<Collider2D>()))
                 {
-                    if (reachedEnd)
+                    Debug.Log("[NUG]: Nugget is touching target!");
+                    if (!SetNextTarget())
                     {
-                        Debug.Log("[NUG]: Reached end of path, destroying nugget!");
-                        Destroy(gameObject);
+                        if (reachedEnd)
+                        {
+                            Debug.Log("[NUG]: Reached end of path, destroying nugget!");
+                            Destroy(gameObject);
+                        }
                     }
                 }
             }
+        }
+        else
+        {
+            Debug.LogWarning("[NUG]: Update - currentTarget is null, cannot move towards target");
         }
     }
     // Rating OnDisable allows both destruction and Disable/Reenable for object pools
@@ -374,13 +414,19 @@ public class Nugget : MonoBehaviour
         {
             if (!freakyAuraStarted)
             {
-                gameObject.GetComponent<NuggetPathfindingAI>().freakOut(freakOutSpeed);
                 freakyAuraStarted = true;
                 SoundManager.PlaySoundAtFromArray(soundEffectScare, 1f, gameObject.transform.position);
                 movingForward = false;
                 SetNextTarget();
             }
-            freakyAura.gameObject.SetActive(true);
+            if (freakyAura != null)
+            {
+                freakyAura.gameObject.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("freakyAura not assigned on Nugget: " + gameObject.name);
+            }
         }
         else
         {
@@ -432,7 +478,14 @@ public class Nugget : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collide)
     {
         Debug.Log("[NUG]: OnTriggerEnter2D: " + collide.gameObject.name + " Tag: " + collide.tag);
-        if (collide.CompareTag("Targets") && collide.gameObject == GetTarget())
+        
+        GameObject currentTarget = GetTarget();
+        if (currentTarget == null)
+        {
+            return;
+        }
+        
+        if (collide.CompareTag("Targets") && collide.gameObject == currentTarget)
         {
             //reachedCurrentTarget = true;
             if (!SetNextTarget())

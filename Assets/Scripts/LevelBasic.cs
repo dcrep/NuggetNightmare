@@ -55,6 +55,7 @@ public class GameLevel : MonoBehaviour
         //if (mainCamera.orthographic) {}   // always true for this game
 
         {
+            // these values are actually half the (unit) size of the screen.
             float projectionHeight = mainCamera.orthographicSize;
             float width = projectionHeight * mainCamera.aspect;       // Total width of the view
             Debug.Log($"Orthographic Camera Size: Width = {width}, Height = {projectionHeight}");

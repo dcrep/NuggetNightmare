@@ -69,6 +69,13 @@ public class AttractionScriptDualCollider : MonoBehaviour
         //Debug.Log("AttractionScriptDualCollider->Awake()");
         //attractionObject = Object.Instantiate(attractionInput);
         //Debug.Log("AttractionBase " + attractionObject.name + " health: " + attractionObject.startHealth);
+        
+        if (attractionScriptable == null)
+        {
+            Debug.LogError("AttractionScriptableObject not assigned on: " + gameObject.name);
+            return;
+        }
+        
         health = attractionScriptable.startHealth;
         //gets drag attaction script from drag manager
         //controller = attractionScriptable.animator;

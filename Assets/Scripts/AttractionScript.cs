@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using Unity.VisualScripting;
-using UnityEditor.Animations;
+//using UnityEditor.Animations;
 using UnityEngine;
 
 public class AttractionScript : MonoBehaviour
@@ -50,8 +50,8 @@ public class AttractionScript : MonoBehaviour
     [SerializeField]
     public float timer;
 
-    [SerializeField]
-    AnimatorController controller;
+    //[SerializeField]
+    //AnimatorController controller;
 
 //  private float cooldown = 0.5f;
 
