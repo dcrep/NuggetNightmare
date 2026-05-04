@@ -79,7 +79,7 @@ public static class Nightmares {
     public static List<Fears> GetMatchingFears(Fears fearOfCaller, List<Fears> fearsToCheckAgainst)
     {
         List<Fears> matchingFears = new();
-        if (fearsToCheckAgainst.Contains(fearOfCaller))
+        if (fearsToCheckAgainst != null && fearsToCheckAgainst.Contains(fearOfCaller))
             matchingFears.Add(fearOfCaller);
         return matchingFears;
     }

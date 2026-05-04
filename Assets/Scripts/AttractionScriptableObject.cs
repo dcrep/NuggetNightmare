@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Microsoft.Unity.VisualStudio.Editor;
-using UnityEngine.Animations;
+//using UnityEngine.Animations;
 using UnityEngine;
 
 
@@ -35,7 +34,7 @@ public class AttractionScriptableObject : ScriptableObject {
 
     public Animator animator;
 
-    public Image image; // image to display in the UI (for now, just a placeholder)
+    //public Image image; // image to display in the UI (for now, just a placeholder)
 
     public List<Nightmares.Fears> fears;
 
