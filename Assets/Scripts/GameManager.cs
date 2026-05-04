@@ -59,7 +59,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager->RateExperience: " + rating);
         ratings.Add(rating);
-        levelObject.UpdateScore();
+        // `levelObject` may be null during scene unload; guard against it
+        if (levelObject != null)
+        {
+            levelObject.UpdateScore();
+        }
     }
 
     public float GetAverageRating()
@@ -133,6 +137,9 @@ public class GameManager : MonoBehaviour
         }
         SetGameSpeed(1f);
         ratings.Clear();
+        levelObject = null;
+        levelGameObject = null;
+        nuggetsInPlay = 0;
         SceneManager.LoadScene(levelName, LoadSceneMode.Single);
         LevelInternalInit(levelName);
     }
@@ -236,6 +243,11 @@ public class GameManager : MonoBehaviour
     }
     public void NuggetInPlayRemoveOne()
     {
+        if (levelObject == null)
+        {
+            Debug.LogWarning("GameManager->NuggetInPlayRemove: levelObject is null, ignoring remove.");
+            return;
+        }
         if (nuggetsInPlay == 0)
         {
             Debug.LogError("GameManager->NuggetInPlayRemove: nuggetsInPlay is already 0.");
